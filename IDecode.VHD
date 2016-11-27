@@ -64,8 +64,8 @@ BEGIN
                       ELSE    write_register_address_I;
 
 
-	write_data <= ALU_result( 31 DOWNTO 0 ) WHEN ( LW = '0' ) 	-- Mux to bypass data memory for Rtype instruction
-		  ELSE    read_data;
+	write_data <= ALU_result( 31 DOWNTO 0 ) WHEN ( LW = '0' ) 	
+		  ELSE    read_data;                                        --  Data taken from Dmem when executing load instruction
 
 
     SignExtImm <= X"0000" & Instruction_immediate_value WHEN Instruction_immediate_value(15) = '0'  -- Sign Extend 16-bits to 32-bits
