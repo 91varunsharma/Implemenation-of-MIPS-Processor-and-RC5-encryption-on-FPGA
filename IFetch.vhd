@@ -4,10 +4,10 @@ use ieee.numeric_std.all;
 USE IEEE.STD_LOGIC_UNSIGNED.ALL;
 
 entity IFetch is
-    Port ( address : in  STD_LOGIC_VECTOR (31 downto 0);
+    Port ( clk : in STD_LOGIC;
+    		address : in  STD_LOGIC_VECTOR (31 downto 0);
            Instr : out  STD_LOGIC_VECTOR (31 downto 0));
 end IFetch;
-
 
 architecture Behavioral of IFetch is
 
@@ -34,6 +34,16 @@ Type IMemory IS ARRAY (0 to 255) of STD_LOGIC_VECTOR(31 downto 0);
 											
 begin
 
-Instr <= IMem(to_integer(unsigned(address)));
+	process(clk)
+
+	begin
+
+		if (clk'event and clk='1') then
+
+			Instr <= IMem(to_integer(unsigned(address)));
+
+		end if;
+
+	end process;
 
 end Behavioral;
