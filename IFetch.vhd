@@ -6,7 +6,7 @@ USE IEEE.STD_LOGIC_UNSIGNED.ALL;
 entity IFetch is
     Port ( clk : in STD_LOGIC;
     		address : in  STD_LOGIC_VECTOR (31 downto 0);
-           Instr : out  STD_LOGIC_VECTOR (31 downto 0));
+           Instruction : out  STD_LOGIC_VECTOR (31 downto 0));
 end IFetch;
 
 architecture Behavioral of IFetch is
@@ -40,7 +40,7 @@ begin
 
 		if (clk'event and clk='1') then
 
-			Instr <= IMem(to_integer(unsigned(address)));
+			Instruction <= IMem(to_integer(unsigned(address)));
 
 		end if;
 
