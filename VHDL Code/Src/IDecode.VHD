@@ -9,8 +9,8 @@ USE IEEE.STD_LOGIC_UNSIGNED.ALL;
 ENTITY IDecode IS
 	  PORT(	clk     	: IN 	STD_LOGIC;
 	  		Instruction : IN 	STD_LOGIC_VECTOR( 31 DOWNTO 0 );   
-			write_data  : IN 	STD_LOGIC_VECTOR( 31 DOWNTO 0 );   -------- Data to be written to the reister file
-			WriteEn 	: IN 	STD_LOGIC;                         -------- To be made '1' when register file needs to be updated
+			write_data  : IN 	STD_LOGIC_VECTOR( 31 DOWNTO 0 );   --------Data to be written to the reister file
+			WriteEn 	: IN 	STD_LOGIC;                         --To be made '1' when register file needs to be updated
 			read_data1	: OUT 	STD_LOGIC_VECTOR( 31 DOWNTO 0 );   --------Operand1 
 			read_data2	: OUT 	STD_LOGIC_VECTOR( 31 DOWNTO 0 );   --------Operand2
 		--	ALUOp       : OUT   STD_LOGIC_VECTOR (2 DOWNTO 0);     --------Type of ALU operation
@@ -51,7 +51,7 @@ BEGIN
    	write_register_address_R	<= Instruction( 15 DOWNTO 11 );
    	write_register_address_I 	<= Instruction( 20 DOWNTO 16 );
    	Immediate_value             <= Instruction( 15 DOWNTO 0 );
-  -- 	ALU_Op                      <= Instruction( 2 DOWNTO 0 );
+  -- 	ALU_Op                  <= Instruction( 2 DOWNTO 0 );
 
 
     Opcode <= Op_code;
@@ -82,7 +82,7 @@ BEGIN
 
 		IF (clk'EVENT AND clk = '1') then
 	
-	  		IF (WriteEn = '1' AND write_register_address /= 0) THEN                  -- Write back to register but don't write to 'register 0'
+	  		IF (WriteEn = '1' AND write_register_address /= 0) THEN      -- Write back to register when Write Enable =1 but don't write to 'register 0'
 			    Reg_array( CONV_INTEGER( write_register_address)) <= write_data;
 
 			END IF;
