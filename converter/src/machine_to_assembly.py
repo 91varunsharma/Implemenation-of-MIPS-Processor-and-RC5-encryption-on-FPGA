@@ -72,7 +72,7 @@ def get_i_ins(opcode, instruction):
     rt = "R" + str(int(instruction[11:16], 2)) + " "
     asm_instruction += rt
 
-    imm=""
+    imm = ""
     sign_bit = instruction[16:17]
     if sign_bit == '0':
         imm = str(int(instruction[16:32], 2))
@@ -124,3 +124,6 @@ if __name__ == '__main__':
                 asm_ins = "JMP " + str(int(ins[6:32], 2)) + "\n"
                 print asm_ins
                 write_to.write(asm_ins)
+
+    read_from.close()
+    write_to.close()
