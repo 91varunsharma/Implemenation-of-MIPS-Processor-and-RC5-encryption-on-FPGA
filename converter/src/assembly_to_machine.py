@@ -106,7 +106,16 @@ def get_jtype_string(ins_t):
     opcode = int("0C", 16)
     binary_str = ""
     binary_str += get_address(opcode, 6)
-    jaddress = get_address(int(ins_t[1]), 26)
+
+    addr = int(ins_t[1])
+    jaddress = ""
+
+    if addr < 0:
+        addr_value = 67108864 + 1 + addr
+        jaddress = get_address(addr_value, 26)
+    else:
+        jaddress = get_address(addr, 26)
+
     binary_str += jaddress
 
     return binary_str
@@ -129,7 +138,13 @@ if __name__ == '__main__':
             ins = f.split(' ')
             ins_type = ins[0].lower()
             ins_num += 1
-            if ins_type == "hal" or ins_type == "hal\n":
+
+            if f == '\n' or f == ' ':
+                binary_ins = "\n"
+                print ins_num
+                write_to.write(binary_ins)
+
+            elif ins_type == "hal" or ins_type == "hal\n":
                 binary_ins = "11111100000000000000000000000000"
                 print ins_num, ins[0], binary_ins
                 write_to.write(binary_ins+"\n")

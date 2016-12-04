@@ -102,6 +102,11 @@ if __name__ == '__main__':
             ins = f.split('\n')[0]
             ins_num += 1
 
+            if f == '\n' or f == ' ':
+                asm_ins = "\n"
+                write_to.write(asm_ins)
+                continue
+
             opc_str = ins[0:6]
             opc = format(int(opc_str, 2), 'x')
 
@@ -121,7 +126,14 @@ if __name__ == '__main__':
                 write_to.write(asm_ins)
 
             elif opc == 'c':
-                asm_ins = "JMP " + str(int(ins[6:32], 2)) + "\n"
+                addr = ""
+                sign_bit = ins[6:7]
+                if sign_bit == '0':
+                    asm_ins = "JMP " + str(int(ins[6:32], 2)) + "\n"
+                else:
+                    addr = str(int(ins[6:32], 2) - 67108865)
+                    asm_ins = "JMP " + addr + "\n"
+
                 print asm_ins
                 write_to.write(asm_ins)
 
