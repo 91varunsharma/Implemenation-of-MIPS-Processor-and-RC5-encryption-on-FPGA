@@ -1,0 +1,26 @@
+# COMMON REGISTERS
+
+R19 Counter for finding variable rotate amount
+R20 Flag- TO DERERMINE WHICH MODULE IS PRESENTLY BEING RUN
+R21 #FFFF
+R22 rot_num
+R23 rot_out
+R24 rot_amt
+R25 flag_tmp
+R27 a1
+R28 b1
+R29 o1
+R30 ab_or
+R31 ab_and
+
+
+# ASSEMBLY CODE
+
+	# JUMP BACK
+
+	ADDI R0 R25 2
+	BLT R20 R25 #ADDRESS
+	ADDI R25 R25 1
+	BLT R20 R25 #ADDRESS
+	ADDI R25 R25 1
+	BLT R20 R25 #ADDRESS
