@@ -55,25 +55,6 @@ private:
     vector<bitset<32> >Registers;
 };
 
-long two_complement_conversion(long num_to_conv, int bits, int type){
-    cout<<num_to_conv<<endl;
-    long result = 0;
-    if(type == 1){
-        //converting to 2's complement
-        if (num_to_conv<0){
-            result = (long)pow(2, bits) + num_to_conv;
-        }
-        else result = num_to_conv;
-    }
-    else if(type == 2){
-        //converting from 2's compliment to signed long
-        if ((num_to_conv & (1 << (bits-1))) !=0){
-            result = num_to_conv - (long)pow(2, bits);
-        } else result = num_to_conv;
-    }
-    return result;
-}
-
 
 class ALU
 {
@@ -105,18 +86,6 @@ public:
         return ALUresult;
     }
 };
-
-bitset<32> readFromAddress(bitset<32> address, vector<bitset<8> > &memoryType){
-    unsigned long index= address.to_ulong();
-    string data="";
-    for(int i=0;i<4;i++){
-        data += memoryType[index].to_string();
-        index++;
-    }
-    bitset<32> readData(data);
-    return readData;
-}
-
 
 class INSMem
 {
@@ -220,7 +189,6 @@ string getins_type(string opcode){
 
 string getFunctionType(bitset<32> instruction){
     string aluOp = instruction.to_string().substr(26,6);
-    cout<<aluOp<<endl;
     if(aluOp == "010000") return "add";
     else if (aluOp == "010001") return "sub";
     else if (aluOp == "010010") return "and";
@@ -245,17 +213,16 @@ vector<string> getOperandAddr(bitset<32> instruction, string ins_type){
 string decodeInstruction(bitset<32> instruction){
     string opcode = instruction.to_string().substr(0,6);
     string ins_type = getins_type(opcode);
-    cout<<ins_type<<endl;
     return ins_type;
 }
 
-unsigned long incrementprogram_counter(unsigned long &program_counter){
-    program_counter += 1;
-    return program_counter;
+unsigned long incrementProgramCounter(unsigned long &ProgramCounter){
+    ProgramCounter += 1;
+    return ProgramCounter;
 }
 bitset<32> valueOfRsReg,valueOfRtReg, AluResult;
 
-unsigned long executeRInstruction(bitset<32> instruction, unsigned long &program_counter,RF &myRF, ALU &myALU){
+unsigned long executeRInstruction(bitset<32> instruction, unsigned long &ProgramCounter,RF &myRF, ALU &myALU){
     vector<string> RAddresses(3);
     string funcType;
     RAddresses= getOperandAddr(instruction,"R"); //getting Operands Address
@@ -272,14 +239,13 @@ unsigned long executeRInstruction(bitset<32> instruction, unsigned long &program
     else if(funcType == "or") AluResult = myALU.ALUOperation(bitset<3>(OR), valueOfRsReg, valueOfRtReg);
     else if(funcType == "nor") AluResult = myALU.ALUOperation(bitset<3>(NOR), valueOfRsReg, valueOfRtReg);
     else if(funcType == "sub") AluResult = myALU.ALUOperation(bitset<3>(SUB), valueOfRsReg, valueOfRtReg);
-    cout<<" "<<funcType;
     myRF.ReadWrite(NULL, NULL, RdAddr, AluResult, 1); //write result to write regiter
 
-    program_counter = incrementprogram_counter(program_counter);
-    return program_counter;
+    ProgramCounter = incrementProgramCounter(ProgramCounter);
+    return ProgramCounter;
 }
 
-unsigned long executeIInstruction(bitset<32> instruction,unsigned long &program_counter, string ins_type,RF &myRF, ALU &myALU, DataMem &myDataMem){
+unsigned long executeIInstruction(bitset<32> instruction,unsigned long &ProgramCounter, string ins_type,RF &myRF, ALU &myALU, DataMem &myDataMem){
     vector<string> IAddressess(3);
     IAddressess = getOperandAddr(instruction,"I"); //getting Operands Address
     bitset<5> RsIAddr(IAddressess[0]), RtIAddr(IAddressess[1]); // getting Address of Rs & Rt Registers
@@ -296,7 +262,7 @@ unsigned long executeIInstruction(bitset<32> instruction,unsigned long &program_
         signExtImmStr = "1111111111111111" + ImmIAddr.to_string();
     }
 
-//    int signExtImm = stoi(signExtImmStr, nullptr, 2);
+    int Imm = stoi(ImmIAddr.to_string(), nullptr, 2);
 
     AluResult = myALU.ALUOperation(bitset<3>(ADD), valueOfRsReg, bitset<32>(signExtImmStr)); //finding effective address of memory
 
@@ -333,51 +299,51 @@ unsigned long executeIInstruction(bitset<32> instruction,unsigned long &program_
     }
     else if(ins_type == "beq"){
         if(valueOfRsReg.to_ulong() == valueOfRtReg.to_ulong()){
-            program_counter = program_counter + 1 + ImmIAddr.to_ulong();
-            return program_counter;
+            ProgramCounter = (unsigned short)(ProgramCounter + 1 + Imm);
+            return ProgramCounter;
         }
     }
     else if(ins_type == "blt"){
         if(valueOfRsReg.to_ulong() < valueOfRtReg.to_ulong()){
-            program_counter = program_counter + 1 + ImmIAddr.to_ulong();
-            return program_counter;
+            ProgramCounter = (unsigned short)(ProgramCounter + 1 + Imm);
+            return ProgramCounter;
         }
     }
     else if(ins_type == "bne"){
         if(valueOfRsReg.to_ulong() != valueOfRtReg.to_ulong()){
-            program_counter = program_counter + 1 + ImmIAddr.to_ulong();
-            return program_counter;
+            ProgramCounter = (unsigned short)(ProgramCounter + 1 + Imm);
+            return ProgramCounter;
         }
     }
-    program_counter = incrementprogram_counter(program_counter);
-    return program_counter;
+    ProgramCounter = incrementProgramCounter(ProgramCounter);
+    return ProgramCounter;
 }
 
-unsigned long executeJInstruction(bitset<32> instruction, unsigned long &program_counter){
+unsigned long executeJInstruction(bitset<32> instruction, unsigned long &ProgramCounter){
 
     bitset<26> JAddress((instruction.to_string()).substr(6,26));
-    program_counter = incrementprogram_counter(program_counter);
-    bitset<32> pc(program_counter);
+    ProgramCounter = incrementProgramCounter(ProgramCounter);
+    bitset<32> pc(ProgramCounter);
     bitset<6> pc6MSB(pc.to_string().substr(0,6));
     bitset<32> newPc(pc6MSB.to_string() + JAddress.to_string());
-    program_counter = newPc.to_ulong();
-    return program_counter;
+    ProgramCounter = (unsigned short)(newPc.to_ulong());
+    return ProgramCounter;
 }
 
-unsigned long executeInstruction(bitset<32> instruction,unsigned long &program_counter, string ins_type, RF &myRF, ALU &myALU, DataMem &myDataMem){
+unsigned long executeInstruction(bitset<32> instruction,unsigned long &ProgramCounter, string ins_type, RF &myRF, ALU &myALU, DataMem &myDataMem){
 
     if(ins_type == "R"){
-        program_counter= executeRInstruction(instruction, program_counter,myRF, myALU);
+        ProgramCounter= executeRInstruction(instruction, ProgramCounter,myRF, myALU);
     }
     else if(ins_type == "lw" || ins_type == "sw" || ins_type == "addi" || ins_type == "subi" || ins_type == "andi"
             || ins_type == "ori" || ins_type == "beq" || ins_type == "blq" || ins_type == "bne" || ins_type == "shl"
             || ins_type == "shr" ){
-        program_counter =  executeIInstruction(instruction, program_counter, ins_type, myRF, myALU, myDataMem);
+        ProgramCounter =  executeIInstruction(instruction, ProgramCounter, ins_type, myRF, myALU, myDataMem);
     }
     else if (ins_type == "J"){
-        program_counter =  executeJInstruction(instruction, program_counter);
+        ProgramCounter =  executeJInstruction(instruction, ProgramCounter);
     }
-    return program_counter;
+    return ProgramCounter;
 }
 
 int main() {
@@ -385,16 +351,19 @@ int main() {
     ALU myALU;
     INSMem myInsMem;
     DataMem myDataMem;
-    bitset<32> instruction, haltCondition(4227858432);
-    unsigned long program_counter =0;
+    bitset<32> instruction, HaltCondition(4227858432), skip(0);
+    unsigned long ProgramCounter =0;
     string ins_type;
 
     while (1) {
-        instruction = myInsMem.ReadMemory(program_counter); // Fetch instruction
-        if(instruction == haltCondition) break; //check for halt condition
-        cout<<instruction;
+        instruction = myInsMem.ReadMemory(ProgramCounter); // Fetch instruction
+        if(instruction == HaltCondition) break; //check for halt condition
+        else if(instruction == skip){
+            ProgramCounter = incrementProgramCounter(ProgramCounter);
+            continue;
+        }
         ins_type =  decodeInstruction(instruction); // decode instruction & get instruction type
-        program_counter = executeInstruction(instruction,program_counter,ins_type,myRF,myALU,myDataMem); //execute instruction
+        ProgramCounter = executeInstruction(instruction,ProgramCounter,ins_type,myRF,myALU,myDataMem); //execute instruction
         myRF.OutputRF(); // writing state of regiters to a file
     }
     myDataMem.OutputDataMem(); // writing memory data to a file

@@ -11,8 +11,10 @@ result = False
 for f1, f2 in zip(file1, file2):
     line_f1 = f1.split('\n')[0]
     line_f2 = f2.split('\n')[0]
-    result = line_f1 == line_f2
-    print count, result
+    a = line_f1.strip()
+    b = line_f2.strip()
+    result = a == b
+    print count, a, b, result
     count += 1
     if not result:
         break

@@ -102,7 +102,7 @@ if __name__ == '__main__':
             ins = f.split('\n')[0]
             ins_num += 1
 
-            if f == '\n' or f == ' ':
+            if ins == "00000000000000000000000000000000":
                 asm_ins = "\n"
                 write_to.write(asm_ins)
                 continue
