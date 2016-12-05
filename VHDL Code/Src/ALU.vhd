@@ -3,6 +3,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.STD_LOGIC_ARITH.ALL;
 use IEEE.STD_LOGIC_SIGNED.ALL;
+use IEEE.NUMERIC_STD.ALL;
 
 
 entity ALU is
@@ -32,11 +33,13 @@ begin
 	begin
 
 		case ALUOp is
-			when "000" => ALU_output <= A_input  +  B_input;       -----ADD Operation
-			when "001" => ALU_output <= A_input  -  B_input;       -----SUB Operation
-			when "010" => ALU_output <= A_input AND B_input;       -----AND Operation
-			when "011" => ALU_output <= A_input  OR B_input;       -----OR  Operation
-			when "100" => ALU_output <= NOT(A_input OR B_input);   -----NOR Operation
+			when "000" => ALU_output <= A_input  +  B_input;      		 -----ADD Operation
+			when "001" => ALU_output <= A_input  -  B_input;      		 -----SUB Operation
+			when "010" => ALU_output <= A_input AND B_input;      		 -----AND Operation
+			when "011" => ALU_output <= A_input  OR B_input;      		 -----OR  Operation
+			when "100" => ALU_output <= NOT(A_input OR B_input);  		 -----NOR Operation
+			when "101" => ALU_output <= std_logic_vector(unsigned(A_input) sll B_input)  ----- Left Shift
+			when "110" => ALU_output <= std_logic_vector(unsigned(A_input) srl B_input)  ----- Right Shift
 			when others => ALU_output <= X"00000000";
 
 		end case;

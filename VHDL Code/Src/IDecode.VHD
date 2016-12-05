@@ -1,4 +1,4 @@
-
+ 
 --  IDecode and Register File module (Decodes instruction and implements the register file )
 
 LIBRARY IEEE; 			
