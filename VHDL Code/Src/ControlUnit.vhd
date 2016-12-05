@@ -2,13 +2,13 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
 entity ControlUnit is
-    Port ( Clk         : in STD_LOGIC;
-    	   Instruction : in STD_LOGIC_VECTOR(31 DOWNTO 0); 
+    Port (Clk         : in STD_LOGIC;
+    	 Instruction : in STD_LOGIC_VECTOR(31 DOWNTO 0); 
     	   Opcode    : in   STD_LOGIC_VECTOR (5 downto 0);
+   read_data1_Branch : in  STD_LOGIC_VECTOR (31 downto 0);
+   read_data2_Branch : in  STD_LOGIC_VECTOR (31 downto 0);
+           PC        : in  STD_LOGIC_VECTOR (31 downto 0);
            ALUOp     : out   STD_LOGIC_VECTOR (2 downto 0);
-   -- read_data1_Branch : in  STD_LOGIC_VECTOR (31 downto 0);
-   -- read_data2_Branch : in  STD_LOGIC_VECTOR (31 downto 0);
-           PC        :  in  STD_LOGIC_VECTOR (31 downto 0);
            NextPC    : out  STD_LOGIC_VECTOR (31 downto 0);
            Rtype     : out  STD_LOGIC;
            LW        : out  STD_LOGIC;
@@ -24,13 +24,13 @@ end ControlUnit;
 architecture Behavioral of ControlUnit is
 
 	SIGNAL R_type, LWD, SWD, BEQ, ADDI, SUBI, ANDI, ORI, BNE, BLT, SHL, SHR : STD_LOGIC;
-	SIGNAL ALU_Op : STD_LOGIC_VECTOR( 2 DOWNTO 0);
-	SIGNAL Immediate_value : STD_LOGIC_VECTOR( 15 DOWNTO 0 );
-	SIGNAL A_input, B_input : STD_LOGIC_VECTOR (31 DOWNTO 0);
-	SIGNAL read_register_1_address_Branch		: STD_LOGIC_VECTOR( 4 DOWNTO 0 );
-	SIGNAL read_register_2_address_Branch		: STD_LOGIC_VECTOR( 4 DOWNTO 0 );
-	SIGNAL PCIncby1 : : STD_LOGIC_VECTOR (31 DOWNTO 0);
-	SIGNAL JumpAddress : STD_LOGIC_VECTOR( 25 DOWNTO 0 );
+	SIGNAL A_input, B_input                     : STD_LOGIC_VECTOR (31 DOWNTO 0);
+	SIGNAL ALU_Op                               : STD_LOGIC_VECTOR(2 DOWNTO 0 );
+	SIGNAL Immediate_value                      : STD_LOGIC_VECTOR(15 DOWNTO 0);
+	SIGNAL read_register_1_address_Branch		: STD_LOGIC_VECTOR(4 DOWNTO 0 );
+	SIGNAL read_register_2_address_Branch		: STD_LOGIC_VECTOR(4 DOWNTO 0 );
+	SIGNAL PCIncby1                             : STD_LOGIC_VECTOR(31 DOWNTO 0);
+	SIGNAL JumpAddress                          : STD_LOGIC_VECTOR(25 DOWNTO 0);
 
     TYPE register_file IS ARRAY ( 0 TO 31 ) OF STD_LOGIC_VECTOR( 31 DOWNTO 0 );
 
@@ -77,10 +77,11 @@ begin
 	BNE    <= '1' when Opcode = "001011" else '0';
 	Jump   <= '1' when Opcode = "001100" else '0';
 
+
     Process (Clk, Jump, BNE, BEQ, BLT)
     begin
     	
-		If (clk'EVENT AND clk = '1') then
+		If (Clk'EVENT AND Clk = '1') then
     		If ((BEQ ='1' and (A_input=B_input)) or (BLT ='1' and (A_input < B_input)) or (BNE ='1' and (A_input != B_input))) then
     			NextPC <= PCIncby1 + Immediate_value;
     		Elsif (Jump = '1') then
@@ -91,8 +92,6 @@ begin
     	End if;
 
     End Process;
-
-
 
 
 	Process (R_type, ADDI, SUBI, ANDI, ORI, LWD, SWD, )
