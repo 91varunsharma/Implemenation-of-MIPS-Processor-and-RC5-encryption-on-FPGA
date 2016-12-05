@@ -9,7 +9,7 @@ USE IEEE.STD_LOGIC_UNSIGNED.ALL;
 ENTITY IDecode IS
 	  PORT(	clk     	: IN 	STD_LOGIC;
 	  		Instruction : IN 	STD_LOGIC_VECTOR( 31 DOWNTO 0 );   
-			write_data  : IN 	STD_LOGIC_VECTOR( 31 DOWNTO 0 );   --------Data to be written to the reister file
+--			write_data  : IN 	STD_LOGIC_VECTOR( 31 DOWNTO 0 );   --------Data to be written to the reister file
 			WriteEn 	: IN 	STD_LOGIC;                         --To be made '1' when register file needs to be updated
 			read_data1	: OUT 	STD_LOGIC_VECTOR( 31 DOWNTO 0 );   --------Operand1 
 			read_data2	: OUT 	STD_LOGIC_VECTOR( 31 DOWNTO 0 );   --------Operand2
@@ -42,6 +42,9 @@ ARCHITECTURE behavioral of IDecode is
 	SIGNAL Immediate_value          	: STD_LOGIC_VECTOR( 15 DOWNTO 0 );
 	SIGNAL LW                           : STD_LOGIC;
 	SIGNAL Rtype                        : STD_LOGIC;
+	SIGNAL SignEx     : STD_LOGIC_VECTOR(31 downto 0);
+	SIGNAL write_data_signal               : STD_LOGIC_VECTOR( 31 DOWNTO 0 );
+
 
 BEGIN
     
@@ -58,23 +61,23 @@ BEGIN
 
  --	ALUOp <= ALU_Op;
 
-	SignExtImm <= X"0000" & Immediate_value  WHEN Immediate_value(15) = '0'               -- Sign Extend 16-bits to 32-bits
+	SignEx <= X"0000" & Immediate_value  WHEN Immediate_value(15) = '0'               -- Sign Extend 16-bits to 32-bits
 		ELSE	  X"FFFF" & Immediate_value;
 					
-	read_data1 <= register_array( CONV_INTEGER(read_register_1_address));                 -- Read Register 1
+	read_data1 <= Reg_array( CONV_INTEGER(read_register_1_address));                 -- Read Register 1
 
 							 
-	read_data2 <= register_array(CONV_INTEGER(read_register_2_address)) WHEN Rtype = '1'  -- Read Register 2 for Rtypr instruction 
-		  ELSE    SignExtImm;                                                             -- Take Sign Extended Immediate as Operand2 for I type instruction
+	read_data2 <= Reg_array(CONV_INTEGER(read_register_2_address)) WHEN Rtype = '1'  -- Read Register 2 for Rtypr instruction 
+		  ELSE    SignEx;                                                             -- Take Sign Extended Immediate as Operand2 for I type instruction
 					
     write_register_address <= write_register_address_R WHEN Rtype = '1'                   -- To select write Register Address for R type or I type
                       ELSE    write_register_address_I;
 
 
-	write_data <= ALU_result( 31 DOWNTO 0 ) WHEN ( LW = '0' ) 	          -- ALU result to be written in register file
+	write_data_signal <= ALU_result( 31 DOWNTO 0 ) WHEN LW = '0'           -- ALU result to be written in register file
 		  ELSE    DMem_read_data;                                         --Data read from Dmem for load instruction and to be written in register file
 
-
+	
 
 	PROCESS (clk)
 
@@ -83,7 +86,7 @@ BEGIN
 		IF (clk'EVENT AND clk = '1') then
 	
 	  		IF (WriteEn = '1' AND write_register_address /= 0) THEN      -- Write back to register when Write Enable =1 but don't write to 'register 0'
-			    Reg_array( CONV_INTEGER( write_register_address)) <= write_data;
+			    Reg_array( CONV_INTEGER( write_register_address)) <= write_data_signal;
 
 			END IF;
 
