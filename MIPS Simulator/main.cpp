@@ -3,6 +3,8 @@
 #include<vector>
 #include<bitset>
 #include<fstream>
+#include <math.h>
+
 using namespace std;
 #define ADD 1
 #define SUB 2
@@ -52,6 +54,26 @@ public:
 private:
     vector<bitset<32> >Registers;
 };
+
+long two_complement_conversion(long num_to_conv, int bits, int type){
+    cout<<num_to_conv<<endl;
+    long result = 0;
+    if(type == 1){
+        //converting to 2's complement
+        if (num_to_conv<0){
+            result = (long)pow(2, bits) + num_to_conv;
+        }
+        else result = num_to_conv;
+    }
+    else if(type == 2){
+        //converting from 2's compliment to signed long
+        if ((num_to_conv & (1 << (bits-1))) !=0){
+            result = num_to_conv - (long)pow(2, bits);
+        } else result = num_to_conv;
+    }
+    return result;
+}
+
 
 class ALU
 {
