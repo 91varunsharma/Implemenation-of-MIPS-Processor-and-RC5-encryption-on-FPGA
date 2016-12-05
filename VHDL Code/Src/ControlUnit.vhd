@@ -48,6 +48,10 @@ begin
 			ALU_Op <= "010";
 		ELSIF (ORI='1' and R_type='0') then
 			ALU_Op <= "011";
+		ELSIF (SHL='1' and R_type='0') then
+            ALU_Op <= "101";
+		ELSIF (SHR='1' and R_type='0') then
+            ALU_Op <= "110";
 		END IF;
 	END Process;
 
@@ -61,6 +65,9 @@ begin
 	DMemRead <= LWD;            -----Read Data memory when load instruction
 	DMemWrite <= SWD;           ----- Write to Data memory
 	WriteEn <= NOT(SWD);        -----Don't write to register file when Store Instruction
+
+
+
 	
 
 end Behavioral;
