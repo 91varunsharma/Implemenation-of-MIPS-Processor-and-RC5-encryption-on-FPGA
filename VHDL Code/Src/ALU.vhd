@@ -39,7 +39,7 @@ begin
 			when "011" => ALU_output <= A_input  OR B_input;      		 -----OR  Operation
 			when "100" => ALU_output <= NOT(A_input OR B_input);  		 -----NOR Operation
 			when "101" => ALU_output <= std_logic_vector(unsigned(A_input) sll B_input)  ----- Left Shift
-			when "110" => ALU_output <= std_logic_vector(unsigned(A_input) srl B_input)  ----- Left Shift
+			when "110" => ALU_output <= std_logic_vector(unsigned(A_input) srl B_input)  ----- Right Shift
 			when others => ALU_output <= X"00000000";
 
 		end case;
