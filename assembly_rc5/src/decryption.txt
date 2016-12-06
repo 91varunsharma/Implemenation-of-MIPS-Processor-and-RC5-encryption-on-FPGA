@@ -1,3 +1,8 @@
+# Changes to be made 
+	add R13 -- see encryption
+	change the place where we initialize R20
+	Check if all the initialization is done properly
+
 # Register File info
 
 R0 Hard coded to 0x0
