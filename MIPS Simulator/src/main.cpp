@@ -4,6 +4,7 @@
 #include<bitset>
 #include<fstream>
 #include <math.h>
+#include <sstream>
 
 using namespace std;
 #define ADD 1
@@ -45,7 +46,10 @@ public:
         if (rfout.is_open())
         {
             rfout<<"A state of RF:"<<endl;
-            for (int j = 0; j<32; j++) rfout << Registers[j]<<endl;
+            for (int j = 0; j<32; j++){
+
+                rfout<<"R"<<j<<"   "<<stol(Registers[j].to_string(), nullptr, 2)<<endl;
+            }
         }
         else cout<<"Unable to open file";
         rfout.close();
@@ -81,7 +85,9 @@ public:
             ALUresult = bitset<32>(oprand1.to_ulong() << (oprand2.to_ulong()));
         }
         else if(ALUOP.to_ulong() == (unsigned long)SHR){// performing SHR operation
-            ALUresult = bitset<32> (oprand1.to_ulong() >> oprand2.to_ulong());
+            unsigned long temp = (oprand1.to_ulong() & 4294967295);
+            ALUresult = bitset<32>(temp >> (oprand2.to_ulong()));
+            cout<<" OP1 "<<oprand1<<" OP2 "<<oprand2<<" SHR "<<ALUresult<<endl;
         }
         return ALUresult;
     }
@@ -157,10 +163,11 @@ public:
 
     void OutputDataMem() {
         ofstream dmemout;
-        dmemout.open("/Users/ADDY/Google Drive/github/AHD-Project-2016/MIPS Simulator/dmemresult.txt");
+        dmemout.open("/Users/ADDY/Google Drive/github/AHD-Project-2016/MIPS Simulator/DMem/dmem_rc5_result.txt", std::ios_base::app);
         if (dmemout.is_open())
-        {
-            for (unsigned long j = 0; j< 500; j++) dmemout << DMem[j]<<endl;
+        {   dmemout<<"A state of DMem:"<<endl;
+            for (unsigned long j = 0; j< 50; j++)
+                dmemout << DMem[j]<<endl;
         }
         else cout<<"Unable to open file";
         dmemout.close();
@@ -291,6 +298,7 @@ unsigned long executeIInstruction(bitset<32> instruction,unsigned long &ProgramC
         cout<<" R"<<RtIAddr.to_ulong()<<" "<<stol(valueOfRtReg.to_string(), nullptr, 2)<<endl;
     }
     else if(ins_type == "addi"){
+        cout<<" SEI "<<signExtImmStr;
         AluResult = myALU.ALUOperation(bitset<3>(ADD), valueOfRsReg, bitset<32>(signExtImmStr));
         myRF.ReadWrite(NULL,NULL,RtIAddr,AluResult,1);
         cout<<" R"<<RtIAddr.to_ulong()<<" "<<stol(AluResult.to_string(), nullptr, 2)<<endl;
@@ -386,14 +394,22 @@ int main() {
     bitset<32> instruction, HaltCondition(4227858432), skip(0);
     unsigned long ProgramCounter = 0;
     string ins_type;
-    int count =0;
+    int k =0, i=0;
 
     while (1) {
         instruction = myInsMem.ReadMemory(ProgramCounter); // Fetch instruction
         cout<<ProgramCounter<<" ";
-        if(ProgramCounter == 13){
-            count++;
+        if(ProgramCounter == 37){
+            k++;
+            cout<<"k "<<k;
+            myRF.OutputRF();
         }
+        if(ProgramCounter == 42){
+            i++;
+            cout<<" i "<<i;
+            myDataMem.OutputDataMem();
+        }
+
         if(instruction == HaltCondition) break; //check for halt condition
         else if(instruction == skip){
             cout<<" skipping"<<endl;
@@ -403,9 +419,8 @@ int main() {
         ins_type =  decodeInstruction(instruction); // decode instruction & get instruction type
         cout<<" "<<ins_type;
         ProgramCounter = executeInstruction(instruction,ProgramCounter,ins_type,myRF,myALU,myDataMem); //execute instruction
-        myRF.OutputRF(); // writing state of regiters to a file
+//        myRF.OutputRF(); // writing state of regiters to a file
     }
-    cout<<" i "<<count;
     myDataMem.OutputDataMem(); // writing memory data to a file
     return 0;
 }
