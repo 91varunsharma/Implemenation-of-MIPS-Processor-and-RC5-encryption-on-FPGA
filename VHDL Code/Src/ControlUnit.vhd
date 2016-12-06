@@ -5,8 +5,8 @@ USE IEEE.STD_LOGIC_UNSIGNED.ALL;
 use ieee.std_logic_arith.all;
 
 entity ControlUnit is
-   Port (Clk         : in   STD_LOGIC;
-    	 Instruction : in   STD_LOGIC_VECTOR(31 DOWNTO 0); 
+   Port ( Clk        : in   STD_LOGIC;
+    	  Instruction: in   STD_LOGIC_VECTOR(31 DOWNTO 0); 
            PC        : in   STD_LOGIC_VECTOR (31 downto 0);
            ALUOp     : out  STD_LOGIC_VECTOR (2 downto 0);
            NextPC    : out  STD_LOGIC_VECTOR (31 downto 0);
@@ -31,19 +31,19 @@ architecture Behavioral of ControlUnit is
 	SIGNAL read_register_2_address_Branch       : STD_LOGIC_VECTOR(4 DOWNTO 0 );
 	SIGNAL PCIncby1                             : STD_LOGIC_VECTOR(31 DOWNTO 0);
 	SIGNAL JumpAddress                          : STD_LOGIC_VECTOR(25 DOWNTO 0);
-	signal read_data1_Branch                    : STD_LOGIC_VECTOR(31 downto 0);
-    signal read_data2_Branch                    : STD_LOGIC_VECTOR(31 downto 0);
+	SIGNAL read_data1_Branch                    : STD_LOGIC_VECTOR(31 downto 0);
+        SIGNAl read_data2_Branch                    : STD_LOGIC_VECTOR(31 downto 0);
 	SIGNAL Opcode                               : STD_LOGIC_VECTOR(5 downto 0);
 	SIGNAL numeric_immediate,numeric_immediate1 : INTEGER RANGE 0 TO 65536;
 
 	TYPE register_file IS ARRAY ( 0 TO 31 ) OF STD_LOGIC_VECTOR( 31 DOWNTO 0 );
 
 	Signal Reg_array: register_file := (X"00000000",X"00000001",X"00000001",X"00000000",X"00000000",X"00000000",
-								        X"00000000",X"00000000",X"00000000",X"00000000",X"00000000",X"00000000",
-								        X"00000000",X"00000000",X"00000000",X"00000000",X"00000000",X"00000000",
-								        X"00000000",X"00000000",X"00000000",X"00000000",X"00000000",X"00000000",
-								        X"00000000",X"00000000",X"00000000",X"00000000",X"00000000",X"00000000",
-								        X"00000000",X"00000000");
+					    X"00000000",X"00000000",X"00000000",X"00000000",X"00000000",X"00000000",
+					    X"00000000",X"00000000",X"00000000",X"00000000",X"00000000",X"00000000",
+					    X"00000000",X"00000000",X"00000000",X"00000000",X"00000000",X"00000000",
+					    X"00000000",X"00000000",X"00000000",X"00000000",X"00000000",X"00000000",
+					    X"00000000",X"00000000");
 
 
 begin
@@ -88,23 +88,23 @@ begin
     Process (Clk, Jump, BNE, BEQ, BLT)
     begin
     	
-		If (Clk'EVENT AND Clk = '1') then
-    		If ((BEQ ='1' and (A_input=B_input)) or (BLT ='1' and (A_input < B_input)) or (BNE ='1' and (A_input /= B_input))) then
-    			NextPC <= PCIncby1 + Immediate_value;
-    		Elsif (Jump = '1') then
-    			NextPC <= PCIncby1(31 DOWNTO 26) & JumpAddress;
-    		Else
-    			NextPC <= PCIncby1;
-    		End If;
+	If (Clk'EVENT AND Clk = '1') then
+	    If ((BEQ ='1' and (A_input=B_input)) or (BLT ='1' and (A_input < B_input)) or (BNE ='1' and (A_input /= B_input))) then
+    		   NextPC <= PCIncby1 + Immediate_value;
+	    Elsif (Jump = '1') then
+    		   NextPC <= PCIncby1(31 DOWNTO 26) & JumpAddress;
+	    Else
+    		   NextPC <= PCIncby1;
+	    End If;
     	End if;
 
     End Process;
 
 
 	Process (R_type, ADDI, SUBI, ANDI, ORI, LWD, SWD )
-	begin
+	   begin
 		If (R_type='1') then
-		ALU_Op <= Instruction(2 downto 0);
+		        ALU_Op <= Instruction(2 downto 0);
 		ELSIF((ADDI='1' or LWD ='1' or SWD ='1') and R_type='0') then
 			ALU_Op <= "000";
 		ELSIF (SUBI='1'and R_type='0') then
@@ -114,9 +114,9 @@ begin
 		ELSIF (ORI='1' and R_type='0') then
 			ALU_Op <= "011";
 		ELSIF (SHL='1' and R_type='0') then
-            ALU_Op <= "101";
+                       ALU_Op <= "101";
 		ELSIF (SHR='1' and R_type='0') then
-            ALU_Op <= "110";
+                       ALU_Op <= "110";
 		END IF;
 	END Process;
 
