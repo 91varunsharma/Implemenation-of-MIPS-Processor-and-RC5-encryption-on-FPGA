@@ -15,7 +15,7 @@ using namespace std;
 #define SHR 7
 
 
-#define MemSize 500 // memory size, in reality, the memory size should be 2^32, but for this lab, for the space reason,
+#define MemSize 1000 // memory size, in reality, the memory size should be 2^32, but for this lab, for the space reason,
 //we keep it as this large number, but the memory is still 32-bit addressable.
 
 class RF
@@ -97,7 +97,7 @@ public:
         ifstream imem;
         string line;
         int i=0;
-        imem.open("/Users/ADDY/Google Drive/github/AHD-Project-2016/MIPS Simulator/imem.txt");
+        imem.open("/Users/ADDY/Google Drive/github/AHD-Project-2016/MIPS Simulator/IMem/imem.txt");
         if (imem.is_open())
         {
             while (getline(imem,line))
@@ -130,7 +130,7 @@ public:
         ifstream dmem;
         string line;
         int i=0;
-        dmem.open("/Users/ADDY/Google Drive/github/AHD-Project-2016/MIPS Simulator/dmem.txt");
+        dmem.open("/Users/ADDY/Google Drive/github/AHD-Project-2016/MIPS Simulator/DMem/dmem_rc5.txt");
         if (dmem.is_open())
         {
             while (getline(dmem,line))
@@ -228,10 +228,13 @@ unsigned long executeRInstruction(bitset<32> instruction, unsigned long &Program
     RAddresses= getOperandAddr(instruction,"R"); //getting Operands Address
     bitset<5> RsAddr(RAddresses[0]),RtAddr(RAddresses[1]),RdAddr(RAddresses[2]); //Assigning Operands Address
     funcType = getFunctionType(instruction);
+    cout<<" "<<funcType;
     //geting operand Values
     myRF.ReadWrite(RsAddr,RtAddr,NULL,NULL,0);
     valueOfRsReg = myRF.ReadData1;
     valueOfRtReg = myRF.ReadData2;
+
+
 
     // performing ALU operation
     if(funcType == "add") AluResult = myALU.ALUOperation(bitset<3>(ADD), valueOfRsReg, valueOfRtReg);
@@ -241,6 +244,8 @@ unsigned long executeRInstruction(bitset<32> instruction, unsigned long &Program
     else if(funcType == "sub") AluResult = myALU.ALUOperation(bitset<3>(SUB), valueOfRsReg, valueOfRtReg);
     myRF.ReadWrite(NULL, NULL, RdAddr, AluResult, 1); //write result to write regiter
 
+    cout<<" R"<<RsAddr.to_ulong()<<" "<<stol(valueOfRsReg.to_string(), nullptr, 2)<<" R"<<RtAddr.to_ulong()<<" "<<stol(valueOfRtReg.to_string(), nullptr, 2);
+    cout<<" rd "<<RdAddr.to_ulong()<<" "<<stol(AluResult.to_string(), nullptr, 2)<<endl;
     ProgramCounter = incrementProgramCounter(ProgramCounter);
     return ProgramCounter;
 }
@@ -254,7 +259,8 @@ unsigned long executeIInstruction(bitset<32> instruction,unsigned long &ProgramC
     myRF.ReadWrite(RsIAddr, RtIAddr, NULL, NULL, 0); //getting Operands Value
     valueOfRsReg = myRF.ReadData1;
     valueOfRtReg = myRF.ReadData2;
-    //calculating sign extended value of Imm
+    cout<<" R"<<RsIAddr.to_ulong()<<" "<<stol(valueOfRsReg.to_string(), nullptr, 2)<<" R"<<RtIAddr.to_ulong()<<" "<<stol(valueOfRtReg.to_string(), nullptr, 2);
+    //calculating sign extended of Imm
     string signExtImmStr;
     if (ImmIAddr.to_string().at(0) == '0') {
         signExtImmStr = "0000000000000000" + ImmIAddr.to_string();
@@ -262,7 +268,15 @@ unsigned long executeIInstruction(bitset<32> instruction,unsigned long &ProgramC
         signExtImmStr = "1111111111111111" + ImmIAddr.to_string();
     }
 
-    int Imm = stoi(ImmIAddr.to_string(), nullptr, 2);
+    long Imm = 0;
+    if(ImmIAddr.to_string().at(0) == '1') {
+        Imm = stol(ImmIAddr.to_string(), nullptr, 2) - 65536;
+        cout<<" Imm "<<Imm<<endl;
+    }
+    else{
+        Imm = ImmIAddr.to_ulong();
+        cout<<" Imm "<<Imm<<endl;
+    }
 
     AluResult = myALU.ALUOperation(bitset<3>(ADD), valueOfRsReg, bitset<32>(signExtImmStr)); //finding effective address of memory
 
@@ -298,20 +312,23 @@ unsigned long executeIInstruction(bitset<32> instruction,unsigned long &ProgramC
         myRF.ReadWrite(NULL,NULL,RtIAddr,AluResult,1);
     }
     else if(ins_type == "beq"){
+        cout<<" OP1 "<<valueOfRsReg.to_ulong()<<"  OP2 "<<valueOfRtReg.to_ulong()<<"  Imm "<<Imm<<endl;
         if(valueOfRsReg.to_ulong() == valueOfRtReg.to_ulong()){
             ProgramCounter = (unsigned short)(ProgramCounter + 1 + Imm);
             return ProgramCounter;
         }
     }
     else if(ins_type == "blt"){
+        cout<<" OP1 "<<valueOfRsReg.to_ulong()<<"  OP2 "<<valueOfRtReg.to_ulong()<<"  Imm "<<Imm<<endl;
         if(valueOfRsReg.to_ulong() < valueOfRtReg.to_ulong()){
-            ProgramCounter = (unsigned short)(ProgramCounter + 1 + Imm);
+            ProgramCounter = (ProgramCounter + 1 + Imm);
             return ProgramCounter;
         }
     }
     else if(ins_type == "bne"){
+        cout<<" OP1 "<<valueOfRsReg.to_ulong()<<"  OP2 "<<valueOfRtReg.to_ulong()<<"  Imm "<<Imm<<endl;
         if(valueOfRsReg.to_ulong() != valueOfRtReg.to_ulong()){
-            ProgramCounter = (unsigned short)(ProgramCounter + 1 + Imm);
+            ProgramCounter = (ProgramCounter + 1 + Imm);
             return ProgramCounter;
         }
     }
@@ -322,11 +339,14 @@ unsigned long executeIInstruction(bitset<32> instruction,unsigned long &ProgramC
 unsigned long executeJInstruction(bitset<32> instruction, unsigned long &ProgramCounter){
 
     bitset<26> JAddress((instruction.to_string()).substr(6,26));
-    ProgramCounter = incrementProgramCounter(ProgramCounter);
-    bitset<32> pc(ProgramCounter);
-    bitset<6> pc6MSB(pc.to_string().substr(0,6));
-    bitset<32> newPc(pc6MSB.to_string() + JAddress.to_string());
-    ProgramCounter = (unsigned short)(newPc.to_ulong());
+    cout<<" jmp Addr "<<JAddress.to_ulong()<<endl;
+    //ProgramCounter = incrementProgramCounter(ProgramCounter);
+    //bitset<32> pc(ProgramCounter);
+    //bitset<6> pc6MSB(pc.to_string().substr(0,6));
+    //bitset<32> newPc(pc6MSB.to_string() + JAddress.to_string());
+    //ProgramCounter = (unsigned short)(newPc.to_ulong());
+    ProgramCounter = JAddress.to_ulong();
+    cout<<"PC "<<ProgramCounter<<endl;
     return ProgramCounter;
 }
 
@@ -336,11 +356,11 @@ unsigned long executeInstruction(bitset<32> instruction,unsigned long &ProgramCo
         ProgramCounter= executeRInstruction(instruction, ProgramCounter,myRF, myALU);
     }
     else if(ins_type == "lw" || ins_type == "sw" || ins_type == "addi" || ins_type == "subi" || ins_type == "andi"
-            || ins_type == "ori" || ins_type == "beq" || ins_type == "blq" || ins_type == "bne" || ins_type == "shl"
+            || ins_type == "ori" || ins_type == "beq" || ins_type == "blt" || ins_type == "bne" || ins_type == "shl"
             || ins_type == "shr" ){
         ProgramCounter =  executeIInstruction(instruction, ProgramCounter, ins_type, myRF, myALU, myDataMem);
     }
-    else if (ins_type == "J"){
+    else if (ins_type == "jmp"){
         ProgramCounter =  executeJInstruction(instruction, ProgramCounter);
     }
     return ProgramCounter;
@@ -352,20 +372,28 @@ int main() {
     INSMem myInsMem;
     DataMem myDataMem;
     bitset<32> instruction, HaltCondition(4227858432), skip(0);
-    unsigned long ProgramCounter =0;
+    unsigned long ProgramCounter = 0;
     string ins_type;
+    int count =0;
 
     while (1) {
         instruction = myInsMem.ReadMemory(ProgramCounter); // Fetch instruction
+        cout<<ProgramCounter<<" ";
+        if(ProgramCounter == 13){
+            count++;
+        }
         if(instruction == HaltCondition) break; //check for halt condition
         else if(instruction == skip){
-            ProgramCounter = incrementProgramCounter(ProgramCounter);
+            cout<<" skipping"<<endl;
+            ProgramCounter += 1 ;
             continue;
         }
         ins_type =  decodeInstruction(instruction); // decode instruction & get instruction type
+        cout<<" "<<ins_type;
         ProgramCounter = executeInstruction(instruction,ProgramCounter,ins_type,myRF,myALU,myDataMem); //execute instruction
         myRF.OutputRF(); // writing state of regiters to a file
     }
+    cout<<" i "<<count;
     myDataMem.OutputDataMem(); // writing memory data to a file
     return 0;
 }

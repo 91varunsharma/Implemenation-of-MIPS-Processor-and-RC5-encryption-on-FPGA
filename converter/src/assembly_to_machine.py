@@ -139,7 +139,7 @@ if __name__ == '__main__':
             ins_type = ins[0].lower()
             ins_num += 1
 
-            if f == '\n' or f == ' ':
+            if f == '\n' or f == ' ' or f == '\t':
                 binary_ins = "00000000000000000000000000000000\n"
                 print ins_num, binary_ins
                 write_to.write(binary_ins)
