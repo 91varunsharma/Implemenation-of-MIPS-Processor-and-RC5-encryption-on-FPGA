@@ -22,7 +22,7 @@ end ControlUnit;
 
 architecture Behavioral of ControlUnit is
 
-	SIGNAL R_type, LWD, SWD, BEQ, ADDI, SUBI, ANDI, ORI, BNE, BLT, SHL, SHR, Jump : STD_LOGIC;
+	SIGNAL R_type, LWD, SWD, BEQ, ADDI, SUBI, ANDI, ORI, BNE, BLT, SHL, SHR, JUMP : STD_LOGIC;
 	SIGNAL A_input, B_input                     : STD_LOGIC_VECTOR (31 DOWNTO 0);
 	SIGNAL ALU_Op                               : STD_LOGIC_VECTOR(2 DOWNTO 0 );
 	SIGNAL Immediate_value_initial              : STD_LOGIC_VECTOR(15 DOWNTO 0);
@@ -82,7 +82,7 @@ begin
 	BLT    <= '1' when Opcode = "001001" else '0';
 	BEQ    <= '1' when Opcode = "001010" else '0';
 	BNE    <= '1' when Opcode = "001011" else '0';
-	Jump   <= '1' when Opcode = "001100" else '0';
+	JUMP   <= '1' when Opcode = "001100" else '0';
 
 
     Process (Clk, Jump, BNE, BEQ, BLT)
@@ -129,7 +129,7 @@ begin
 	Rtype <= R_type;
 	DMemRead <= LWD;            -----Read Data memory when load instruction
 	DMemWrite <= SWD;           ----- Write to Data memory
-	WriteEn <= NOT(SWD);        -----Don't write to register file when Store Instruction
+	WriteEn <= NOT(SWD OR BEQ OR BLT OR BNE OR JUMP) ;        -----Don't write to register file when Store Instruction
 
 
 end Behavioral;
