@@ -42,7 +42,7 @@ public:
 
     void OutputRF() {
         ofstream rfout;
-        rfout.open("/Users/ADDY/Google Drive/github/AHD-Project-2016/MIPS Simulator/RFresult_enc.txt",std::ios_base::app);
+        rfout.open("/Users/ADDY/Google Drive/github/AHD-Project-2016/MIPS Simulator/RFresult_dec.txt",std::ios_base::app);
         if (rfout.is_open())
         {
             rfout<<"A state of RF:"<<endl;
@@ -103,7 +103,7 @@ public:
         ifstream imem;
         string line;
         int i=0;
-        imem.open("/Users/ADDY/Google Drive/github/AHD-Project-2016/MIPS Simulator/IMem/imem.txt");
+        imem.open("/Users/ADDY/Google Drive/github/AHD-Project-2016/MIPS Simulator/IMem/imem_rc5_dec.txt");
         if (imem.is_open())
         {
             while (getline(imem,line))
@@ -136,7 +136,7 @@ public:
         ifstream dmem;
         string line;
         int i=0;
-        dmem.open("/Users/ADDY/Google Drive/github/AHD-Project-2016/MIPS Simulator/DMem/dmem_enc.txt");
+        dmem.open("/Users/ADDY/Google Drive/github/AHD-Project-2016/MIPS Simulator/DMem/dmem_enc_result.txt");
         if (dmem.is_open())
         {
             while (getline(dmem,line))
@@ -163,7 +163,7 @@ public:
 
     void OutputDataMem() {
         ofstream dmemout;
-        dmemout.open("/Users/ADDY/Google Drive/github/AHD-Project-2016/MIPS Simulator/DMem/dmem_enc_result.txt", std::ios_base::app);
+        dmemout.open("/Users/ADDY/Google Drive/github/AHD-Project-2016/MIPS Simulator/DMem/dmem_dec_result.txt", std::ios_base::app);
         if (dmemout.is_open())
         {   dmemout<<"A state of DMem:"<<endl;
             for (unsigned long j = 0; j< 65; j++)
@@ -392,20 +392,20 @@ int main() {
     INSMem myInsMem;
     DataMem myDataMem;
     bitset<32> instruction, HaltCondition(4227858432), skip(0);
-    unsigned long ProgramCounter = 64;
+    unsigned long ProgramCounter = 111;
     string ins_type;
     int k =0, i=0;
 
     while (1) {
         instruction = myInsMem.ReadMemory(ProgramCounter); // Fetch instruction
         cout<<ProgramCounter<<" ";
-        if(ProgramCounter == 88){
+        if(ProgramCounter == 118){
             i++;
             k++;
             cout<<"i "<<i<<" S["<<k<<"]"<<endl;
 
         }
-        if(ProgramCounter == 101){
+        if(ProgramCounter == 132){
             i++;
             k++;
             cout<<"i "<<i<<" S["<<k<<"]"<<endl;
