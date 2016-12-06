@@ -5,12 +5,10 @@ USE IEEE.STD_LOGIC_ARITH.ALL;      --  Dmemory module (implements the Data memor
 USE IEEE.STD_LOGIC_SIGNED.ALL;
 
 ENTITY Dmemory IS
-	PORT(	address 			: IN 	STD_LOGIC_VECTOR(31 DOWNTO 0);
-        	DMem_write_data		: IN 	STD_LOGIC_VECTOR(31 DOWNTO 0);
-        --  Instruction         : IN 	STD_LOGIC_VECTOR(31 DOWNTO 0);
-	   		DMemRead, DMemwrite : IN 	STD_LOGIC;
-         -- Clk     			: IN 	STD_LOGIC;
-            DMem_read_data		: OUT 	STD_LOGIC_VECTOR(31 DOWNTO 0));
+	PORT(DMem_address        : IN 	STD_LOGIC_VECTOR(31 DOWNTO 0);
+             DMem_write_data	 : IN 	STD_LOGIC_VECTOR(31 DOWNTO 0);
+	     DMemRead, DMemwrite : IN 	STD_LOGIC;
+             DMem_read_data	 : OUT 	STD_LOGIC_VECTOR(31 DOWNTO 0));
 END Dmemory;
 
 ARCHITECTURE behavioral of Dmemory is
@@ -33,23 +31,23 @@ SIGNAL Dread_data: STD_LOGIC_VECTOR(31 DOWNTO 0);
 
 BEGIN
 
-	DMem_read_data <= Dread_data;
+ DMem_read_data <= Dread_data;
 
     PROCESS (DMemwrite, DMemRead)
 
-		BEGIN
+	BEGIN
 	
-	  		IF (DMemwrite = '1') THEN 
+	    IF (DMemwrite = '1') THEN 
 
-	  			DMem(conv_integer(address)) <= DMem_write_data;   ---- Store Instruction
-			    
-			ELSIF (DMemRead='1') THEN
+		DMem(conv_integer(DMem_address)) <= DMem_write_data;   ---- Store Instruction
 
-				Dread_data <=  DMem(conv_integer(address)); ---- Load Instruction Data read from Data memory
+	    ELSIF (DMemRead='1') THEN
 
-			END IF;
+		Dread_data <=  DMem(conv_integer(DMem_address));       ---- Load Instruction Data read from Data memory
 
-	END PROCESS;
+	    END IF;
+
+   END PROCESS;
 
 END behavioral;
 
