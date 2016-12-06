@@ -37,13 +37,13 @@ ARCHITECTURE behavioral of IDecode is
 	SIGNAL read_register_2_address		: STD_LOGIC_VECTOR( 4 DOWNTO 0 );
 	SIGNAL write_register_address_R		: STD_LOGIC_VECTOR( 4 DOWNTO 0 );
 	SIGNAL write_register_address_I		: STD_LOGIC_VECTOR( 4 DOWNTO 0 );
-	SIGNAL ALU_result    				: STD_LOGIC_VECTOR( 31 DOWNTO 0 );
-	SIGNAL DMem_read_data               : STD_LOGIC_VECTOR( 31 DOWNTO 0 );
-	SIGNAL Immediate_value          	: STD_LOGIC_VECTOR( 15 DOWNTO 0 );
+	SIGNAL ALU_result    				: STD_LOGIC_VECTOR( 31 DOWNTO 0);
+	SIGNAL DMem_read_data               : STD_LOGIC_VECTOR( 31 DOWNTO 0);
+	SIGNAL Immediate_value          	: STD_LOGIC_VECTOR( 15 DOWNTO 0);
 	SIGNAL LW                           : STD_LOGIC;
 	SIGNAL Rtype                        : STD_LOGIC;
-	SIGNAL SignEx     : STD_LOGIC_VECTOR(31 downto 0);
-	SIGNAL write_data_signal               : STD_LOGIC_VECTOR( 31 DOWNTO 0 );
+	SIGNAL SignEx                       : STD_LOGIC_VECTOR(31 downto 0);
+	SIGNAL write_data_signal            : STD_LOGIC_VECTOR( 31 DOWNTO 0);
 
 
 BEGIN
@@ -70,7 +70,7 @@ BEGIN
 	read_data2 <= Reg_array(CONV_INTEGER(read_register_2_address)) WHEN Rtype = '1'  -- Read Register 2 for Rtypr instruction 
 		  ELSE    SignEx;                                                             -- Take Sign Extended Immediate as Operand2 for I type instruction
 					
-    write_register_address <= write_register_address_R WHEN Rtype = '1'                   -- To select write Register Address for R type or I type
+    write_register_address <= write_register_address_R WHEN Rtype = '1'              -- To select write Register Address for R type or I type
                       ELSE    write_register_address_I;
 
 
