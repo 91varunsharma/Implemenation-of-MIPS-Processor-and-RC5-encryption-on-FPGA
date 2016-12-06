@@ -33,14 +33,15 @@ USE IEEE.STD_LOGIC_UNSIGNED.ALL;
 
 Entity IFetch is
     Port ( clk         : in STD_LOGIC;
-           PC          : in  STD_LOGIC_VECTOR (31 downto 0);
+           NextPC      : in  STD_LOGIC_VECTOR (31 downto 0);
+           PC          : out  STD_LOGIC_VECTOR (31 downto 0);
            Instruction : out  STD_LOGIC_VECTOR (31 downto 0));
 End IFetch;
 
 
 architecture Behavioral of IFetch is
     
---SIGNAL NextPC : STD_LOGIC_VECTOR (31 downto 0);
+SIGNAL Program_Counter : STD_LOGIC_VECTOR (31 downto 0);
 -- change array index to 1023 later
 Type IMemory IS ARRAY (0 to 37) of STD_LOGIC_VECTOR(31 downto 0);
 
@@ -59,13 +60,15 @@ begin
      begin
 
         If (clk'event and clk='1') then
-
-            Instruction <= IMem(conv_integer(PC));
+            
+            Program_Counter <= NextPC;
+            Instruction <= IMem(conv_integer(Program_Counter));
            
         End If;
 
     End Process;
-
+            
+     PC <=  Program_Counter;
 
 End Behavioral;
 
