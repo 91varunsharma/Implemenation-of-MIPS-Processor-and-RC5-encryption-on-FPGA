@@ -399,16 +399,18 @@ int main() {
     while (1) {
         instruction = myInsMem.ReadMemory(ProgramCounter); // Fetch instruction
         cout<<ProgramCounter<<" ";
-        /*if(ProgramCounter == 37){
+        if(ProgramCounter == 88){
+            i++;
             k++;
-            cout<<"k "<<k;
+            cout<<"i "<<i<<" S["<<k<<"]"<<endl;
+
+        }
+        if(ProgramCounter == 101){
+            i++;
+            k++;
+            cout<<"i "<<i<<" S["<<k<<"]"<<endl;
             myRF.OutputRF();
         }
-        if(ProgramCounter == 42){
-            i++;
-            cout<<" i "<<i;
-            myDataMem.OutputDataMem();
-        }*/
 
         if(instruction == HaltCondition) break; //check for halt condition
         else if(instruction == skip){
