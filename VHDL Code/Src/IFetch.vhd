@@ -31,14 +31,16 @@ USE IEEE.STD_LOGIC_UNSIGNED.ALL;
 --library UNISIM;
 --use UNISIM.VComponents.all;
 
-entity IFetch is
-    Port ( clk : in STD_LOGIC;
-            address : in  STD_LOGIC_VECTOR (31 downto 0);
+Entity IFetch is
+    Port ( clk         : in STD_LOGIC;
+           PC          : in  STD_LOGIC_VECTOR (31 downto 0);
            Instruction : out  STD_LOGIC_VECTOR (31 downto 0));
-end IFetch;
+End IFetch;
 
 
 architecture Behavioral of IFetch is
+    
+--SIGNAL NextPC : STD_LOGIC_VECTOR (31 downto 0);
 -- change array index to 1023 later
 Type IMemory IS ARRAY (0 to 37) of STD_LOGIC_VECTOR(31 downto 0);
 
@@ -51,19 +53,19 @@ Type IMemory IS ARRAY (0 to 37) of STD_LOGIC_VECTOR(31 downto 0);
                                     X"00223814",X"33fffff8",X"2001fff8",X"2826fffc",X"2001fff8",
                                     X"04e8ffff",X"2008fff8",X"fc000000");               
 begin
+    
+    Process(clk)
 
-    process(clk)
+     begin
 
-    begin
+        If (clk'event and clk='1') then
 
-        if (clk'event and clk='1') then
+            Instruction <= IMem(conv_integer(PC));
+           
+        End If;
 
-            Instruction <= IMem(conv_integer(address));
-
-        end if;
-
-    end process;
+    End Process;
 
 
-end Behavioral;
+End Behavioral;
 
