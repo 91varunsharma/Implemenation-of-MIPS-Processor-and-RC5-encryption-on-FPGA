@@ -1,0 +1,76 @@
+2# Register File info
+
+R0 Hard coded to 0x0
+R1 a_reg
+R2 b_reg
+R3 i
+R4 i_tmp
+R5 ab_xor
+R6 ba_xor
+R7 a_rot
+R8 b_rot
+R11 s_arr[0]-address
+R12 s_arr_tmp
+R13 rotate amt after mod
+
+R19 Counter for finding variable rotate amount
+R20 Flag- TO DERERMINE WHICH MODULE IS PRESENTLY BEING RUN
+R21 #FFFF
+R22 rot_num
+R23 rot_out
+R24 rot_amt
+R25 flag_tmp
+R27 a1
+R28 b1
+R29 o1
+R30 ab_or
+R31 ab_and
+
+
+# Assembly code:
+
+	# Initialization
+	ADD R0 R0 R13
+	ADD R0 R0 R4
+	ADDI R0 R20 2
+	ADDI R0 R3 25
+	LW RO R1 #ADDRESS 				# LOAD A_REG
+	LW R0 R2 #ADDRESS 				# LOAD B_REG
+	ADDI R0 R11 #ADDRESS 			# STORE THE ADDRESS OF S[0]
+	LW R11 R12 0 					# LOAD S[i]
+	ADD R1 R12 R1 					# A_REG + S[0]
+	ADDI R11 R11 1
+	ADDI R4 R4 1
+	LW R11 R12 0
+	ADD R2 R12 R2
+		# LOOP BEGINS HERE
+	OR R1 R2 R30 					# XOR STARTS HERE
+	AND R1 R2 R31
+	SUB R30 R31 R5 					# XOR ENDS HERE
+	ADD R0 R5 R22 					# ADD THE ROTATE NUM AB_XOR
+	ANDI R2 R13 31 					# MOD BY 32
+	ADD R0 R13 R24 					# ADD THE ROTATE AMT B_REG
+	JMP #ADDRESS 					# ROT
+	ADD R0 R23 R7 					# ADD THE ROTATE OUTPUT TO A_ROT
+	ADDI R11 R11 1
+	ADDI R4 R4 1
+	LW R11 R12 0
+	ADD R7 R12 R1
+	OR R1 R2 R30 					# XOR STARTS HERE
+	AND R1 R2 R31
+	SUB R30 R31 R6 					# XOR ENDS HERE
+	ADD R0 R6 R22 					# ADD THE ROTATE NUM AB_XOR
+	ANDI R1 R13 31 					# MOD BY 32
+	ADD R0 R13 R24 					# ADD THE ROTATE AMT B_REG
+	JMP #ADDRESS 					# ROT
+	ADD R0 R23 R8 					# ADD THE ROTATE OUTPUT TO A_ROT
+	ADDI R11 R11 1
+	ADDI R4 R4 1
+	LW R11 R12 0
+	ADD R8 R12 R2
+	BEQ R3 R4 #BRANCH_ADDRESS 		# HALT
+	JMP #ADDRESS 					# RETURN TO LOOP
+
+
+
+

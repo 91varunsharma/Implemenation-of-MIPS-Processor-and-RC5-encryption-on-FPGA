@@ -1,0 +1,12 @@
+# Data Memory Details
+	
+	S_arr_temp = Address 0-Address 25
+	L_arr_tmp = Address 40-Address 43
+	A_reg(encryption) = Address 50
+	B_reg(encryption) = Address 51
+	A_reg(encrypted) = Address 52
+	B_reg(encrypted) = Address 53
+	A_reg(decryption) = Address 55
+	B_reg(decryption) = Address 56
+	A_reg(decrypted) = Address 57
+	B_reg(decrypted) = Address 58

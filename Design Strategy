@@ -1,7 +1,7 @@
 We will be dividing the processor design in multiple stages according to how an instruction is implemented
 from fetching stage to all the way down to Write Back stage.
 
-I will be developing 5 VHDL modules, 1 for each stage namely:
+We will be developing 5 VHDL modules, 1 for each stage namely:
 Instruction Fetch
 Instruction Decode
 Execution/ALU
@@ -11,4 +11,4 @@ Write Back
 We need to develop one more module named **Control** module which will update the **Program Counter(PC)** based
 on the type of instrcution being executed, whether it is a **JUMP** or a **Branch** instruction etc.
 
-Then we will instantiate all these modules in the main file. We should be able all this by Thursday.
+Then we will instantiate all these modules in the main file.
