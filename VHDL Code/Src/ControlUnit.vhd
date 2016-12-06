@@ -5,18 +5,18 @@ USE IEEE.STD_LOGIC_UNSIGNED.ALL;
 use ieee.std_logic_arith.all;
 
 entity ControlUnit is
-    Port (Clk         : in STD_LOGIC;
-    	  Instruction : in STD_LOGIC_VECTOR(31 DOWNTO 0); 
-           PC        : in  STD_LOGIC_VECTOR (31 downto 0);
-           ALUOp     : out   STD_LOGIC_VECTOR (2 downto 0);
+   Port (Clk         : in   STD_LOGIC;
+    	 Instruction : in   STD_LOGIC_VECTOR(31 DOWNTO 0); 
+           PC        : in   STD_LOGIC_VECTOR (31 downto 0);
+           ALUOp     : out  STD_LOGIC_VECTOR (2 downto 0);
            NextPC    : out  STD_LOGIC_VECTOR (31 downto 0);
            Rtype     : out  STD_LOGIC;
            LW        : out  STD_LOGIC;
            WriteEn   : out  STD_LOGIC;
            DMemRead  : out  STD_LOGIC;
            DMemWrite : out  STD_LOGIC;
-		   BranchNE  : out  STD_LOGIC;
-		   BranchLT  : out  STD_LOGIC;
+           BranchNE  : out  STD_LOGIC;
+           BranchLT  : out  STD_LOGIC;
            Branch    : out  STD_LOGIC);
 end ControlUnit;
 
@@ -27,14 +27,14 @@ architecture Behavioral of ControlUnit is
 	SIGNAL ALU_Op                               : STD_LOGIC_VECTOR(2 DOWNTO 0 );
 	SIGNAL Immediate_value_initial              : STD_LOGIC_VECTOR(15 DOWNTO 0);
 	SIGNAL Immediate_value                      : STD_LOGIC_VECTOR(15 DOWNTO 0);
-	SIGNAL read_register_1_address_Branch		: STD_LOGIC_VECTOR(4 DOWNTO 0 );
-	SIGNAL read_register_2_address_Branch		: STD_LOGIC_VECTOR(4 DOWNTO 0 );
+	SIGNAL read_register_1_address_Branch       : STD_LOGIC_VECTOR(4 DOWNTO 0 );
+	SIGNAL read_register_2_address_Branch       : STD_LOGIC_VECTOR(4 DOWNTO 0 );
 	SIGNAL PCIncby1                             : STD_LOGIC_VECTOR(31 DOWNTO 0);
 	SIGNAL JumpAddress                          : STD_LOGIC_VECTOR(25 DOWNTO 0);
-	signal read_data1_Branch                    : STD_LOGIC_VECTOR (31 downto 0);
-    signal read_data2_Branch                    : STD_LOGIC_VECTOR (31 downto 0);
-	SIGNAL Opcode                               : STD_LOGIC_VECTOR (5 downto 0);
-    SIGNAL numeric_immediate,numeric_immediate1 :INTEGER RANGE 0 TO 65536;
+	signal read_data1_Branch                    : STD_LOGIC_VECTOR(31 downto 0);
+    signal read_data2_Branch                    : STD_LOGIC_VECTOR(31 downto 0);
+	SIGNAL Opcode                               : STD_LOGIC_VECTOR(5 downto 0);
+	SIGNAL numeric_immediate,numeric_immediate1 : INTEGER RANGE 0 TO 65536;
 
 	TYPE register_file IS ARRAY ( 0 TO 31 ) OF STD_LOGIC_VECTOR( 31 DOWNTO 0 );
 
