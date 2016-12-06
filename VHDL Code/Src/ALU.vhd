@@ -17,19 +17,23 @@ end ALU;
 architecture Behavioral of ALU is
 
 	SIGNAL A_input, B_input : STD_LOGIC_VECTOR (31 DOWNTO 0);
-	SIGNAL ALU_output : STD_LOGIC_VECTOR (31 DOWNTO 0);	
-	SIGNAL Zero : out  STD_LOGIC;
+	SIGNAL ALU_output : STD_LOGIC_VECTOR (31 DOWNTO 0);
+	Signal shift_left:STD_LOGIC_VECTOR (31 DOWNTO 0);
+	Signal shift_right:STD_LOGIC_VECTOR (31 DOWNTO 0);
+--	SIGNAL Zero : out  STD_LOGIC;
 
 begin
 
 	A_input <= read_data1;
 	B_input <= read_data2;
-				  
-	Zero <= '1' when (ALU_output = X"00000000") else '0';
-
+--	shift_left<=A_input sll conv_integer(B_input);
+	--shift_right<=A_input srl conv_integer(B_input);
+--	Zero <= '1' when (ALU_output = X"00000000") else '0';
+	shift_left <= to_stdlogicvector(to_bitvector(A_input) sll conv_integer(B_input));
+	shift_right <=  to_stdlogicvector(to_bitvector(A_input) srl conv_integer(B_input));
 	ALU_Result <= ALU_output;
 						
-	process(ALUOp, A_input, B_input)
+	process(ALUOp, A_input, B_input,shift_left,shift_right)
 	begin
 
 		case ALUOp is
@@ -38,8 +42,8 @@ begin
 			when "010" => ALU_output <= A_input AND B_input;      		                -----AND Operation
 			when "011" => ALU_output <= A_input  OR B_input;      		                -----OR  Operation
 			when "100" => ALU_output <= NOT(A_input OR B_input);  		                -----NOR Operation
-			when "101" => ALU_output <= std_logic_vector(unsigned(A_input) sll B_input)   ----- Left Shift
-			when "110" => ALU_output <= std_logic_vector(unsigned(A_input) srl B_input)  ----- Right Shift
+			when "101" => ALU_output <= shift_left;   ----- Left Shift
+			when "110" => ALU_output <= shift_right; ----- Right Shift
 			when others => ALU_output <= X"00000000";
 
 		end case;
