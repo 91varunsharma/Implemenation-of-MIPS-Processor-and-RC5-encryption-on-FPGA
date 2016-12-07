@@ -7,7 +7,8 @@ USE IEEE.STD_LOGIC_SIGNED.ALL;
 ENTITY Dmemory IS
 	PORT(DMem_address        : IN 	STD_LOGIC_VECTOR(31 DOWNTO 0);
              DMem_write_data	 : IN 	STD_LOGIC_VECTOR(31 DOWNTO 0);
-	     DMemRead, DMemwrite : IN 	STD_LOGIC;
+	     DMemRead: IN 	STD_LOGIC;
+		   DMemwrite : IN 	STD_LOGIC;
              DMem_read_data	 : OUT 	STD_LOGIC_VECTOR(31 DOWNTO 0));
 END Dmemory;
 
@@ -27,11 +28,8 @@ SIGNAL DMem : DMemory:=DMemory'(X"00000000",X"1c200000",X"1c40fffc",X"00611010",
 
 
 --SIGNAL LWD, SWD : STD_LOGIC;
-SIGNAL Dread_data: STD_LOGIC_VECTOR(31 DOWNTO 0);
 
 BEGIN
-
- DMem_read_data <= Dread_data;
 
     PROCESS (DMemwrite, DMemRead)
 
@@ -43,7 +41,7 @@ BEGIN
 
 	    ELSIF (DMemRead='1') THEN
 
-		Dread_data <=  DMem(conv_integer(DMem_address));       ---- Load Instruction Data read from Data memory
+		DMem_read_data <=  DMem(conv_integer(DMem_address));       ---- Load Instruction Data read from Data memory
 
 	    END IF;
 

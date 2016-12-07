@@ -32,20 +32,20 @@ USE IEEE.STD_LOGIC_UNSIGNED.ALL;
 --use UNISIM.VComponents.all;
 
 Entity IFetch is
-    Port ( clk         : in STD_LOGIC;
+    Port (
            NextPC      : in  STD_LOGIC_VECTOR (31 downto 0);
-           PC          : out  STD_LOGIC_VECTOR (31 downto 0);
+           --PC          : out  STD_LOGIC_VECTOR (31 downto 0);
            Instruction : out  STD_LOGIC_VECTOR (31 downto 0));
 End IFetch;
 
 
 architecture Behavioral of IFetch is
     
-SIGNAL Program_Counter : STD_LOGIC_VECTOR (31 downto 0);
+--SIGNAL Program_Counter : STD_LOGIC_VECTOR (31 downto 0);
 -- change array index to 1023 later
 Type IMemory IS ARRAY (0 to 37) of STD_LOGIC_VECTOR(31 downto 0);
 
- CONSTANT IMem : IMemory:=IMemory'(X"00000000",X"1c200000",X"1c40fffc",X"00611010",X"2060fff8",
+ CONSTANT IMem : IMemory:=IMemory'(X"00221800",X"00211001",X"1c40fffc",X"00611010",X"2060fff8",
                                     X"fc000000",X"1c200000",X"0441e7df",X"2040fff8",X"fc000000",
                                     X"1c200000",X"1c40fffc",X"2822ffff",X"00611014",X"00611013",
                                     X"2060fff8",X"fc000000",X"1c200000",X"1c40fffc",X"33fffffd",
@@ -54,21 +54,9 @@ Type IMemory IS ARRAY (0 to 37) of STD_LOGIC_VECTOR(31 downto 0);
                                     X"00223814",X"33fffff8",X"2001fff8",X"2826fffc",X"2001fff8",
                                     X"04e8ffff",X"2008fff8",X"fc000000");               
 begin
-    
-    Process(clk)
-
-     begin
-
-        If (clk'event and clk='1') then
-            
-            Program_Counter <= NextPC;
-            Instruction <= IMem(conv_integer(Program_Counter));
-           
-        End If;
-
-    End Process;
-            
-     PC <=  Program_Counter;
+   
+   Instruction <= IMem(conv_integer(NextPC));
+   --PC <= NextPC;
 
 End Behavioral;
 
