@@ -86,56 +86,51 @@ def get_i_ins(opcode, instruction):
 
 if __name__ == '__main__':
 
-    if sys.argv.__len__() != 3:
-        raise ValueError("Please provide valid input/output filename")
+    read_file = "/Users/ADDY/Google Drive/github/AHD-Project-2016/converter/test/machine/test_1_machine.txt"
+    write_file = "/Users/ADDY/Google Drive/github/AHD-Project-2016/converter/test/asm/test_1_asm.txt"
+    read_from = open(read_file)
+    write_to = open(write_file, 'w')
+    ins_num = 0
 
-    else:
+    for f in read_from:
+        asm_ins = ""
+        ins = f.split('\n')[0]
+        ins_num += 1
 
-        read_file = sys.argv[1]
-        write_file = sys.argv[2]
-        read_from = open(read_file)
-        write_to = open(write_file, 'w')
-        ins_num = 0
+        if ins == "00000000000000000000000000000000":
+            asm_ins = "\n"
+            write_to.write(asm_ins)
+            continue
 
-        for f in read_from:
-            asm_ins = ""
-            ins = f.split('\n')[0]
-            ins_num += 1
+        opc_str = ins[0:6]
+        opc = format(int(opc_str, 2), 'x')
 
-            if ins == "00000000000000000000000000000000":
-                asm_ins = "\n"
-                write_to.write(asm_ins)
-                continue
+        if opc == '3f':
+            asm_ins = "HAL\n"
+            write_to.write(asm_ins)
 
-            opc_str = ins[0:6]
-            opc = format(int(opc_str, 2), 'x')
+        elif opc == '0':
+            asm_ins = get_r_ins(ins)
+            print asm_ins
+            write_to.write(asm_ins)
 
-            if opc == '3f':
-                asm_ins = "HAL\n"
-                write_to.write(asm_ins)
+        elif opc == '1' or opc == '2' or opc == '3' or opc == '4' or opc == '5' or opc == '6' \
+                or opc == '7' or opc == '8' or opc == '9' or opc == 'a' or opc == 'b':
+            asm_ins = get_i_ins(opc, ins)
+            print asm_ins
+            write_to.write(asm_ins)
 
-            elif opc == '0':
-                asm_ins = get_r_ins(ins)
-                print asm_ins
-                write_to.write(asm_ins)
+        elif opc == 'c':
+            addr = ""
+            sign_bit = ins[6:7]
+            if sign_bit == '0':
+                asm_ins = "JMP " + str(int(ins[6:32], 2)) + "\n"
+            else:
+                addr = str(int(ins[6:32], 2) - 67108865)
+                asm_ins = "JMP " + addr + "\n"
 
-            elif opc == '1' or opc == '2' or opc == '3' or opc == '4' or opc == '5' or opc == '6' \
-                    or opc == '7' or opc == '8' or opc == '9' or opc == 'a' or opc == 'b':
-                asm_ins = get_i_ins(opc, ins)
-                print asm_ins
-                write_to.write(asm_ins)
-
-            elif opc == 'c':
-                addr = ""
-                sign_bit = ins[6:7]
-                if sign_bit == '0':
-                    asm_ins = "JMP " + str(int(ins[6:32], 2)) + "\n"
-                else:
-                    addr = str(int(ins[6:32], 2) - 67108865)
-                    asm_ins = "JMP " + addr + "\n"
-
-                print asm_ins
-                write_to.write(asm_ins)
+            print asm_ins
+            write_to.write(asm_ins)
 
     read_from.close()
     write_to.close()
