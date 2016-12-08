@@ -6,7 +6,7 @@ USE IEEE.STD_LOGIC_SIGNED.ALL;
 
 ENTITY Dmemory IS
 	PORT(DMem_address        : IN 	STD_LOGIC_VECTOR(31 DOWNTO 0);
-             DMem_write_data	 : IN 	STD_LOGIC_VECTOR(31 DOWNTO 0);
+        DMem_write_data	 : IN 	STD_LOGIC_VECTOR(31 DOWNTO 0);
 	     DMemRead: IN 	STD_LOGIC;
 		   DMemwrite : IN 	STD_LOGIC;
              DMem_read_data	 : OUT 	STD_LOGIC_VECTOR(31 DOWNTO 0));

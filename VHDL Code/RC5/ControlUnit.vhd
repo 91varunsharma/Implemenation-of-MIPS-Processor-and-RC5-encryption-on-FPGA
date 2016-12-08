@@ -6,29 +6,30 @@ use ieee.std_logic_arith.all;
 
 entity ControlUnit is
    Port ( Clk        : in   STD_LOGIC;
-    	  Instruction: in   STD_LOGIC_VECTOR(31 DOWNTO 0); 
+    	  Instruction  : in   STD_LOGIC_VECTOR(31 DOWNTO 0); 
          --  PC        : in   STD_LOGIC_VECTOR (31 downto 0);
-		   Read_Data1: in   STD_LOGIC_VECTOR (31 downto 0);
-		   Read_Data2: in   STD_LOGIC_VECTOR (31 downto 0);
+		   Read_Data1  : in   STD_LOGIC_VECTOR (31 downto 0);
+		   Read_Data2  : in   STD_LOGIC_VECTOR (31 downto 0);
            ALUOp     : out  STD_LOGIC_VECTOR (2 downto 0);
            NextPC    : out  STD_LOGIC_VECTOR (31 downto 0);
            Rtype     : out  STD_LOGIC;
            LW        : out  STD_LOGIC;
-		   SW        : out  STD_LOGIC;
+		     SW        : out  STD_LOGIC;
            WriteEn   : out  STD_LOGIC;
            DMemRead  : out  STD_LOGIC;
-		   clr       : in  STD_LOGIC;
+		     clr       : in   STD_LOGIC;
            DMemWrite : out  STD_LOGIC;
            BranchNE  : out  STD_LOGIC;
            BranchLT  : out  STD_LOGIC;
-           Branch    : out  STD_LOGIC);
+           Branch    : out  STD_LOGIC;
+			  ALUSrc    : out  STD_LOGIC);
 end ControlUnit;
 
 architecture Behavioral of ControlUnit is
 
 	SIGNAL R_type, LWD, SWD, BEQ, ADDI, SUBI, ANDI, ORI, BNE, BLT, SHL, SHR, JUMP, R_ADD, R_SUB, R_AND, R_OR, R_NOR : STD_LOGIC;
-	SIGNAL A_input, B_input                     : STD_LOGIC_VECTOR (31 DOWNTO 0);
-SIGNAL ALU_ROp , ALU_Op                              : STD_LOGIC_VECTOR(2 DOWNTO 0 );
+	SIGNAL A, B                                 : STD_LOGIC_VECTOR (31 DOWNTO 0);
+SIGNAL ALU_ROp , ALU_Op                        : STD_LOGIC_VECTOR(2 DOWNTO 0 );
 	SIGNAL Immediate_value_initial              : STD_LOGIC_VECTOR(15 DOWNTO 0);
 	SIGNAL Immediate_value                      : STD_LOGIC_VECTOR(15 DOWNTO 0);
 --	SIGNAL read_register_1_address_Branch       : STD_LOGIC_VECTOR(4 DOWNTO 0 );
@@ -75,8 +76,8 @@ begin
 
 	PCIncby1 <= NextPCSignal + X"00000001";
 
-	A_input <= read_data1;
-	B_input <= read_data2;
+	A <= read_data1;
+	B <= read_data2;
    
 	R_type <= '1' when Opcode = "000000" else '0';
 	ADDI   <= '1' when Opcode = "000001" else '0';
@@ -102,7 +103,7 @@ begin
 	 If (Clr ='1') then
 			NextPCSignal <= X"00000000";
 		elsIf (Clk'EVENT AND Clk = '1') then
-			 If ((BEQ ='1' and (A_input=B_input)) or (BLT ='1' and (A_input < B_input)) or (BNE ='1' and (A_input /= B_input))) then
+			 If ((BEQ ='1' and (A=B)) or (BLT ='1' and (A < B)) or (BNE ='1' and (A /= B))) then
 					NextPCSignal <= conv_std_logic_vector(conv_integer(PCIncby1) + conv_integer(Immediate_value),32);
 			 Elsif (Jump = '1') then
 					
@@ -151,16 +152,17 @@ begin
 --	ALUOp <= "101" when (SHL='1'and R_type='0');
 --	ALUOp <= "110" when (SHR='1'and R_type='0');
 --	
-    Branch <= BEQ;
-    BranchNE <= BNE;
+   Branch <= BEQ;
+   BranchNE <= BNE;
 	BranchLT <= BLT;
-    SW <= SWD;
+   SW <= SWD;
 	LW <= LWD;
 	Rtype <= R_type;
 	DMemRead <= LWD;            -----Read Data memory when load instruction
 	DMemWrite <= SWD;           ----- Write to Data memory
 	WriteEn <= NOT(SWD OR BEQ OR BLT OR BNE OR JUMP) ;        -----Don't write to register file when Store Instruction
-	NextPC<=NExtPCSignal;
+	NextPC<=NextPCSignal;
+	ALUSrc <= LWD Or SWD Or ADDI Or SUBI Or ANDI Or ORI Or SHL Or SHR;
 
 end Behavioral;
 
