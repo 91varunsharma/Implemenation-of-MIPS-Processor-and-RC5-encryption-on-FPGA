@@ -1,0 +1,1 @@
+-intstyle "ise" -incremental -lib "secureip" -o "C:/Users/Parteek Khushdil/Google Drive/NYU Classes/AHD/Project/RC5/IDecode_isim_beh.exe" -prj "C:/Users/Parteek Khushdil/Google Drive/NYU Classes/AHD/Project/RC5/IDecode_beh.prj" "work.IDecode" 
