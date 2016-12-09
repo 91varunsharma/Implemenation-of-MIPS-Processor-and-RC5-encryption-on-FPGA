@@ -6,7 +6,7 @@ USE IEEE.STD_LOGIC_SIGNED.ALL;
 entity TopModule is
     Port ( SW 			: in  STD_LOGIC_VECTOR (15 downto 0);
            BTN 			: in  STD_LOGIC_VECTOR (4 downto 0);
-           CLK 			: in  STD_LOGIC;
+       --    CLK 			: in  STD_LOGIC;
            LED 			: out  STD_LOGIC_VECTOR (15 downto 0);
            SSEG_CA 		: out  STD_LOGIC_VECTOR (7 downto 0);
            SSEG_AN 		: out  STD_LOGIC_VECTOR (7 downto 0)
@@ -52,7 +52,7 @@ component Dmemory
 END component;
 
 component IDecode 
-  PORT(	
+  PORT(	Clk       : In std_logic;
 	  		Instruction : IN 	STD_LOGIC_VECTOR( 31 DOWNTO 0 );   
 			write_data  : IN 	STD_LOGIC_VECTOR( 31 DOWNTO 0 );   --------Data to be written to the reister file
 			WriteEn 	   : IN 	STD_LOGIC;                         --To be made '1' when register file needs to be updated
@@ -80,19 +80,19 @@ End component;
  
 signal instruction,NextPC,ReadData1,ReadData2,ALUResult,Write_data,DMemReadData,reg_arr,SignEx: std_logic_vector(31 downto 0);
 signal ALUop: std_logic_vector(2 downto 0);
-signal RType,LW,SWD,WriteEN,DMemRead,DMemWrite,BEQ,BLT,BNE,clr, ALUSrc: std_logic;
+signal RType,LW,SWD,WriteEN,DMemRead,DMemWrite,BEQ,BLT,BNE,clr, Clk, ALUSrc: std_logic;
 
 begin
 
 write_data <= DMemReadData when LW='1'
-     Else    ALUResult;
+    Else    ALUResult;
 
-IDecodePort: IDecode port map(Instruction,write_data,WriteEN,ReadData1,ReadData2,SignEx,
+IDecodePort: IDecode port map(Clk, Instruction,write_data,WriteEN,ReadData1,ReadData2,SignEx,
 									   RType,LW,SWD,BLT,BNE,BEQ,reg_arr);
 									
 ALUPort: ALU port map(ReadData1,ReadData2, SignEx, ALUop,ALUSrc, ALUResult);
 
-ControlUnitPort: ControlUnit port map(clk,Instruction,Readdata1,Readdata2,ALUop,
+ControlUnitPort: ControlUnit port map(Clk,Instruction,Readdata1,Readdata2,ALUop,
 										NextPC,RType,LW,SWD,WriteEN,DMemRead,clr,DMemWrite,BNE,BLT,BEQ, ALUSrc);
 										
 IFetchPort: IFetch port map(NextPC,Instruction);

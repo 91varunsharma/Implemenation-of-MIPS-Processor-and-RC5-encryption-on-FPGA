@@ -160,9 +160,18 @@ begin
 	Rtype <= R_type;
 	DMemRead <= LWD;            -----Read Data memory when load instruction
 	DMemWrite <= SWD;           ----- Write to Data memory
-	WriteEn <= NOT(SWD OR BEQ OR BLT OR BNE OR JUMP) ;        -----Don't write to register file when Store Instruction
+	        
 	NextPC<=NextPCSignal;
 	ALUSrc <= LWD Or SWD Or ADDI Or SUBI Or ANDI Or ORI Or SHL Or SHR;
+	
+	Process(SWD, BEQ, BLT, BNE, JUMP)
+	begin
+		 if ((SWD OR BEQ OR BLT OR BNE OR JUMP)='1') then 
+		 WriteEn <='1';
+		else
+			WriteEn <= '0';
+		end if;
+	end process;
 
 end Behavioral;
 

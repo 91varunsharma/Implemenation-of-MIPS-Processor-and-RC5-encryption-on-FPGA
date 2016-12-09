@@ -45,7 +45,7 @@ architecture Behavioral of IFetch is
 -- change array index to 1023 later
 Type IMemory IS ARRAY (0 to 37) of STD_LOGIC_VECTOR(31 downto 0);
 
- CONSTANT IMem : IMemory:=IMemory'(X"00221800",X"00211001",X"1c40fffc",X"00611010",X"2060fff8",
+ CONSTANT IMem : IMemory:=IMemory'(X"00221803",X"00221800",X"00621800",X"00611010",X"00221803",
                                     X"fc000000",X"1c200000",X"0441e7df",X"2040fff8",X"fc000000",
                                     X"1c200000",X"1c40fffc",X"2822ffff",X"00611014",X"00611013",
                                     X"2060fff8",X"fc000000",X"1c200000",X"1c40fffc",X"33fffffd",
@@ -55,7 +55,7 @@ Type IMemory IS ARRAY (0 to 37) of STD_LOGIC_VECTOR(31 downto 0);
                                     X"04e8ffff",X"2008fff8",X"fc000000");               
 begin
    
-   Instruction <= IMem(conv_integer(NextPC));
+          Instruction <= IMem(conv_integer(NextPC));
    --PC <= NextPC;
 
 End Behavioral;
