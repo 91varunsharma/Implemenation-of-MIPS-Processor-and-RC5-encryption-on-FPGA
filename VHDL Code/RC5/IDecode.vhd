@@ -76,10 +76,6 @@ BEGIN
 			  Reg_array( CONV_INTEGER( write_register_address)) <= write_data;
 			end if;
 		END IF;
-		
-		--if(WriteEN = '1')then
-				
-				--end if;
 	END PROCESS;
 reg_arr<= reg_array(3);
 END behavioral;
