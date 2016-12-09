@@ -21,7 +21,7 @@
 #include <malloc.h>
 #define alloca _alloca
 #endif
-static const char *ng0 = "C:/Users/Varun Sharma/Documents/GitHub/AHD-Project-2016/VHDL Code/RC5/DMemory.vhd";
+static const char *ng0 = "C:/Users/Aayush Aggarwal/Desktop/Shashank/AHD-Project-2016/VHDL Code/RC5/DMemory.vhd";
 extern char *IEEE_P_0774719531;
 
 int ieee_p_0774719531_sub_378705076_2162500114(char *, char *, char *);
@@ -72,7 +72,7 @@ LAB2:    xsi_set_current_line(40, ng0);
     t5 = *((char **)t1);
     t1 = (t0 + 1032U);
     t6 = *((char **)t1);
-    t1 = (t0 + 5928U);
+    t1 = (t0 + 5956U);
     t7 = ieee_p_0774719531_sub_378705076_2162500114(IEEE_P_0774719531, t6, t1);
     t8 = (t7 - 0);
     t9 = (t8 * 1);
@@ -92,7 +92,7 @@ LAB5:    xsi_set_current_line(44, ng0);
     t5 = *((char **)t1);
     t1 = (t0 + 1032U);
     t6 = *((char **)t1);
-    t1 = (t0 + 5928U);
+    t1 = (t0 + 5956U);
     t7 = ieee_p_0774719531_sub_378705076_2162500114(IEEE_P_0774719531, t6, t1);
     t8 = (t7 - 0);
     t9 = (t8 * 1);

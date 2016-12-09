@@ -164,9 +164,9 @@ begin
 	NextPC<=NextPCSignal;
 	ALUSrc <= LWD Or SWD Or ADDI Or SUBI Or ANDI Or ORI Or SHL Or SHR;
 	
-	Process(SWD, BEQ, BLT, BNE, JUMP)
+	Process(SWD, BEQ, BLT, BNE, JUMP, R_type)
 	begin
-		 if ((SWD OR BEQ OR BLT OR BNE OR JUMP)='1') then 
+		 if ((SWD OR BEQ OR BLT OR BNE OR JUMP OR R_type OR ADDI OR SUBI OR ANDI OR ORI OR SHL OR SHR)='1') then 
 		 WriteEn <='1';
 		else
 			WriteEn <= '0';
