@@ -2,7 +2,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 --use IEEE.NUMERIC_STD.ALL;
 USE IEEE.STD_LOGIC_SIGNED.ALL;
-
+--TYPE register_file IS ARRAY ( 0 TO 31 ) OF STD_LOGIC_VECTOR( 31 DOWNTO 0 );
 entity TopModule is
     Port ( SW 			: in  STD_LOGIC_VECTOR (15 downto 0);
            BTN 			: in  STD_LOGIC_VECTOR (4 downto 0);
@@ -67,8 +67,7 @@ component IDecode
   			  BLT       : in std_logic;
 			  BNE       : in std_logic;
 			  BEQ       : in std_logic;
-			  reg_arr   : out std_logic_vector(31 downto 0)
-			  );  
+			  reg_arr   : out std_logic_vector(31 downto 0));  
 END component;
 
 component IFetch
