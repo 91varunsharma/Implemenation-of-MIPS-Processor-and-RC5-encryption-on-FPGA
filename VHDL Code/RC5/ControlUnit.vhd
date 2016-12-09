@@ -166,10 +166,10 @@ begin
 	
 	Process(SWD, BEQ, BLT, BNE, JUMP, R_type)
 	begin
-		 if ((SWD OR BEQ OR BLT OR BNE OR JUMP OR R_type OR ADDI OR SUBI OR ANDI OR ORI OR SHL OR SHR)='1') then 
-		 WriteEn <='1';
+		 if ((SWD OR BEQ OR BLT OR BNE OR JUMP)='1') then
+		 WriteEn <='0';
 		else
-			WriteEn <= '0';
+			WriteEn <= '1';
 		end if;
 	end process;
 
