@@ -45,14 +45,14 @@ BEGIN
 	
  Data_memory <= DMem;
  
-    PROCESS (DMemRead, clk)
+    PROCESS (DMemRead)
 	   BEGIN -----add clock
-	    If(clk'event and clk = '1') then
+	  --  If(clk'event and clk = '1') then
 			IF (DMemRead='1') THEN
 
 		      DMem_read_data <=  DMem(conv_integer(DMem_address));       ---- Load Instruction Data read from Data memory
 
-	      END IF;
+	 --     END IF;
 			End if;
 			End Process;
 
