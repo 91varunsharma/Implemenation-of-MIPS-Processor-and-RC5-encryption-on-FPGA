@@ -26,7 +26,7 @@ end component;
 component ControlUnit 
    Port (  Clk        : in   STD_LOGIC;
 			  Instruction: in   STD_LOGIC_VECTOR(31 DOWNTO 0); 
-			  -- PC        : in   STD_LOGIC_VECTOR (31 downto 0);
+			  skip		: in	 STD_LOGIC;
 			  Read_Data1: in   STD_LOGIC_VECTOR (31 downto 0);
 			  Read_Data2: in   STD_LOGIC_VECTOR (31 downto 0);
            ALUOp     : out  STD_LOGIC_VECTOR (2 downto 0);
@@ -44,11 +44,13 @@ component ControlUnit
 			  ALUSrc    : out  STD_LOGIC);
 end component;
 component Dmemory
-	PORT(DMem_address        : IN 	STD_LOGIC_VECTOR(31 DOWNTO 0);
+	PORT(clk                 : IN 	STD_LOGIC;
+		  DMem_address        : IN 	STD_LOGIC_VECTOR(31 DOWNTO 0);
         DMem_write_data	    : IN 	STD_LOGIC_VECTOR(31 DOWNTO 0);
 	     DMemRead            : IN 	STD_LOGIC; 
 		  DMemwrite           : IN 	STD_LOGIC;
-        DMem_read_data	    : OUT 	STD_LOGIC_VECTOR(31 DOWNTO 0));
+        DMem_read_data	    : OUT 	STD_LOGIC_VECTOR(31 DOWNTO 0);
+		  DMem_out_data		 : OUT 	STD_LOGIC_VECTOR(31 DOWNTO 0));
 END component;
 
 component IDecode 
@@ -67,7 +69,8 @@ component IDecode
   			  BLT       : in std_logic;
 			  BNE       : in std_logic;
 			  BEQ       : in std_logic;
-			  reg_arr   : out std_logic_vector(31 downto 0));  
+			  reg_arr   : out std_logic_vector(31 downto 0);
+			  skip		: out std_logic);  
 END component;
 
 component IFetch
@@ -77,9 +80,9 @@ component IFetch
            Instruction : out  STD_LOGIC_VECTOR (31 downto 0));
 End component;
  
-signal instruction,NextPC,ReadData1,ReadData2,ALUResult,Write_data,DMemReadData,reg_arr,SignEx: std_logic_vector(31 downto 0);
+signal instruction,NextPC,ReadData1,ReadData2,ALUResult,Write_data,DMemReadData,DMemOutData, reg_arr,SignEx: std_logic_vector(31 downto 0);
 signal ALUop: std_logic_vector(2 downto 0);
-signal RType,LW,SWD,WriteEN,DMemRead,DMemWrite,BEQ,BLT,BNE,clr, Clk, ALUSrc: std_logic;
+signal RType,LW,SWD,WriteEN,DMemRead,DMemWrite,BEQ,BLT,BNE,clr, Clk, ALUSrc, skip: std_logic;
 
 begin
 
@@ -87,16 +90,16 @@ write_data <= DMemReadData when LW='1'
     Else    ALUResult;
 
 IDecodePort: IDecode port map(Clk, Instruction,write_data,WriteEN,ReadData1,ReadData2,SignEx,
-									   RType,LW,SWD,BLT,BNE,BEQ,reg_arr);
+									   RType,LW,SWD,BLT,BNE,BEQ,reg_arr,skip);
 									
 ALUPort: ALU port map(ReadData1,ReadData2, SignEx, ALUop,ALUSrc, ALUResult);
 
-ControlUnitPort: ControlUnit port map(Clk,Instruction,Readdata1,Readdata2,ALUop,
+ControlUnitPort: ControlUnit port map(Clk,Instruction,skip,Readdata1,Readdata2,ALUop,
 										NextPC,RType,LW,SWD,WriteEN,DMemRead,clr,DMemWrite,BNE,BLT,BEQ, ALUSrc);
 										
 IFetchPort: IFetch port map(NextPC,Instruction);
 
-DMemoryPort:DMemory port map(ALUResult,ReadData2,DMemRead,DMemWrite,DMemReadData);
+DMemoryPort:DMemory port map(Clk, ALUResult,ReadData2,DMemRead,DMemWrite,DMemReadData, DMemOutData);
 
 
 end Behavioral;

@@ -6,7 +6,8 @@ use ieee.std_logic_arith.all;
 
 entity ControlUnit is
    Port ( Clk        : in   STD_LOGIC;
-    	  Instruction  : in   STD_LOGIC_VECTOR(31 DOWNTO 0); 
+    	  Instruction  : in   STD_LOGIC_VECTOR(31 DOWNTO 0);
+			skip			: in STD_LOGIC;
          --  PC        : in   STD_LOGIC_VECTOR (31 downto 0);
 		   Read_Data1  : in   STD_LOGIC_VECTOR (31 downto 0);
 		   Read_Data2  : in   STD_LOGIC_VECTOR (31 downto 0);
@@ -27,8 +28,8 @@ end ControlUnit;
 
 architecture Behavioral of ControlUnit is
 
-	SIGNAL R_type, LWD, SWD, BEQ, ADDI, SUBI, ANDI, ORI, BNE, BLT, SHL, SHR, JUMP, R_ADD, R_SUB, R_AND, R_OR, R_NOR : STD_LOGIC;
-	SIGNAL A, B                                 : STD_LOGIC_VECTOR (31 DOWNTO 0);
+	SIGNAL R_type, LWD, SWD, BEQ, ADDI, SUBI, ANDI, ORI, BNE, BLT, SHL, SHR, JUMP, R_ADD, R_SUB, R_AND, R_OR, R_NOR, HAL : STD_LOGIC;
+	SIGNAL A, B                                 : STD_LOGIC_VECTOR(31 DOWNTO 0);
 SIGNAL ALU_ROp , ALU_Op                        : STD_LOGIC_VECTOR(2 DOWNTO 0 );
 	SIGNAL Immediate_value_initial              : STD_LOGIC_VECTOR(15 DOWNTO 0);
 	SIGNAL Immediate_value                      : STD_LOGIC_VECTOR(15 DOWNTO 0);
@@ -92,11 +93,13 @@ begin
 	BEQ    <= '1' when Opcode = "001010" else '0';
 	BNE    <= '1' when Opcode = "001011" else '0';
 	JUMP   <= '1' when Opcode = "001100" else '0';
-	R_ADD    <= '1' when ALU_ROp ="000" else '0';
-	R_SUB    <= '1' when ALU_ROp ="001" else '0';
-   R_AND    <= '1' when ALU_ROp ="010" else '0';
-	R_OR     <= '1' when ALU_ROp ="011" else '0';
-	R_NOR    <= '1' when ALU_ROp ="100" else '0';
+	HAL	 <= '1' when Opcode = "111111" else'0';
+	R_ADD  <= '1' when ALU_ROp ="000" else '0';
+	R_SUB  <= '1' when ALU_ROp ="001" else '0';
+   R_AND  <= '1' when ALU_ROp ="010" else '0';
+	R_OR   <= '1' when ALU_ROp ="011" else '0';
+	R_NOR  <= '1' when ALU_ROp ="100" else '0';
+
 
     Process (Clk, Jump, BNE, BEQ, BLT,clr)
     begin
@@ -106,8 +109,11 @@ begin
 			 If ((BEQ ='1' and (A=B)) or (BLT ='1' and (A < B)) or (BNE ='1' and (A /= B))) then
 					NextPCSignal <= conv_std_logic_vector(conv_integer(PCIncby1) + conv_integer(Immediate_value),32);
 			 Elsif (Jump = '1') then
-					
 					NextPCSignal <= PCincby1(31 downto 26) & JumpAddress;
+			 Elsif (skip ='1') then
+					NextPCSignal <=NextPCSignal + '1' ;
+			 Elsif (HAL ='1') then
+					NextPCSignal <=NextPCSignal;
 			 Else
 					NextPCSignal <=NextPCSignal + '1' ;
 			End if;
@@ -164,9 +170,9 @@ begin
 	NextPC<=NextPCSignal;
 	ALUSrc <= LWD Or SWD Or ADDI Or SUBI Or ANDI Or ORI Or SHL Or SHR;
 	
-	Process(SWD, BEQ, BLT, BNE, JUMP, R_type)
+	Process(SWD, BEQ, BLT, BNE, JUMP)
 	begin
-		 if ((SWD OR BEQ OR BLT OR BNE OR JUMP)='1') then
+		 if ((SWD OR BEQ OR BLT OR BNE OR JUMP)='1') then 
 		 WriteEn <='0';
 		else
 			WriteEn <= '1';

@@ -27,5 +27,5 @@ Time Resolution for simulation is 1ps.
 Waiting for 4 sub-compilation(s) to finish...
 Compiled 17 VHDL Units
 Built simulation executable C:/Users/Aayush Aggarwal/Desktop/Shashank/AHD-Project-2016/VHDL Code/RC5/TopModule_isim_beh.exe
-Fuse Memory Usage: 36476 KB
-Fuse CPU Usage: 810 ms
+Fuse Memory Usage: 36564 KB
+Fuse CPU Usage: 764 ms

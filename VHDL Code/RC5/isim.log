@@ -21,6 +21,7 @@ Finished circuit initialization process.
 at 0 ps, Instance /topmodule/ALUPort/ : Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
 at 0 ps, Instance /topmodule/ALUPort/ : Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
 # restart
+# restart
 # isim force add /topmodule/clr 1 -radix bin
 # run 10ns
 Simulator is doing circuit initialization process.
@@ -35,4 +36,13 @@ at 0 ps, Instance /topmodule/ALUPort/ : Warning: CONV_INTEGER: There is an 'U'|'
 at 0 ps, Instance /topmodule/ALUPort/ : Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
 # isim force add /topmodule/clr 0 -radix bin
 # isim force add /topmodule/clk 0 -radix bin -value 1 -radix bin -time 5 ns -repeat 10 ns
-# run 30ns
+# run 10ns
+# run 10ns
+# run 10ns
+at 35 ns(5), Instance /topmodule/ALUPort/ : Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+at 35 ns(5), Instance /topmodule/ALUPort/ : Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+# run 10ns
+# run 10ns
+# run 10ns
+# run 10ns
+# run 10ns
