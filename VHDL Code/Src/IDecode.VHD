@@ -44,28 +44,27 @@ ARCHITECTURE behavioral of IDecode is
 
 
 BEGIN
-    
     read_data1 <= Reg_array( CONV_INTEGER(Instruction( 25 DOWNTO 21 )));                 -- Read Register 1
-	read_data2 <= Reg_array(CONV_INTEGER(Instruction( 20 DOWNTO 16 )));
+    read_data2 <= Reg_array(CONV_INTEGER(Instruction( 20 DOWNTO 16 )));
 
-   	Immediate_value             <= Instruction( 15 DOWNTO 0 );
+    Immediate_value             <= Instruction( 15 DOWNTO 0 );
 
-	SignEx <= X"0000" & Immediate_value  WHEN Immediate_value(15) = '0'               -- Sign Extend 16-bits to 32-bits
+    SignEx <= X"0000" & Immediate_value  WHEN Immediate_value(15) = '0'               -- Sign Extend 16-bits to 32-bits
 		ELSE	  X"FFFF" & Immediate_value;
 
     write_register_address <= Instruction( 15 DOWNTO 11 ) WHEN Rtype = '1'              -- To select write Register Address for R type or I type
                       ELSE    Instruction( 20 DOWNTO 16 );
 							 
-	reg_arr<= reg_array(3);
+    reg_arr<= reg_array(3);
 
-	PROCESS (WriteEN,Clk)
- 	    BEGIN
-  		    IF (Clk'event and clk ='1') THEN      -- Write back to register when Write Enable =1 but don't write to 'register 0'
-				If (WriteEN='1') then
-					Reg_array( CONV_INTEGER( write_register_address)) <= write_data;
-			    end if;
-		    END IF;
-	END PROCESS;
+    PROCESS (WriteEN,Clk)
+        BEGIN
+    	    IF (Clk'event and clk ='1') THEN      -- Write back to register when Write Enable =1 but don't write to 'register 0'
+    			If (WriteEN='1') then
+    				Reg_array( CONV_INTEGER( write_register_address)) <= write_data;
+    		    end if;
+    	    END IF;
+    END PROCESS;
 
 END behavioral;
 
