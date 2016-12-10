@@ -2,29 +2,31 @@ Command line:
    TopModule_isim_beh.exe
      -simmode  gui
      -simrunnum  0
-     -socket  63793
+     -socket  64273
 
-Sat Dec 10 04:33:37 2016
+Sat Dec 10 05:48:58 2016
 
 
- Elaboration Time: 0.0625 sec
+ Elaboration Time: 0.09375 sec
 
- Current Memory Usage: 846.062 Meg
+ Current Memory Usage: 854.348 Meg
 
  Total Signals          : 123
- Total Nets             : 4928
+ Total Nets             : 10176
  Total Signal Drivers   : 65
  Total Blocks           : 13
  Total Primitive Blocks : 12
  Total Processes        : 63
  Total Traceable Variables  : 16
- Total Scalar Nets and Variables : 6005
-Total Line Count : 94
-Total Line Count : 94
+ Total Scalar Nets and Variables : 29557
+Total Line Count : 95
+Total Line Count : 95
+In process ALU.vhd:32 
+ FATAL ERROR:ISim: This application has discovered an exceptional condition from which it cannot recover. Process will terminate. To search for possible resolutions to this issue, refer to the Xilinx answer database by going to http://www.xilinx.com/support/answers/index.htm and search with keywords 'ISim' and 'FATAL ERROR'. For technical support on this issue, please open a WebCase with this project attached at http://www.xilinx.com/support.
 
- Total Simulation Time: 0.40625 sec
+ Total Simulation Time: 0.90625 sec
 
- Current Memory Usage: 688.775 Meg
+ Current Memory Usage: 732.443 Meg
 
-Sat Dec 10 04:36:49 2016
+Sat Dec 10 05:53:13 2016
 
