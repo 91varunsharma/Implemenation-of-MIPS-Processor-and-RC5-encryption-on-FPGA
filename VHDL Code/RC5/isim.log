@@ -35,8 +35,21 @@ at 0 ps, Instance /topmodule/IFetchPort/ : Warning: CONV_INTEGER: There is an 'U
 Finished circuit initialization process.
 at 0 ps, Instance /topmodule/ALUPort/ : Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
 at 0 ps, Instance /topmodule/ALUPort/ : Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
-# isim force remove /topmodule/clr
-# isim force add /topmodule/clk 1 -radix bin -value 0 -radix bin -time 5 ns -repeat 10 ns
+# isim force add /topmodule/clr 0 -radix bin
+# isim force add /topmodule/clk 0 -radix bin -value 1 -radix bin -time 5 ns -repeat 10 ns
+# run 10ns
+# run 10ns
+# run 10ns
+# run 10ns
+# run 10ns
+# run 10ns
+# run 10ns
+# run 10ns
+# run 10ns
+# run 10ns
+# run 10ns
+# run 10ns
+# run 10ns
 # run 10ns
 # run 10ns
 # run 10ns
