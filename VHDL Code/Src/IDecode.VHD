@@ -62,13 +62,13 @@ BEGIN
 	   read_register_1_address 	<= Instruction( 25 DOWNTO 21 );
    	read_register_2_address 	<= Instruction( 20 DOWNTO 16 );
 		
-		Process (Clk)
-		 begin 
-				IF (Clk'event and clk ='1') THEN      
+--		Process (Clk)
+--		 begin 
+--				IF (Clk'event and clk ='1') THEN      
 					write_register_address_R	<= Instruction( 15 DOWNTO 11 );
 					write_register_address_I 	<= Instruction( 20 DOWNTO 16 );
-				end if;
-		end process;
+			--	end if;
+		--end process;
 		
    	Immediate_value             <= Instruction( 15 DOWNTO 0 );
   -- 	ALU_Op                  <= Instruction( 2 DOWNTO 0 );
@@ -90,19 +90,19 @@ BEGIN
     write_register_address <= write_register_address_R WHEN Rtype = '1'              -- To select write Register Address for R type or I type
                       ELSE    write_register_address_I;
 							 
-	reg_arr<= reg_array(3);
+	--reg_arr<= reg_array(3);
 
 --	write_data_signal <= ALU_result( 31 DOWNTO 0 ) WHEN LW = '0'           -- ALU result to be written in register file
 --		  ELSE    DMem_read_data;                                         --Data read from Dmem for load instruction and to be written in register file
 
-	
+	reg_arr<= reg_array(3);
 
 	PROCESS (WriteEN,Clk)
  	BEGIN
   		IF (Clk'event and clk ='1') THEN      -- Write back to register when Write Enable =1 but don't write to 'register 0'
 				If (WriteEN='1') then
 					Reg_array( CONV_INTEGER( write_register_address)) <= write_data;
-					--reg_arr<= reg_array(3);
+				--	reg_arr<= reg_array(3);
 			  end if;
 		END IF;
 	END PROCESS;

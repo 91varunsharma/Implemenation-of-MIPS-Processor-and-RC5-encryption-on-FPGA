@@ -11,6 +11,7 @@ entity TopModule is
 --           LED 			: out  STD_LOGIC_VECTOR (15 downto 0);
 --           SSEG_CA 		: out  STD_LOGIC_VECTOR (7 downto 0);
 --           SSEG_AN 		: out  STD_LOGIC_VECTOR (7 downto 0)
+		--	  reg_arr1   : out std_logic_vector(31 downto 0)
 			  );
 end TopModule;
 
@@ -88,6 +89,8 @@ begin
 
 write_data <= DMemReadData when LW='1'
      Else     ALUResult;
+	  
+	 -- reg_arr1 <= write_data;
 
 IDecodePort: IDecode port map(Clk, Instruction,write_data,WriteEN,ReadData1,ReadData2,SignEx,
 									   RType,LW,SWD,BLT,BNE,BEQ,reg_arr);
