@@ -67,7 +67,7 @@ BEGIN
 		write_register_address <= write_register_address_R WHEN Rtype = '1'              -- To select write Register Address for R type or I type
                       ELSE    write_register_address_I;
 
-	PROCESS (WriteEN,Clk)
+	PROCESS (WriteEN, CLK)
 
  	BEGIN
 
