@@ -41,7 +41,7 @@ SIGNAL ALU_ROp , ALU_Op                        : STD_LOGIC_VECTOR(2 DOWNTO 0 );
 --  SIGNAl read_data2_Branch                    : STD_LOGIC_VECTOR(31 downto 0);
 	SIGNAL Opcode                               : STD_LOGIC_VECTOR(5 downto 0);
 	--Signal PC        :   STD_LOGIC_VECTOR (31 downto 0):=x"00000000";
-signal numeric_immediate,numeric_immediate1 : INTEGER;
+signal numeric_immediate,integer_immediate_N, Imm : INTEGER;
 signal NextPCSignal: STD_logic_vector(31 downto 0);
 
 --	TYPE register_file IS ARRAY ( 0 TO 31 ) OF STD_LOGIC_VECTOR( 31 DOWNTO 0 );
@@ -61,19 +61,15 @@ begin
 	Opcode<=Instruction(31 downto 26);
 	ALU_ROp<=Instruction(2 downto 0);
 
---	read_register_1_address_Branch 	<= Instruction( 25 DOWNTO 21 );
- --  	read_register_2_address_Branch 	<= Instruction( 20 DOWNTO 16 );
 	
-	numeric_immediate<=conv_integer(Immediate_value_initial);
---	numeric_immediate1<=NUMERIC_IMMEDIATE - 65536;
+--	numeric_immediate <=conv_integer(Immediate_value_initial);
+	integer_immediate_N <=conv_integer(Immediate_value_initial) - 65536;
 		
 		
-   	Immediate_value <= conv_std_logic_vector((NUMERIC_IMMEDIATE - 65536), 16)  WHEN Immediate_value_initial(15) = '1'
-			   ELSE     Immediate_value_initial;
+  Imm <= (conv_integer(Immediate_value_initial) - 65536)  WHEN Immediate_value_initial(15) = '1'
+   ELSE     conv_integer(Immediate_value_initial);
 
-   --	read_data1_Branch <= reg_array( CONV_INTEGER(read_register_1_address_Branch));  -- Read Register Rs for Branch
-
---	read_data2_Branch <= reg_array(CONV_INTEGER(read_register_2_address_Branch));   -- Read Register Rt for Branch
+  
 
 	PCIncby1 <= NextPCSignal + X"00000001";
 
@@ -101,13 +97,13 @@ begin
 	R_NOR  <= '1' when ALU_ROp ="100" else '0';
 
 
-    Process (Clk, Jump, BNE, BEQ, BLT,clr)
+    Process (Clk, Jump, BNE, BEQ, BLT, Clr)
     begin
 	 If (Clr ='1') then
 			NextPCSignal <= X"00000000";
-		elsIf (Clk'EVENT AND Clk = '1') then
+	 ElsIf (Clk'EVENT AND Clk = '1') then
 			 If ((BEQ ='1' and (A=B)) or (BLT ='1' and (A < B)) or (BNE ='1' and (A /= B))) then
-					NextPCSignal <= conv_std_logic_vector(conv_integer(PCIncby1) + conv_integer(Immediate_value),32);
+					NextPCSignal <= conv_std_logic_vector(conv_integer(PCIncby1) + Imm,32);
 			 Elsif (Jump = '1') then
 					NextPCSignal <= PCincby1(31 downto 26) & JumpAddress;
 			 Elsif (skip ='1') then
@@ -116,8 +112,8 @@ begin
 					NextPCSignal <=NextPCSignal;
 			 Else
 					NextPCSignal <=NextPCSignal + '1' ;
-			End if;
-	    End If;
+		  	 End if;
+	  End If;
    -- End if;
 
     End Process;
@@ -135,7 +131,7 @@ begin
 			ALU_Op <= "010";
 		ELSIF ((ORI='1' and R_type='0') Or (R_OR='1'and R_type='1'))then
 			ALU_Op <= "011";
-			ELSIF (R_NOR='1'and R_type='1') then
+		ELSIF (R_NOR='1'and R_type='1') then
 			ALU_Op <= "100";
 		ELSIF (SHL='1' and R_type='0') then
          ALU_Op <= "101";
@@ -169,6 +165,18 @@ begin
 	        
 	NextPC<=NextPCSignal;
 	ALUSrc <= LWD Or SWD Or ADDI Or SUBI Or ANDI Or ORI Or SHL Or SHR;
+	
+--	Process(LWD)
+--	begin
+--	--	if (clk'event and clk='1') then
+--			if (LWD='1') then
+--					DMemRead <= '1';
+--			else
+--					DMemRead <= '0';
+--			end if;
+--	--	end if;
+--	end process;
+ 
 	
 	Process(SWD, BEQ, BLT, BNE, JUMP)
 	begin

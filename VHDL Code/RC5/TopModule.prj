@@ -1,3 +1,5 @@
+vhdl work "Register.vhd"
+vhdl work "Data_output.vhd"
 vhdl work "IFetch.vhd"
 vhdl work "IDecode.vhd"
 vhdl work "DMemory.vhd"

@@ -1,5 +1,5 @@
-set -tmpdir "C:/Users/Aayush Aggarwal/Desktop/Shashank/AHD-Project-2016/VHDL Code/RC5/xst/projnav.tmp"
-set -xsthdpdir "C:/Users/Aayush Aggarwal/Desktop/Shashank/AHD-Project-2016/VHDL Code/RC5/xst"
+set -tmpdir "C:/Users/Varun Sharma/Documents/GitHub/AHD-Project-2016/VHDL Code/RC5/xst/projnav.tmp"
+set -xsthdpdir "C:/Users/Varun Sharma/Documents/GitHub/AHD-Project-2016/VHDL Code/RC5/xst"
 run -compileonly yes
 -p xc7a100t-3-csg324
 -top TopModule

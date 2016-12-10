@@ -1,16 +1,16 @@
-Release 14.7 - xst P.20131013 (nt64)
+Release 14.7 - xst P.20131013 (nt)
 Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
---> Parameter TMPDIR set to C:/Users/Aayush Aggarwal/Desktop/Shashank/AHD-Project-2016/VHDL Code/RC5/xst/projnav.tmp
+--> Parameter TMPDIR set to C:/Users/Varun Sharma/Documents/GitHub/AHD-Project-2016/VHDL Code/RC5/xst/projnav.tmp
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.29 secs
+Total CPU time to Xst completion: 0.16 secs
  
---> Parameter xsthdpdir set to C:/Users/Aayush Aggarwal/Desktop/Shashank/AHD-Project-2016/VHDL Code/RC5/xst
+--> Parameter xsthdpdir set to C:/Users/Varun Sharma/Documents/GitHub/AHD-Project-2016/VHDL Code/RC5/xst
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.29 secs
+Total CPU time to Xst completion: 0.17 secs
  
 --> Reading design: TopModule.prj
 
@@ -39,32 +39,36 @@ TABLE OF CONTENTS
 =========================================================================
 *                          HDL Parsing                                  *
 =========================================================================
-Parsing VHDL file "C:\Users\Aayush Aggarwal\Desktop\Shashank\AHD-Project-2016\VHDL Code\RC5\IFetch.vhd" into library work
+Parsing VHDL file "C:\Users\Varun Sharma\Documents\GitHub\AHD-Project-2016\VHDL Code\RC5\Register.vhd" into library work
+Parsing package <register_file>.
+Parsing VHDL file "C:\Users\Varun Sharma\Documents\GitHub\AHD-Project-2016\VHDL Code\RC5\Data_output.vhd" into library work
+Parsing package <datamemory>.
+Parsing VHDL file "C:\Users\Varun Sharma\Documents\GitHub\AHD-Project-2016\VHDL Code\RC5\IFetch.vhd" into library work
 Parsing entity <IFetch>.
 Parsing architecture <Behavioral> of entity <ifetch>.
-Parsing VHDL file "C:\Users\Aayush Aggarwal\Desktop\Shashank\AHD-Project-2016\VHDL Code\RC5\IDecode.vhd" into library work
+Parsing VHDL file "C:\Users\Varun Sharma\Documents\GitHub\AHD-Project-2016\VHDL Code\RC5\IDecode.vhd" into library work
 Parsing entity <IDecode>.
 Parsing architecture <behavioral> of entity <idecode>.
-Parsing VHDL file "C:\Users\Aayush Aggarwal\Desktop\Shashank\AHD-Project-2016\VHDL Code\RC5\DMemory.vhd" into library work
+Parsing VHDL file "C:\Users\Varun Sharma\Documents\GitHub\AHD-Project-2016\VHDL Code\RC5\DMemory.vhd" into library work
 Parsing entity <Dmemory>.
 Parsing architecture <behavioral> of entity <dmemory>.
-Parsing VHDL file "C:\Users\Aayush Aggarwal\Desktop\Shashank\AHD-Project-2016\VHDL Code\RC5\ControlUnit.vhd" into library work
+Parsing VHDL file "C:\Users\Varun Sharma\Documents\GitHub\AHD-Project-2016\VHDL Code\RC5\ControlUnit.vhd" into library work
 Parsing entity <ControlUnit>.
 Parsing architecture <Behavioral> of entity <controlunit>.
-Parsing VHDL file "C:\Users\Aayush Aggarwal\Desktop\Shashank\AHD-Project-2016\VHDL Code\RC5\ALU.vhd" into library work
+Parsing VHDL file "C:\Users\Varun Sharma\Documents\GitHub\AHD-Project-2016\VHDL Code\RC5\ALU.vhd" into library work
 Parsing entity <ALU>.
 Parsing architecture <Behavioral> of entity <alu>.
-Parsing VHDL file "C:\Users\Aayush Aggarwal\Desktop\Shashank\AHD-Project-2016\VHDL Code\RC5\TopModule.vhd" into library work
+Parsing VHDL file "C:\Users\Varun Sharma\Documents\GitHub\AHD-Project-2016\VHDL Code\RC5\TopModule.vhd" into library work
 Parsing entity <TopModule>.
 Parsing architecture <Behavioral> of entity <topmodule>.
 
 
-Total REAL time to Xst completion: 9.00 secs
-Total CPU time to Xst completion: 8.93 secs
+Total REAL time to Xst completion: 7.00 secs
+Total CPU time to Xst completion: 7.60 secs
  
 --> 
 
-Total memory usage is 216716 kilobytes
+Total memory usage is 226112 kilobytes
 
 Number of errors   :    0 (   0 filtered)
 Number of warnings :    0 (   0 filtered)
