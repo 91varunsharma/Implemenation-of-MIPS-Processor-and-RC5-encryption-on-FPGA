@@ -22,6 +22,7 @@ Finished circuit initialization process.
 at 0 ps, Instance /topmodule/ALUPort/ : Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
 at 0 ps, Instance /topmodule/ALUPort/ : Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
 # restart
+# restart
 # isim force add /topmodule/clr 1 -radix bin
 # run 10ns
 Simulator is doing circuit initialization process.
@@ -36,36 +37,12 @@ Finished circuit initialization process.
 at 0 ps, Instance /topmodule/ALUPort/ : Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
 at 0 ps, Instance /topmodule/ALUPort/ : Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
 # isim force add /topmodule/clr 0 -radix bin
-# isim force add /topmodule/clk 0 -radix bin -value 1 -radix bin -time 5 ns -repeat 10 ns
+# isim force add /topmodule/clk 1 -radix bin -value 0 -radix bin -time 5 ns -repeat 10 ns
 # run 10ns
-# run 50ns
-# run 50ns
-# run 50ns
-at 155 ns(5), Instance /topmodule/ALUPort/ : Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
-at 155 ns(5), Instance /topmodule/ALUPort/ : Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
-at 165 ns(3), Instance /topmodule/ALUPort/ : Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
-at 165 ns(3), Instance /topmodule/ALUPort/ : Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
-# run 50ns
-at 205 ns(3), Instance /topmodule/ALUPort/ : Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
-at 205 ns(3), Instance /topmodule/ALUPort/ : Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
-at 205 ns(5), Instance /topmodule/ALUPort/ : Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
-at 205 ns(5), Instance /topmodule/ALUPort/ : Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
-# run 50ns
-# run 50ns
-# run 50ns
-# run 50ns
-# run 500ns
-at 525 ns(5), Instance /topmodule/ALUPort/ : Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
-at 525 ns(5), Instance /topmodule/ALUPort/ : Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
-# run 500ns
-ERROR: In process ALU.vhd:32 
- FATAL ERROR:ISim: This application has discovered an exceptional condition from which it cannot recover. Process will terminate. To search for possible resolutions to this issue, refer to the Xilinx answer database by going to http://www.xilinx.com/support/answers/index.htm and search with keywords 'ISim' and 'FATAL ERROR'. For technical support on this issue, please open a WebCase with this project attached at http://www.xilinx.com/support.
-INFO: Simulator is stopped.
-# run 500ns
-INFO: Simulator is stopped.
-# run 500ns
-INFO: Simulator is stopped.
-# run 500ns
-INFO: Simulator is stopped.
-# run 500ns
+# run 100ns
+# run 100ns
+# run 100ns
+ERROR: Index -1089828067 out of bound 0 to 113. 
+ERROR: In process DMemory.vhd:62 
+ 
 INFO: Simulator is stopped.

@@ -166,6 +166,18 @@ begin
 	NextPC<=NextPCSignal;
 	ALUSrc <= LWD Or SWD Or ADDI Or SUBI Or ANDI Or ORI Or SHL Or SHR;
 	
+--	Process(LWD)
+--	begin
+--	--	if (clk'event and clk='1') then
+--			if (LWD='1') then
+--					DMemRead <= '1';
+--			else
+--					DMemRead <= '0';
+--			end if;
+--	--	end if;
+--	end process;
+ 
+	
 	Process(SWD, BEQ, BLT, BNE, JUMP)
 	begin
 		 if ((SWD OR BEQ OR BLT OR BNE OR JUMP)='1') then 

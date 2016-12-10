@@ -1,8 +1,0 @@
-Exception at PC 0x00000001800AE260
-Attemped to read address 0xFFFFFFFF28D31040
-Printing stacktrace...
-
-[0] (HSimEntyBlk::reset+0x3360) [0x0x00000001800ae260]
-[1] (HSimEntyBlk::reset+0x3360) [0x0x00000001800ae260]
-[2]  [0x0x00000000004399ba]
-Done

@@ -13,7 +13,9 @@ ENTITY Dmemory IS
 		   DMemwrite : IN 	STD_LOGIC;
              DMem_read_data	 : OUT 	STD_LOGIC_VECTOR(31 DOWNTO 0);
 				 DMem_out_data	: OUT 	STD_LOGIC_VECTOR(31 downto 0);
-				 Data_memory: out data_output );
+				 Data_memory: out data_output;
+			DMem_addressout        : out 	STD_LOGIC_VECTOR(31 DOWNTO 0)
+				 );
 END Dmemory;
 
 ARCHITECTURE behavioral of Dmemory is
@@ -55,17 +57,19 @@ BEGIN
    END PROCESS;
 	
  Data_memory <= DMem;
+ 			DMem_addressout <= DMem_address;
  
     PROCESS (DMemRead)
 	   BEGIN -----add clock
-	  --  If(clk'event and clk = '1') then
+	    --If(clk'event and clk = '1') then
 			IF (DMemRead='1') THEN
 
-		      DMem_read_data <=  DMem(conv_integer(DMem_address));       ---- Load Instruction Data read from Data memory
+		      DMem_read_data <=  DMem(conv_integer(DMem_address)); --when DMemRead='1'
+						--ELSE X"00000000";---- Load Instruction Data read from Data memory
 
-	  --   END IF;
-			End if;
-			End Process;
+	    END IF;
+		--End if;
+	End Process;
 
 END behavioral;
 
