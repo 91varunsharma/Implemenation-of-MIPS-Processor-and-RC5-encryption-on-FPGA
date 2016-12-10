@@ -6,7 +6,8 @@ use ieee.std_logic_arith.all;
 
 entity ControlUnit is
    Port ( Clk        : in   STD_LOGIC;
-    	  Instruction  : in   STD_LOGIC_VECTOR(31 DOWNTO 0); 
+    	  Instruction  : in   STD_LOGIC_VECTOR(31 DOWNTO 0);
+			skip			: in STD_LOGIC;
          --  PC        : in   STD_LOGIC_VECTOR (31 downto 0);
 		   Read_Data1  : in   STD_LOGIC_VECTOR (31 downto 0);
 		   Read_Data2  : in   STD_LOGIC_VECTOR (31 downto 0);
@@ -106,8 +107,9 @@ begin
 			 If ((BEQ ='1' and (A=B)) or (BLT ='1' and (A < B)) or (BNE ='1' and (A /= B))) then
 					NextPCSignal <= conv_std_logic_vector(conv_integer(PCIncby1) + conv_integer(Immediate_value),32);
 			 Elsif (Jump = '1') then
-					
 					NextPCSignal <= PCincby1(31 downto 26) & JumpAddress;
+			 Elsif (skip ='1') then
+					NextPCSignal <=NextPCSignal + '1' ;
 			 Else
 					NextPCSignal <=NextPCSignal + '1' ;
 			End if;
