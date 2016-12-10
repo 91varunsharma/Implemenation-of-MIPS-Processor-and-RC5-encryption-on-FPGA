@@ -28,8 +28,8 @@ end ControlUnit;
 
 architecture Behavioral of ControlUnit is
 
-	SIGNAL R_type, LWD, SWD, BEQ, ADDI, SUBI, ANDI, ORI, BNE, BLT, SHL, SHR, JUMP, R_ADD, R_SUB, R_AND, R_OR, R_NOR : STD_LOGIC;
-	SIGNAL A, B                                 : STD_LOGIC_VECTOR (31 DOWNTO 0);
+	SIGNAL R_type, LWD, SWD, BEQ, ADDI, SUBI, ANDI, ORI, BNE, BLT, SHL, SHR, JUMP, R_ADD, R_SUB, R_AND, R_OR, R_NOR, HAL : STD_LOGIC;
+	SIGNAL A, B                                 : STD_LOGIC_VECTOR(31 DOWNTO 0);
 SIGNAL ALU_ROp , ALU_Op                        : STD_LOGIC_VECTOR(2 DOWNTO 0 );
 	SIGNAL Immediate_value_initial              : STD_LOGIC_VECTOR(15 DOWNTO 0);
 	SIGNAL Immediate_value                      : STD_LOGIC_VECTOR(15 DOWNTO 0);
@@ -93,11 +93,13 @@ begin
 	BEQ    <= '1' when Opcode = "001010" else '0';
 	BNE    <= '1' when Opcode = "001011" else '0';
 	JUMP   <= '1' when Opcode = "001100" else '0';
-	R_ADD    <= '1' when ALU_ROp ="000" else '0';
-	R_SUB    <= '1' when ALU_ROp ="001" else '0';
-   R_AND    <= '1' when ALU_ROp ="010" else '0';
-	R_OR     <= '1' when ALU_ROp ="011" else '0';
-	R_NOR    <= '1' when ALU_ROp ="100" else '0';
+	HAL	 <= '1' when Opcode = "111111" else'0';
+	R_ADD  <= '1' when ALU_ROp ="000" else '0';
+	R_SUB  <= '1' when ALU_ROp ="001" else '0';
+   R_AND  <= '1' when ALU_ROp ="010" else '0';
+	R_OR   <= '1' when ALU_ROp ="011" else '0';
+	R_NOR  <= '1' when ALU_ROp ="100" else '0';
+
 
     Process (Clk, Jump, BNE, BEQ, BLT,clr)
     begin
@@ -110,6 +112,8 @@ begin
 					NextPCSignal <= PCincby1(31 downto 26) & JumpAddress;
 			 Elsif (skip ='1') then
 					NextPCSignal <=NextPCSignal + '1' ;
+			 Elsif (HAL ='1') then
+					NextPCSignal <=NextPCSignal;
 			 Else
 					NextPCSignal <=NextPCSignal + '1' ;
 			End if;
