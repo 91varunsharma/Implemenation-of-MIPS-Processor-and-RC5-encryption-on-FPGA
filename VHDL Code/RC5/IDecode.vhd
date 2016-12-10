@@ -5,6 +5,7 @@ LIBRARY IEEE;
 USE IEEE.STD_LOGIC_1164.ALL;
 USE IEEE.STD_LOGIC_ARITH.ALL;
 USE IEEE.STD_LOGIC_UNSIGNED.ALL;
+use work.register_file.all;
 
 ENTITY IDecode IS
 	  PORT( Clk       : In std_logic;
@@ -16,24 +17,22 @@ ENTITY IDecode IS
 		--	ALUOp       : OUT   STD_LOGIC_VECTOR (2 DOWNTO 0);     --------Type of ALU operation
 		--	Opcode      : OUT   STD_LOGIC_VECTOR (5 downto 0);     --------Type of Instruction (R/I/J)
 		   SignEx      : OUT 	STD_LOGIC_VECTOR( 31 DOWNTO 0 );
-			 Rtype     : in  STD_LOGIC;
+			 Rtype      : in  STD_LOGIC;
            LW        : in  STD_LOGIC;
-			  SW      : in std_logic;
-			  BLT:in std_logic;
-			  BNE:in std_logic;
-			  BEQ:in std_logic;
-			  reg_arr: out std_logic_vector(31 downto 0);
-			  skip:	out STD_LOGIC
-			);  
+			  SW        : in std_logic;
+			  BLT       :in std_logic;
+			  BNE       :in std_logic;
+			  BEQ       :in std_logic;
+			  reg_arr   : out std_logic_vector(31 downto 0);
+			  skip      :	out STD_LOGIC;
+			  reg_file  : out register_output);  
 END IDecode;
 
 
 
-ARCHITECTURE behavioral of IDecode is
+ARCHITECTURE behavioral of IDecode is 
 
-	TYPE register_file IS ARRAY ( 0 TO 31 ) OF STD_LOGIC_VECTOR( 31 DOWNTO 0 );
-
-	Signal Reg_array: register_file := (X"00000000",X"00000001",X"00000004",X"00000002",X"00000000",X"00000000",
+	Signal Reg_array: register_output := (X"00000000",X"00000001",X"00000004",X"00000002",X"00000000",X"00000000",
 								        X"00000000",X"00000000",X"00000000",X"00000000",X"00000000",X"00000000",
 								        X"00000000",X"00000000",X"00000000",X"00000000",X"00000000",X"00000000",
 								        X"00000000",X"00000000",X"00000000",X"00000000",X"00000000",X"00000000",
@@ -53,10 +52,13 @@ BEGIN
 	Immediate_value<= Instruction( 15 DOWNTO 0 );
 	write_register_address_R	<= Instruction( 15 DOWNTO 11 );
 	write_register_address_I	<= Instruction( 20 DOWNTO 16 );
+	
 	SignEx <= X"0000" & Immediate_value  WHEN Immediate_value(15) = '0'               -- Sign Extend 16-bits to 32-bits
 		ELSE	  X"FFFF" & Immediate_value;
+		
 	skip <= '1' WHEN Instruction= X"00000000"
 			ELSE	'0';
+			
 	write_register_address <= write_register_address_R WHEN Rtype = '1'              -- To select write Register Address for R type or I type
          ELSE    write_register_address_I;
 
@@ -69,7 +71,10 @@ BEGIN
 			end if;
 		END IF;
 	END PROCESS;
-reg_arr<= reg_array(3);
+	
+	reg_file <= reg_array;
+--reg_arr<= reg_array(3);
+
 END behavioral;
 
 

@@ -21,7 +21,7 @@
 #include <malloc.h>
 #define alloca _alloca
 #endif
-static const char *ng0 = "C:/Users/Aayush Aggarwal/Desktop/Shashank/AHD-Project-2016/VHDL Code/RC5/IFetch.vhd";
+static const char *ng0 = "C:/Users/Varun Sharma/Documents/GitHub/AHD-Project-2016/VHDL Code/RC5/IFetch.vhd";
 extern char *IEEE_P_3620187407;
 
 int ieee_p_3620187407_sub_514432868_3965413181(char *, char *, char *);
@@ -51,11 +51,11 @@ LAB3:    t1 = (t0 + 1488U);
     t2 = *((char **)t1);
     t1 = (t0 + 1032U);
     t3 = *((char **)t1);
-    t1 = (t0 + 5076U);
+    t1 = (t0 + 5056U);
     t4 = ieee_p_3620187407_sub_514432868_3965413181(IEEE_P_3620187407, t3, t1);
     t5 = (t4 - 0);
     t6 = (t5 * 1);
-    xsi_vhdl_check_range_of_index(0, 4, 1, t4);
+    xsi_vhdl_check_range_of_index(0, 3, 1, t4);
     t7 = (32U * t6);
     t8 = (0 + t7);
     t9 = (t2 + t8);

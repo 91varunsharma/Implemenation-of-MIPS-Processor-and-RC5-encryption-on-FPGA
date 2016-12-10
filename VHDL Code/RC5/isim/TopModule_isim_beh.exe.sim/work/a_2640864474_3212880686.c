@@ -21,7 +21,7 @@
 #include <malloc.h>
 #define alloca _alloca
 #endif
-static const char *ng0 = "C:/Users/Aayush Aggarwal/Desktop/Shashank/AHD-Project-2016/VHDL Code/RC5/DMemory.vhd";
+static const char *ng0 = "C:/Users/Varun Sharma/Documents/GitHub/AHD-Project-2016/VHDL Code/RC5/DMemory.vhd";
 extern char *IEEE_P_0774719531;
 
 int ieee_p_0774719531_sub_378705076_2162500114(char *, char *, char *);
@@ -52,7 +52,7 @@ static void work_a_2640864474_3212880686_p_0(char *t0)
     char *t21;
     char *t22;
 
-LAB0:    xsi_set_current_line(38, ng0);
+LAB0:    xsi_set_current_line(37, ng0);
     t2 = (t0 + 992U);
     t3 = xsi_signal_has_event(t2);
     if (t3 == 1)
@@ -64,11 +64,11 @@ LAB7:    if (t1 != 0)
         goto LAB2;
 
 LAB4:
-LAB3:    t2 = (t0 + 3880);
+LAB3:    t2 = (t0 + 4288);
     *((int *)t2) = 1;
 
 LAB1:    return;
-LAB2:    xsi_set_current_line(39, ng0);
+LAB2:    xsi_set_current_line(38, ng0);
     t4 = (t0 + 1672U);
     t8 = *((char **)t4);
     t9 = *((unsigned char *)t8);
@@ -86,38 +86,38 @@ LAB5:    t4 = (t0 + 1032U);
     t1 = t7;
     goto LAB7;
 
-LAB8:    xsi_set_current_line(41, ng0);
+LAB8:    xsi_set_current_line(40, ng0);
     t4 = (t0 + 1352U);
     t11 = *((char **)t4);
     t4 = (t0 + 1192U);
     t12 = *((char **)t4);
-    t4 = (t0 + 6896U);
+    t4 = (t0 + 7184U);
     t13 = ieee_p_0774719531_sub_378705076_2162500114(IEEE_P_0774719531, t12, t4);
     t14 = (t13 - 0);
     t15 = (t14 * 1);
     t16 = (32U * t15);
     t17 = (0U + t16);
-    t18 = (t0 + 3976);
+    t18 = (t0 + 4400);
     t19 = (t18 + 56U);
     t20 = *((char **)t19);
     t21 = (t20 + 56U);
     t22 = *((char **)t21);
     memcpy(t22, t11, 32U);
     xsi_driver_first_trans_delta(t18, t17, 32U, 0LL);
-    xsi_set_current_line(42, ng0);
-    t2 = (t0 + 2152U);
+    xsi_set_current_line(41, ng0);
+    t2 = (t0 + 2312U);
     t4 = *((char **)t2);
     t2 = (t0 + 1192U);
     t5 = *((char **)t2);
-    t2 = (t0 + 6896U);
+    t2 = (t0 + 7184U);
     t13 = ieee_p_0774719531_sub_378705076_2162500114(IEEE_P_0774719531, t5, t2);
     t14 = (t13 - 0);
     t15 = (t14 * 1);
-    xsi_vhdl_check_range_of_index(0, 37, 1, t13);
+    xsi_vhdl_check_range_of_index(0, 31, 1, t13);
     t16 = (32U * t15);
     t17 = (0 + t16);
     t8 = (t4 + t17);
-    t11 = (t0 + 4040);
+    t11 = (t0 + 4464);
     t12 = (t11 + 56U);
     t18 = *((char **)t12);
     t19 = (t18 + 56U);
@@ -129,6 +129,36 @@ LAB8:    xsi_set_current_line(41, ng0);
 }
 
 static void work_a_2640864474_3212880686_p_1(char *t0)
+{
+    char *t1;
+    char *t2;
+    char *t3;
+    char *t4;
+    char *t5;
+    char *t6;
+    char *t7;
+
+LAB0:    xsi_set_current_line(46, ng0);
+
+LAB3:    t1 = (t0 + 2312U);
+    t2 = *((char **)t1);
+    t1 = (t0 + 4528);
+    t3 = (t1 + 56U);
+    t4 = *((char **)t3);
+    t5 = (t4 + 56U);
+    t6 = *((char **)t5);
+    memcpy(t6, t2, 1024U);
+    xsi_driver_first_trans_fast_port(t1);
+
+LAB2:    t7 = (t0 + 4304);
+    *((int *)t7) = 1;
+
+LAB1:    return;
+LAB4:    goto LAB2;
+
+}
+
+static void work_a_2640864474_3212880686_p_2(char *t0)
 {
     unsigned char t1;
     char *t2;
@@ -154,7 +184,7 @@ static void work_a_2640864474_3212880686_p_1(char *t0)
     char *t22;
     char *t23;
 
-LAB0:    xsi_set_current_line(49, ng0);
+LAB0:    xsi_set_current_line(50, ng0);
     t2 = (t0 + 992U);
     t3 = xsi_signal_has_event(t2);
     if (t3 == 1)
@@ -166,11 +196,11 @@ LAB7:    if (t1 != 0)
         goto LAB2;
 
 LAB4:
-LAB3:    t2 = (t0 + 3896);
+LAB3:    t2 = (t0 + 4320);
     *((int *)t2) = 1;
 
 LAB1:    return;
-LAB2:    xsi_set_current_line(50, ng0);
+LAB2:    xsi_set_current_line(51, ng0);
     t4 = (t0 + 1512U);
     t8 = *((char **)t4);
     t9 = *((unsigned char *)t8);
@@ -188,20 +218,20 @@ LAB5:    t4 = (t0 + 1032U);
     t1 = t7;
     goto LAB7;
 
-LAB8:    xsi_set_current_line(52, ng0);
-    t4 = (t0 + 2152U);
+LAB8:    xsi_set_current_line(53, ng0);
+    t4 = (t0 + 2312U);
     t11 = *((char **)t4);
     t4 = (t0 + 1192U);
     t12 = *((char **)t4);
-    t4 = (t0 + 6896U);
+    t4 = (t0 + 7184U);
     t13 = ieee_p_0774719531_sub_378705076_2162500114(IEEE_P_0774719531, t12, t4);
     t14 = (t13 - 0);
     t15 = (t14 * 1);
-    xsi_vhdl_check_range_of_index(0, 37, 1, t13);
+    xsi_vhdl_check_range_of_index(0, 31, 1, t13);
     t16 = (32U * t15);
     t17 = (0 + t16);
     t18 = (t11 + t17);
-    t19 = (t0 + 4104);
+    t19 = (t0 + 4592);
     t20 = (t19 + 56U);
     t21 = *((char **)t20);
     t22 = (t21 + 56U);
@@ -215,7 +245,7 @@ LAB8:    xsi_set_current_line(52, ng0);
 
 extern void work_a_2640864474_3212880686_init()
 {
-	static char *pe[] = {(void *)work_a_2640864474_3212880686_p_0,(void *)work_a_2640864474_3212880686_p_1};
+	static char *pe[] = {(void *)work_a_2640864474_3212880686_p_0,(void *)work_a_2640864474_3212880686_p_1,(void *)work_a_2640864474_3212880686_p_2};
 	xsi_register_didat("work_a_2640864474_3212880686", "isim/TopModule_isim_beh.exe.sim/work/a_2640864474_3212880686.didat");
 	xsi_register_executes(pe);
 }

@@ -2,7 +2,7 @@ set -tmpdir "C:/Users/Varun Sharma/Documents/GitHub/AHD-Project-2016/VHDL Code/R
 set -xsthdpdir "C:/Users/Varun Sharma/Documents/GitHub/AHD-Project-2016/VHDL Code/RC5/xst"
 run -compileonly yes
 -p xc7a100t-3-csg324
--top TopModule
+-top register_file
 -opt_mode Speed
 -opt_level 1
 -power NO
@@ -47,4 +47,4 @@ run -compileonly yes
 -iob Auto
 -equivalent_register_removal YES
 -slice_utilization_ratio_maxmargin 5
--ifn TopModule.prj
+-ifn register_file.prj
