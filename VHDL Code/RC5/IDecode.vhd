@@ -70,7 +70,6 @@ BEGIN
 	PROCESS (WriteEN, CLK)
 
  	BEGIN
-
   		IF (Clk'event and clk ='1') THEN      -- Write back to register when Write Enable =1 but don't write to 'register 0'
 				If (WriteEN='1') then
 			  Reg_array( CONV_INTEGER( write_register_address)) <= write_data;
