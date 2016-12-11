@@ -1,0 +1,1 @@
+-intstyle "ise" -incremental -lib "secureip" -o "C:/Users/Parteek Khushdil/Documents/GitHub/AHD-Project-2016/VHDL Code/RC5 clock event/TopModule_isim_beh.exe" -prj "C:/Users/Parteek Khushdil/Documents/GitHub/AHD-Project-2016/VHDL Code/RC5 clock event/TopModule_beh.prj" "work.TopModule" 
