@@ -58,7 +58,7 @@ component Dmemory
         DMem_read_data	    : OUT 	STD_LOGIC_VECTOR(31 DOWNTO 0);
 		  DMem_out_data		 : OUT 	STD_LOGIC_VECTOR(31 DOWNTO 0);
 		  Data_memory         : out   data_output;
-		  			DMem_addressout        : out 	STD_LOGIC_VECTOR(31 DOWNTO 0)
+		  			DMem_addressout        : out 	STD_LOGIC_VECTOR(6 DOWNTO 0)
 );
 END component;
 
@@ -87,8 +87,9 @@ component IFetch
            Instruction : out  STD_LOGIC_VECTOR (31 downto 0));
 End component;
  
-signal instruction,NextPC,ReadData1,ReadData2,ALUResult,Write_data,DMemReadData,DMemOutData, reg_arr,SignEx, dmem_addressout: std_logic_vector(31 downto 0);
+signal instruction,NextPC,ReadData1,ReadData2,ALUResult,Write_data,DMemReadData,DMemOutData, reg_arr,SignEx : std_logic_vector(31 downto 0);
 signal ALUop: std_logic_vector(2 downto 0);
+signal dmem_addressout: std_logic_vector(6 downto 0);
 signal RType,LW,SWD,WriteEN,DMemRead,DMemWrite,BEQ,BLT,BNE,clr, Clk, ALUSrc, skip: std_logic;
 Signal datamemory: data_output;
 Signal reg_file: register_output;
