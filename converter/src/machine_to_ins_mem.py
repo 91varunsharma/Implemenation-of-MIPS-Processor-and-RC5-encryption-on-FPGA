@@ -32,7 +32,7 @@ if __name__ == '__main__':
             else:
                 ins_hex = get_hex(format(int(ins, 2), 'x'))
                 ins_mem += "X\"" + ins_hex + "\","
-                if ins_num % 7 == 0:
+                if ins_num % 8 == 0:
                     ins_mem += "\n"
 
                 write_to.write(ins_mem)
