@@ -89,7 +89,7 @@ begin
 	BEQ    <= '1' when Opcode = "001010" else '0';
 	BNE    <= '1' when Opcode = "001011" else '0';
 	JUMP   <= '1' when Opcode = "001100" else '0';
-	HAL	 <= '1' when Opcode = "111111" else'0';
+	HAL	 <= '1' when Opcode = "111111" else '0';
 	R_ADD  <= '1' when ALU_ROp ="000" else '0';
 	R_SUB  <= '1' when ALU_ROp ="001" else '0';
    R_AND  <= '1' when ALU_ROp ="010" else '0';

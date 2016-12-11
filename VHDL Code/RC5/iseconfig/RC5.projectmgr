@@ -89,13 +89,29 @@
          <ClosedNodesVersion>2</ClosedNodesVersion>
       </ClosedNodes>
       <SelectedItems>
+<<<<<<< HEAD
          <SelectedItem>TopModule - Behavioral (C:/Users/Varun Sharma/Documents/GitHub/AHD-Project-2016/VHDL Code/RC5/TopModule.vhd)</SelectedItem>
+=======
+<<<<<<< HEAD
+         <SelectedItem>ControlUnitPort - ControlUnit - Behavioral (C:/Users/Aayush Aggarwal/Desktop/Shashank/AHD-Project-2016/VHDL Code/RC5/ControlUnit.vhd)</SelectedItem>
+=======
+         <SelectedItem>IFetchPort - IFetch - Behavioral (C:/Users/Varun Sharma/Documents/GitHub/AHD-Project-2016/VHDL Code/RC5/IFetch.vhd)</SelectedItem>
+>>>>>>> origin/master
+>>>>>>> origin/master
       </SelectedItems>
       <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
       <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
       <ViewHeaderState orientation="horizontal" >000000ff00000000000000010000000100000000000000000000000000000000020200000001000000010000006400000197000000020000000000000000000000000200000064ffffffff000000810000000300000002000001970000000100000003000000000000000100000003</ViewHeaderState>
       <UserChangedColumnWidths orientation="horizontal" >true</UserChangedColumnWidths>
+<<<<<<< HEAD
       <CurrentItem>TopModule - Behavioral (C:/Users/Varun Sharma/Documents/GitHub/AHD-Project-2016/VHDL Code/RC5/TopModule.vhd)</CurrentItem>
+=======
+<<<<<<< HEAD
+      <CurrentItem>ControlUnitPort - ControlUnit - Behavioral (C:/Users/Aayush Aggarwal/Desktop/Shashank/AHD-Project-2016/VHDL Code/RC5/ControlUnit.vhd)</CurrentItem>
+=======
+      <CurrentItem>IFetchPort - IFetch - Behavioral (C:/Users/Varun Sharma/Documents/GitHub/AHD-Project-2016/VHDL Code/RC5/IFetch.vhd)</CurrentItem>
+>>>>>>> origin/master
+>>>>>>> origin/master
    </ItemView>
    <ItemView engineview="BehavioralSim" sourcetype="" guiview="Process" >
       <ClosedNodes>
