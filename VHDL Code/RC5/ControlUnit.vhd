@@ -100,7 +100,7 @@ begin
     Process (Clk, Jump, BNE, BEQ, BLT, Clr)
     begin
 	 If (Clr ='1') then
-			NextPCSignal <= X"0000006F";
+			NextPCSignal <= X"00000000";
 	 ElsIf (Clk'EVENT AND Clk = '1') then
 			 If ((BEQ ='1' and (A=B)) or (BLT ='1' and (A < B)) or (BNE ='1' and (A /= B))) then
 					NextPCSignal <= conv_std_logic_vector(conv_integer(PCIncby1) + Imm,32);
