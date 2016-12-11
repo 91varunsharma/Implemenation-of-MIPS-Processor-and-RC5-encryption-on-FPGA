@@ -31,17 +31,18 @@ int main(int argc, char **argv)
 
     xsi_register_min_prec_unit(-12);
     ieee_p_2592010699_init();
-    ieee_p_1242562249_init();
     ieee_p_3499444699_init();
-    ieee_p_0774719531_init();
-    work_p_3661819017_init();
-    work_p_0278921292_init();
     ieee_p_3620187407_init();
+    work_p_3661819017_init();
+    ieee_p_1242562249_init();
+    work_p_0278921292_init();
+    ieee_p_0774719531_init();
     work_a_1178958402_3212880686_init();
     work_a_0832606739_3212880686_init();
     work_a_2096391741_3212880686_init();
     work_a_2522068999_3212880686_init();
     work_a_2640864474_3212880686_init();
+    work_a_1461684583_3212880686_init();
     work_a_1504297269_3212880686_init();
 
 
