@@ -1,4 +1,3 @@
-import sys
 
 
 def get_address(register_number, n):
