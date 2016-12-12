@@ -1,5 +1,5 @@
 //! **************************************************************************
-// Written by: Map P.20131013 on Sun Dec 11 18:19:54 2016
+// Written by: Map P.20131013 on Sun Dec 11 22:53:53 2016
 //! **************************************************************************
 
 SCHEMATIC START;
@@ -99,13 +99,13 @@ COMP "LED<6>" LOCATE = SITE "U17" LEVEL 1;
 COMP "LED<7>" LOCATE = SITE "U16" LEVEL 1;
 COMP "LED<8>" LOCATE = SITE "V16" LEVEL 1;
 COMP "LED<9>" LOCATE = SITE "T15" LEVEL 1;
-TIMEGRP sys_clk_pin = BEL "Val_1" BEL "Val_2" BEL "Val_3" BEL "Cntr_0" BEL
-        "Cntr_1" BEL "Cntr_2" BEL "Cntr_3" BEL "Cntr_4" BEL "Cntr_5" BEL
-        "Cntr_6" BEL "Cntr_7" BEL "Cntr_8" BEL "Cntr_9" BEL "Cntr_10" BEL
-        "Cntr_11" BEL "Cntr_12" BEL "Cntr_13" BEL "Cntr_14" BEL "Cntr_15" BEL
-        "Cntr_16" BEL "Cntr_17" BEL "Cntr_18" BEL "Cntr_19" BEL "Cntr_20" BEL
-        "Cntr_21" BEL "Cntr_22" BEL "Cntr_23" BEL "Cntr_24" BEL "Cntr_25" BEL
-        "Cntr_26" BEL "Val_0" BEL "CLK_BUFGP/BUFG";
+TIMEGRP sys_clk_pin = BEL "Cntr_14" BEL "Cntr_15" BEL "Cntr_16" BEL "Cntr_17"
+        BEL "Cntr_18" BEL "Cntr_19" BEL "Cntr_20" BEL "Cntr_21" BEL "Cntr_22"
+        BEL "Cntr_23" BEL "Cntr_24" BEL "Cntr_25" BEL "Cntr_26" BEL "Cntr_0"
+        BEL "Val_1" BEL "Val_2" BEL "Val_3" BEL "Val_0" BEL "Cntr_1" BEL
+        "Cntr_2" BEL "Cntr_3" BEL "Cntr_4" BEL "Cntr_5" BEL "Cntr_6" BEL
+        "Cntr_7" BEL "Cntr_8" BEL "Cntr_9" BEL "Cntr_10" BEL "Cntr_11" BEL
+        "Cntr_12" BEL "Cntr_13" BEL "CLK_BUFGP/BUFG";
 TS_sys_clk_pin = PERIOD TIMEGRP "sys_clk_pin" 100 MHz HIGH 50%;
 SCHEMATIC END;
 
