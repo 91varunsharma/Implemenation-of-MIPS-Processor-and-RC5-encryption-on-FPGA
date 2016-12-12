@@ -11,7 +11,7 @@ ENTITY IDecode IS
 	  PORT( Clk       : In std_logic;
 	  		Instruction : IN 	STD_LOGIC_VECTOR( 31 DOWNTO 0 );   
 			write_data  : IN 	STD_LOGIC_VECTOR( 31 DOWNTO 0 );   --------Data to be written to the reister file
-			WriteEn 	: IN 	STD_LOGIC;                         --To be made '1' when register file needs to be updated
+			WriteEn  	: IN 	STD_LOGIC;                         --To be made '1' when register file needs to be updated
 			read_data1	: OUT 	STD_LOGIC_VECTOR( 31 DOWNTO 0 );   --------Operand1 
 			read_data2	: OUT 	STD_LOGIC_VECTOR( 31 DOWNTO 0 );   --------Operand2
 		--	ALUOp       : OUT   STD_LOGIC_VECTOR (2 DOWNTO 0);     --------Type of ALU operation
@@ -32,7 +32,7 @@ END IDecode;
 
 ARCHITECTURE behavioral of IDecode is 
 
-	Signal Reg_array: register_output := (X"00000000",X"00000001",X"00000004",X"00000002",X"00000000",X"00000000",
+	Signal Reg_array: register_output := (X"00000000",X"00000000",X"00000000",X"00000000",X"00000000",X"00000000",
 								        X"00000000",X"00000000",X"00000000",X"00000000",X"00000000",X"00000000",
 								        X"00000000",X"00000000",X"00000000",X"00000000",X"00000000",X"00000000",
 								        X"00000000",X"00000000",X"00000000",X"00000000",X"00000000",X"00000000",
