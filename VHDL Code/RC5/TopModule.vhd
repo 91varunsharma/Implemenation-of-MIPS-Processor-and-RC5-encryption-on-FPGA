@@ -152,8 +152,7 @@ begin
 	end if;
 end process;
 
---This process increments the digit being displayed on the 
---7-segment display every second.
+
 timer_inc_process : process (CLK)
 begin
 	if (rising_edge(CLK)) then
