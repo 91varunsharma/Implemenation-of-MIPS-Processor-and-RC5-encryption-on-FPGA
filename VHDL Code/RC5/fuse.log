@@ -30,8 +30,8 @@ Compiling architecture behavioral of entity Dmemory [dmemory_default]
 Compiling architecture behavioral of entity Hex2LED [hex2led_default]
 Compiling architecture behavioral of entity topmodule
 Time Resolution for simulation is 1ps.
-Waiting for 6 sub-compilation(s) to finish...
+Waiting for 7 sub-compilation(s) to finish...
 Compiled 21 VHDL Units
 Built simulation executable C:/Users/Parteek Khushdil/Documents/GitHub/AHD-Project-2016/VHDL Code/RC5/TopModule_isim_beh.exe
-Fuse Memory Usage: 38368 KB
-Fuse CPU Usage: 1968 ms
+Fuse Memory Usage: 37840 KB
+Fuse CPU Usage: 921 ms
