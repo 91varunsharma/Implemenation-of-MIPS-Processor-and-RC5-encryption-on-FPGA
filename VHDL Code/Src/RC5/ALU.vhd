@@ -41,7 +41,7 @@ begin
 
 	shift_left  <= to_stdlogicvector(to_bitvector(A_input) sll conv_integer(unsigned(B_input(4 downto 0))));
 	shift_right <= to_stdlogicvector(to_bitvector(A_input) srl conv_integer(unsigned(B_input(4 downto 0))));
-	ALU_Result <= ALU_output;
+	ALU_Result  <= ALU_output;
 						
 	process(ALUOp, A_input, B_input,shift_left,shift_right)
 	begin
@@ -57,4 +57,3 @@ begin
 		end case;
 	end process;
 end Behavioral;
-
