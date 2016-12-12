@@ -11,6 +11,7 @@ entity ControlUnit is
          --  PC        : in   STD_LOGIC_VECTOR (31 downto 0);
 		   Read_Data1  : in   STD_LOGIC_VECTOR (31 downto 0);
 		   Read_Data2  : in   STD_LOGIC_VECTOR (31 downto 0);
+			start			: in STD_LOGIC;
            ALUOp     : out  STD_LOGIC_VECTOR (2 downto 0);
            NextPC    : out  STD_LOGIC_VECTOR (31 downto 0);
            Rtype     : out  STD_LOGIC;
@@ -42,7 +43,7 @@ SIGNAL ALU_ROp , ALU_Op                        : STD_LOGIC_VECTOR(2 DOWNTO 0 );
 	SIGNAL Opcode                               : STD_LOGIC_VECTOR(5 downto 0);
 	--Signal PC        :   STD_LOGIC_VECTOR (31 downto 0):=x"00000000";
 signal numeric_immediate,integer_immediate_N, Imm : INTEGER;
-signal NextPCSignal: STD_logic_vector(31 downto 0);
+signal NextPCSignal: STD_logic_vector(31 downto 0):=X"00000000";
 
 --	TYPE register_file IS ARRAY ( 0 TO 31 ) OF STD_LOGIC_VECTOR( 31 DOWNTO 0 );
 
@@ -89,7 +90,7 @@ begin
 	BEQ    <= '1' when Opcode = "001010" else '0';
 	BNE    <= '1' when Opcode = "001011" else '0';
 	JUMP   <= '1' when Opcode = "001100" else '0';
-	HAL	 <= '1' when Opcode = "111111" else'0';
+	HAL	 <= '1' when Opcode = "111111" else '0';
 	R_ADD  <= '1' when ALU_ROp ="000" else '0';
 	R_SUB  <= '1' when ALU_ROp ="001" else '0';
    R_AND  <= '1' when ALU_ROp ="010" else '0';
@@ -99,9 +100,13 @@ begin
 
     Process (Clk, Jump, BNE, BEQ, BLT, Clr)
     begin
-	 If (Clr ='1') then
+	 
+	 If (Clk'EVENT AND Clk = '1') then
+		If (Clr ='1' and start='0') then
 			NextPCSignal <= X"00000000";
-	 ElsIf (Clk'EVENT AND Clk = '1') then
+		end if;
+		
+		if(start='1' and clr='0') then
 			 If ((BEQ ='1' and (A=B)) or (BLT ='1' and (A < B)) or (BNE ='1' and (A /= B))) then
 					NextPCSignal <= conv_std_logic_vector(conv_integer(PCIncby1) + Imm,32);
 			 Elsif (Jump = '1') then
@@ -113,8 +118,8 @@ begin
 			 Else
 					NextPCSignal <=NextPCSignal + '1' ;
 		  	 End if;
-	  End If;
-   -- End if;
+		end if;
+   End if;
 
     End Process;
 
