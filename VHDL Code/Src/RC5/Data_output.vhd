@@ -1,20 +1,8 @@
 ----------------------------------------------------------------------------------
--- Company: 
--- Engineer: 
--- 
--- Create Date:    02:26:31 12/10/2016 
--- Design Name: 
--- Module Name:    Data_output - Behavioral 
--- Project Name: 
--- Target Devices: 
--- Tool versions: 
--- Description: 
---
--- Dependencies: 
---
--- Revision: 
--- Revision 0.01 - File Created
--- Additional Comments: 
+-- Author       :   Starboyz
+-- Project      :   NYU-6463 MIPS Processor
+-- Create Date  :   12/10/2016
+-- Design       :   DMem Output Package
 --
 ----------------------------------------------------------------------------------
 library IEEE;

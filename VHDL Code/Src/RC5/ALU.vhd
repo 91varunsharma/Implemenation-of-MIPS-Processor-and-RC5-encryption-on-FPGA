@@ -1,12 +1,11 @@
 ---------------------------------------------------------------------------------------------------
--- Team Starboys
--- NYU-6463 Processor - EL-GY Advance Computer Hardware Design
--- Tandon School of Engineering, NYU
--- New York, NY
---
--- Filename : ALU.vhd
--- Description : VHD code to implement the Arithmetic & Logical operations based on given
--- 3 bit Aluop. This module also executes SHL & SHR
+-- Author       :   Starboyz
+-- Project      :   NYU-6463 MIPS Processor
+-- Create Date  :   12/01/2016
+-- Design       :   Arithmetic & Logical Unit
+-- Filename     :   ALU.vhd
+-- Description  :   VHD code to implement the Arithmetic & Logical operations based on given
+--                  3 bit Aluop. This module also executes SHL & SHR
 ----------------------------------------------------------------------------------------------------
 
 
@@ -33,7 +32,7 @@ architecture Behavioral of ALU is
 	Signal shift_right:STD_LOGIC_VECTOR (31 DOWNTO 0);
 
 begin
-
+s
 	A_input <= read_data1;
 	
 	B_input <= read_data2 when ALUSrc = '0'

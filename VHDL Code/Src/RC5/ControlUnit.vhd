@@ -1,12 +1,12 @@
 ---------------------------------------------------------------------------------------------------
--- Team Starboys
--- NYU-6463 Processor - EL-GY Advance Computer Hardware Design
--- Tandon School of Engineering, NYU
--- New York, NY
+-- Author       :   Starboyz
+-- Project      :   NYU-6463 MIPS Processor
+-- Create Date  :   12/01/2016
+-- Design       :   Control Unit
+-- Filename     :   ControlUnit.vhd
+-- Description  :   VHD code to implement the Control Unit
 --
--- Filename : ControlUnit.vhd
--- Description : VHD code to implement the Control Unit of NYU 6463 Processor
----------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
 
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
