@@ -6,9 +6,6 @@ Instruction Fetch
 Instruction Decode
 Execution/ALU
 Memory Stage
-Write Back
+Control Unit
 
-We need to develop one more module named **Control** module which will update the **Program Counter(PC)** based
-on the type of instrcution being executed, whether it is a **JUMP** or a **Branch** instruction etc.
-
-Then we will instantiate all these modules in the main file.
+A top module in which all these modules will be initiated, register and data memory values will be displayed on 7 segment.
