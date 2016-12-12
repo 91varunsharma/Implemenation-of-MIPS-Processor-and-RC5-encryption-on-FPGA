@@ -1,0 +1,8 @@
+INTSTYLE=ise
+INFILE=C:\Users\Parteek Khushdil\Documents\GitHub\AHD-Project-2016\VHDL Code\RC5 clock event\TopModule.ncd
+OUTFILE=C:\Users\Parteek Khushdil\Documents\GitHub\AHD-Project-2016\VHDL Code\RC5 clock event\TopModule.bit
+FAMILY=Artix7
+PART=xc7a100t-3csg324
+WORKINGDIR=C:\Users\Parteek Khushdil\Documents\GitHub\AHD-Project-2016\VHDL Code\RC5 clock event
+LICENSE=WebPack
+USER_INFO=211236654_0_0_730

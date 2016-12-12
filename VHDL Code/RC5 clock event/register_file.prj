@@ -1,0 +1,6 @@
+vhdl work "TopModule.vhd"
+vhdl work "IFetch.vhd"
+vhdl work "IDecode.vhd"
+vhdl work "DMemory.vhd"
+vhdl work "ControlUnit.vhd"
+vhdl work "ALU.vhd"

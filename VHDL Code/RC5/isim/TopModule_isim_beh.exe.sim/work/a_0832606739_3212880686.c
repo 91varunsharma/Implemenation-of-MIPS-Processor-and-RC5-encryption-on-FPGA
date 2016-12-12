@@ -21,7 +21,7 @@
 #include <malloc.h>
 #define alloca _alloca
 #endif
-static const char *ng0 = "C:/Users/Varun Sharma/Documents/GitHub/AHD-Project-2016/VHDL Code/RC5/ALU.vhd";
+static const char *ng0 = "C:/Users/Parteek Khushdil/Documents/GitHub/AHD-Project-2016/VHDL Code/RC5/ALU.vhd";
 extern char *IEEE_P_2592010699;
 extern char *IEEE_P_3499444699;
 extern char *IEEE_P_0774719531;
@@ -156,7 +156,7 @@ LAB0:    xsi_set_current_line(32, ng0);
 
 LAB3:    t3 = (t0 + 1992U);
     t4 = *((char **)t3);
-    t3 = (t0 + 8856U);
+    t3 = (t0 + 8932U);
     t5 = ieee_p_2592010699_sub_3293060193_503743352(IEEE_P_2592010699, t2, t4, t3, (unsigned char)0);
     t6 = (t2 + 12U);
     t7 = *((unsigned int *)t6);
@@ -242,7 +242,7 @@ LAB0:    xsi_set_current_line(33, ng0);
 
 LAB3:    t3 = (t0 + 1992U);
     t4 = *((char **)t3);
-    t3 = (t0 + 8856U);
+    t3 = (t0 + 8932U);
     t5 = ieee_p_2592010699_sub_3293060193_503743352(IEEE_P_2592010699, t2, t4, t3, (unsigned char)0);
     t6 = (t2 + 12U);
     t7 = *((unsigned int *)t6);
@@ -366,44 +366,44 @@ static void work_a_0832606739_3212880686_p_5(char *t0)
 LAB0:    xsi_set_current_line(39, ng0);
     t1 = (t0 + 1512U);
     t2 = *((char **)t1);
-    t1 = (t0 + 9188);
+    t1 = (t0 + 9264);
     t4 = xsi_mem_cmp(t1, t2, 3U);
     if (t4 == 1)
         goto LAB3;
 
-LAB11:    t5 = (t0 + 9191);
+LAB11:    t5 = (t0 + 9267);
     t7 = xsi_mem_cmp(t5, t2, 3U);
     if (t7 == 1)
         goto LAB4;
 
-LAB12:    t8 = (t0 + 9194);
+LAB12:    t8 = (t0 + 9270);
     t10 = xsi_mem_cmp(t8, t2, 3U);
     if (t10 == 1)
         goto LAB5;
 
-LAB13:    t11 = (t0 + 9197);
+LAB13:    t11 = (t0 + 9273);
     t13 = xsi_mem_cmp(t11, t2, 3U);
     if (t13 == 1)
         goto LAB6;
 
-LAB14:    t14 = (t0 + 9200);
+LAB14:    t14 = (t0 + 9276);
     t16 = xsi_mem_cmp(t14, t2, 3U);
     if (t16 == 1)
         goto LAB7;
 
-LAB15:    t17 = (t0 + 9203);
+LAB15:    t17 = (t0 + 9279);
     t19 = xsi_mem_cmp(t17, t2, 3U);
     if (t19 == 1)
         goto LAB8;
 
-LAB16:    t20 = (t0 + 9206);
+LAB16:    t20 = (t0 + 9282);
     t22 = xsi_mem_cmp(t20, t2, 3U);
     if (t22 == 1)
         goto LAB9;
 
 LAB17:
 LAB10:    xsi_set_current_line(47, ng0);
-    t1 = (t0 + 9209);
+    t1 = (t0 + 9285);
     t3 = (t0 + 5832);
     t5 = (t3 + 56U);
     t6 = *((char **)t5);
@@ -419,10 +419,10 @@ LAB1:    return;
 LAB3:    xsi_set_current_line(40, ng0);
     t24 = (t0 + 1992U);
     t25 = *((char **)t24);
-    t24 = (t0 + 8856U);
+    t24 = (t0 + 8932U);
     t26 = (t0 + 2152U);
     t27 = *((char **)t26);
-    t26 = (t0 + 8856U);
+    t26 = (t0 + 8932U);
     t28 = ieee_p_0774719531_sub_767668596_2162500114(IEEE_P_0774719531, t23, t25, t24, t27, t26);
     t29 = (t23 + 12U);
     t30 = *((unsigned int *)t29);
@@ -443,10 +443,10 @@ LAB20:    t33 = (t0 + 5832);
 LAB4:    xsi_set_current_line(41, ng0);
     t1 = (t0 + 1992U);
     t2 = *((char **)t1);
-    t1 = (t0 + 8856U);
+    t1 = (t0 + 8932U);
     t3 = (t0 + 2152U);
     t5 = *((char **)t3);
-    t3 = (t0 + 8856U);
+    t3 = (t0 + 8932U);
     t6 = ieee_p_0774719531_sub_767740470_2162500114(IEEE_P_0774719531, t23, t2, t1, t5, t3);
     t8 = (t23 + 12U);
     t30 = *((unsigned int *)t8);
@@ -467,10 +467,10 @@ LAB22:    t9 = (t0 + 5832);
 LAB5:    xsi_set_current_line(42, ng0);
     t1 = (t0 + 1992U);
     t2 = *((char **)t1);
-    t1 = (t0 + 8856U);
+    t1 = (t0 + 8932U);
     t3 = (t0 + 2152U);
     t5 = *((char **)t3);
-    t3 = (t0 + 8856U);
+    t3 = (t0 + 8932U);
     t6 = ieee_p_2592010699_sub_795620321_503743352(IEEE_P_2592010699, t23, t2, t1, t5, t3);
     t8 = (t23 + 12U);
     t30 = *((unsigned int *)t8);
@@ -491,10 +491,10 @@ LAB24:    t9 = (t0 + 5832);
 LAB6:    xsi_set_current_line(43, ng0);
     t1 = (t0 + 1992U);
     t2 = *((char **)t1);
-    t1 = (t0 + 8856U);
+    t1 = (t0 + 8932U);
     t3 = (t0 + 2152U);
     t5 = *((char **)t3);
-    t3 = (t0 + 8856U);
+    t3 = (t0 + 8932U);
     t6 = ieee_p_2592010699_sub_1735675855_503743352(IEEE_P_2592010699, t23, t2, t1, t5, t3);
     t8 = (t23 + 12U);
     t30 = *((unsigned int *)t8);
@@ -515,10 +515,10 @@ LAB26:    t9 = (t0 + 5832);
 LAB7:    xsi_set_current_line(44, ng0);
     t1 = (t0 + 1992U);
     t2 = *((char **)t1);
-    t1 = (t0 + 8856U);
+    t1 = (t0 + 8932U);
     t3 = (t0 + 2152U);
     t5 = *((char **)t3);
-    t3 = (t0 + 8856U);
+    t3 = (t0 + 8932U);
     t6 = ieee_p_2592010699_sub_1735675855_503743352(IEEE_P_2592010699, t38, t2, t1, t5, t3);
     t8 = ieee_p_2592010699_sub_1837678034_503743352(IEEE_P_2592010699, t23, t6, t38);
     t9 = (t23 + 12U);
