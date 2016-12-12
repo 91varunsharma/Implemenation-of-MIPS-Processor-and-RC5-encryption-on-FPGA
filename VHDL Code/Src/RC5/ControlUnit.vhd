@@ -148,7 +148,7 @@ begin
             if ((SWD OR BEQ OR BLT OR BNE OR JUMP)='1') then
                 WriteEn <='0';
             else
-            WriteEn <= '1';
+                WriteEn <= '1';
             end if;
     end process;
 end Behavioral;
