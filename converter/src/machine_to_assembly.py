@@ -86,8 +86,8 @@ def get_i_ins(opcode, instruction):
 
 if __name__ == '__main__':
 
-    read_file = "/Users/ADDY/Google Drive/github/AHD-Project-2016/converter/test/machine/test_2_machine.txt"
-    write_file = "/Users/ADDY/Google Drive/github/AHD-Project-2016/converter/test/asm/test_2_asm.txt"
+    read_file = "/Users/ADDY/Google Drive/github/AHD-Project-2016/converter/test/machine/sample_1_machine.txt"
+    write_file = "/Users/ADDY/Google Drive/github/AHD-Project-2016/converter/test/asm/sample_1_asm.txt"
     read_from = open(read_file)
     write_to = open(write_file, 'w')
     ins_num = 0
