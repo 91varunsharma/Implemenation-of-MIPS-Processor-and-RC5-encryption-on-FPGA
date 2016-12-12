@@ -169,7 +169,7 @@ begin
 	end if;
 end process;
 
---This select statement selects the 7-segment diplay anode. 
+ 
 with Val select
 	SSEG_AN <= "01111111" when "0001",
 				  "10111111" when "0010",
@@ -181,8 +181,6 @@ with Val select
 				  "11111110" when "1000",
 				  "11111111" when others;
 
---This select statement selects the value of HexVal to the necessary
---cathode signals to display it on the 7-segment
 with Val select
 	SSEG_CA <= NAME(0) when "0001",
 				  NAME(1) when "0010",
