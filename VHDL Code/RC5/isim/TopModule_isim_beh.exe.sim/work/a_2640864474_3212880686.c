@@ -21,7 +21,7 @@
 #include <malloc.h>
 #define alloca _alloca
 #endif
-static const char *ng0 = "C:/Users/Parteek Khushdil/Documents/GitHub/AHD-Project-2016/VHDL Code/RC5/DMemory.vhd";
+static const char *ng0 = "C:/Users/Varun Sharma/Documents/GitHub/AHD-Project-2016/VHDL Code/RC5/DMemory.vhd";
 extern char *IEEE_P_3499444699;
 
 
@@ -277,7 +277,7 @@ LAB2:    t31 = (t0 + 4744);
     *((int *)t31) = 1;
 
 LAB1:    return;
-LAB3:    t1 = (t0 + 12099);
+LAB3:    t1 = (t0 + 12035);
     t6 = (t0 + 5016);
     t7 = (t6 + 56U);
     t8 = *((char **)t7);

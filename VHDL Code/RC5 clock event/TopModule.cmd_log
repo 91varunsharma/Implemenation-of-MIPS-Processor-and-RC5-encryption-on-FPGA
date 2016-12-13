@@ -56,3 +56,15 @@ map -intstyle ise -p xc7a100t-csg324-3 -w -logic_opt off -ol high -t 1 -xt 0 -re
 par -w -intstyle ise -ol high -mt off TopModule_map.ncd TopModule.ncd TopModule.pcf 
 trce -intstyle ise -v 3 -s 3 -n 3 -fastpaths -xml TopModule.twx TopModule.ncd -o TopModule.twr TopModule.pcf -ucf RC5.ucf 
 bitgen -intstyle ise -f TopModule.ut TopModule.ncd 
+xst -intstyle ise -ifn "C:/Users/Varun Sharma/Documents/GitHub/AHD-Project-2016/VHDL Code/RC5 clock event/TopModule.xst" -ofn "C:/Users/Varun Sharma/Documents/GitHub/AHD-Project-2016/VHDL Code/RC5 clock event/TopModule.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc RC5.ucf -p xc7a100t-csg324-3 "TopModule.ngc" TopModule.ngd  
+map -intstyle ise -p xc7a100t-csg324-3 -w -logic_opt off -ol std -t 1 -xt 0 -register_duplication off -r 4 -mt 2 -ir off -pr off -lc off -power off -o TopModule_map.ncd TopModule.ngd TopModule.pcf 
+par -w -intstyle ise -ol std -mt 4 TopModule_map.ncd TopModule.ncd TopModule.pcf 
+trce -intstyle ise -v 3 -s 3 -n 3 -fastpaths -xml TopModule.twx TopModule.ncd -o TopModule.twr TopModule.pcf -ucf RC5.ucf 
+bitgen -intstyle ise -f TopModule.ut TopModule.ncd 
+xst -intstyle ise -ifn "C:/Users/Varun Sharma/Documents/GitHub/AHD-Project-2016/VHDL Code/RC5 clock event/TopModule.xst" -ofn "C:/Users/Varun Sharma/Documents/GitHub/AHD-Project-2016/VHDL Code/RC5 clock event/TopModule.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc RC5.ucf -p xc7a100t-csg324-3 "TopModule.ngc" TopModule.ngd  
+map -intstyle ise -p xc7a100t-csg324-3 -w -logic_opt off -ol std -t 1 -xt 0 -register_duplication off -r 4 -mt 2 -ir off -pr off -lc off -power off -o TopModule_map.ncd TopModule.ngd TopModule.pcf 
+par -w -intstyle ise -ol std -mt 4 TopModule_map.ncd TopModule.ncd TopModule.pcf 
+trce -intstyle ise -v 3 -s 3 -n 3 -fastpaths -xml TopModule.twx TopModule.ncd -o TopModule.twr TopModule.pcf -ucf RC5.ucf 
+bitgen -intstyle ise -f TopModule.ut TopModule.ncd 
