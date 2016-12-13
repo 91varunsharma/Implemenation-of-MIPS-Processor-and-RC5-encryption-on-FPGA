@@ -1,5 +1,5 @@
 //! **************************************************************************
-// Written by: Map P.20131013 on Sun Dec 11 19:48:45 2016
+// Written by: Map P.20131013 on Mon Dec 12 23:14:04 2016
 //! **************************************************************************
 
 SCHEMATIC START;
@@ -99,14 +99,118 @@ COMP "LED<6>" LOCATE = SITE "U17" LEVEL 1;
 COMP "LED<7>" LOCATE = SITE "U16" LEVEL 1;
 COMP "LED<8>" LOCATE = SITE "V16" LEVEL 1;
 COMP "LED<9>" LOCATE = SITE "T15" LEVEL 1;
-TIMEGRP sys_clk_pin = BEL "Cntr_6" BEL "Cntr_7" BEL "Cntr_8" BEL "Cntr_9" BEL
-        "Cntr_10" BEL "Cntr_11" BEL "Cntr_12" BEL "Cntr_13" BEL "Cntr_14" BEL
-        "Cntr_15" BEL "Cntr_16" BEL "Cntr_17" BEL "IDecodePort/Reg_array_2_3"
-        BEL "IDecodePort/Reg_array_3_3" BEL "ControlUnitPort/NextPCSignal_1"
-        BEL "ControlUnitPort/NextPCSignal_0" BEL "IDecodePort/Reg_array_1_2"
-        BEL "Cntr_0" BEL "Val_1" BEL "Val_0" BEL "Val_2" BEL "Val_3" BEL
-        "Cntr_1" BEL "Cntr_2" BEL "Cntr_3" BEL "Cntr_4" BEL "Cntr_5" BEL
-        "CLK_BUFGP/BUFG";
+TIMEGRP sys_clk_pin = BEL "Cntr_0" BEL "Cntr_1" BEL "Cntr_2" BEL "Cntr_3" BEL
+        "Cntr_4" BEL "Cntr_5" BEL "Cntr_6" BEL "Cntr_7" BEL "Cntr_8" BEL
+        "Cntr_9" BEL "Cntr_10" BEL "Cntr_11" BEL "Cntr_12" BEL "Cntr_13" BEL
+        "Cntr_14" BEL "Cntr_15" BEL "Cntr_16" BEL "Cntr_17" BEL "Cntr_18" BEL
+        "Cntr_19" BEL "Cntr_20" BEL "Cntr_21" BEL "Cntr_22" BEL "Cntr_23" BEL
+        "Cntr_24" BEL "Cntr_25" BEL "Cntr_26" BEL "Val_1" BEL "Val_2" BEL
+        "Val_3" BEL "Val_0" BEL "IDecodePort/Reg_array_5_31" BEL
+        "IDecodePort/Reg_array_5_30" BEL "IDecodePort/Reg_array_5_29" BEL
+        "IDecodePort/Reg_array_5_28" BEL "IDecodePort/Reg_array_5_27" BEL
+        "IDecodePort/Reg_array_5_26" BEL "IDecodePort/Reg_array_5_25" BEL
+        "IDecodePort/Reg_array_5_24" BEL "IDecodePort/Reg_array_5_23" BEL
+        "IDecodePort/Reg_array_5_22" BEL "IDecodePort/Reg_array_5_21" BEL
+        "IDecodePort/Reg_array_5_20" BEL "IDecodePort/Reg_array_5_19" BEL
+        "IDecodePort/Reg_array_5_18" BEL "IDecodePort/Reg_array_5_17" BEL
+        "IDecodePort/Reg_array_5_16" BEL "IDecodePort/Reg_array_5_15" BEL
+        "IDecodePort/Reg_array_5_14" BEL "IDecodePort/Reg_array_5_13" BEL
+        "IDecodePort/Reg_array_5_11" BEL "IDecodePort/Reg_array_5_3" BEL
+        "IDecodePort/Reg_array_5_1" BEL "IDecodePort/Reg_array_4_31" BEL
+        "IDecodePort/Reg_array_4_30" BEL "IDecodePort/Reg_array_4_29" BEL
+        "IDecodePort/Reg_array_4_28" BEL "IDecodePort/Reg_array_4_27" BEL
+        "IDecodePort/Reg_array_4_26" BEL "IDecodePort/Reg_array_4_25" BEL
+        "IDecodePort/Reg_array_4_24" BEL "IDecodePort/Reg_array_4_23" BEL
+        "IDecodePort/Reg_array_4_22" BEL "IDecodePort/Reg_array_4_21" BEL
+        "IDecodePort/Reg_array_4_20" BEL "IDecodePort/Reg_array_4_19" BEL
+        "IDecodePort/Reg_array_4_18" BEL "IDecodePort/Reg_array_4_17" BEL
+        "IDecodePort/Reg_array_4_16" BEL "IDecodePort/Reg_array_4_15" BEL
+        "IDecodePort/Reg_array_4_14" BEL "IDecodePort/Reg_array_4_13" BEL
+        "IDecodePort/Reg_array_4_12" BEL "IDecodePort/Reg_array_4_11" BEL
+        "IDecodePort/Reg_array_4_10" BEL "IDecodePort/Reg_array_4_9" BEL
+        "IDecodePort/Reg_array_4_8" BEL "IDecodePort/Reg_array_4_7" BEL
+        "IDecodePort/Reg_array_4_6" BEL "IDecodePort/Reg_array_4_5" BEL
+        "IDecodePort/Reg_array_4_4" BEL "IDecodePort/Reg_array_4_3" BEL
+        "IDecodePort/Reg_array_4_2" BEL "IDecodePort/Reg_array_4_1" BEL
+        "IDecodePort/Reg_array_4_0" BEL "IDecodePort/Reg_array_2_3" BEL
+        "IDecodePort/Reg_array_2_1" BEL "IDecodePort/Reg_array_1_1" BEL
+        "IDecodePort/Reg_array_3_3" BEL "IDecodePort/Reg_array_3_1" BEL
+        "ControlUnitPort/NextPCSignal_4" BEL "ControlUnitPort/NextPCSignal_3"
+        BEL "ControlUnitPort/NextPCSignal_2" BEL
+        "ControlUnitPort/NextPCSignal_1" BEL "ControlUnitPort/NextPCSignal_0"
+        BEL "DMemoryPort/DMem_12_31" BEL "DMemoryPort/DMem_12_30" BEL
+        "DMemoryPort/DMem_12_29" BEL "DMemoryPort/DMem_12_28" BEL
+        "DMemoryPort/DMem_12_27" BEL "DMemoryPort/DMem_12_26" BEL
+        "DMemoryPort/DMem_12_25" BEL "DMemoryPort/DMem_12_24" BEL
+        "DMemoryPort/DMem_12_23" BEL "DMemoryPort/DMem_12_22" BEL
+        "DMemoryPort/DMem_12_21" BEL "DMemoryPort/DMem_12_20" BEL
+        "DMemoryPort/DMem_12_19" BEL "DMemoryPort/DMem_12_18" BEL
+        "DMemoryPort/DMem_12_17" BEL "DMemoryPort/DMem_12_16" BEL
+        "DMemoryPort/DMem_12_15" BEL "DMemoryPort/DMem_12_14" BEL
+        "DMemoryPort/DMem_12_13" BEL "DMemoryPort/DMem_12_12" BEL
+        "DMemoryPort/DMem_12_11" BEL "DMemoryPort/DMem_12_10" BEL
+        "DMemoryPort/DMem_12_9" BEL "DMemoryPort/DMem_12_8" BEL
+        "DMemoryPort/DMem_12_7" BEL "DMemoryPort/DMem_12_6" BEL
+        "DMemoryPort/DMem_12_5" BEL "DMemoryPort/DMem_12_4" BEL
+        "DMemoryPort/DMem_12_3" BEL "DMemoryPort/DMem_12_2" BEL
+        "DMemoryPort/DMem_12_1" BEL "DMemoryPort/DMem_12_0" BEL
+        "DMemoryPort/DMem_11_3" BEL "DMemoryPort/DMem_10_31" BEL
+        "DMemoryPort/DMem_10_30" BEL "DMemoryPort/DMem_10_29" BEL
+        "DMemoryPort/DMem_10_28" BEL "DMemoryPort/DMem_10_27" BEL
+        "DMemoryPort/DMem_10_26" BEL "DMemoryPort/DMem_10_25" BEL
+        "DMemoryPort/DMem_10_24" BEL "DMemoryPort/DMem_10_23" BEL
+        "DMemoryPort/DMem_10_22" BEL "DMemoryPort/DMem_10_21" BEL
+        "DMemoryPort/DMem_10_20" BEL "DMemoryPort/DMem_10_19" BEL
+        "DMemoryPort/DMem_10_18" BEL "DMemoryPort/DMem_10_17" BEL
+        "DMemoryPort/DMem_10_16" BEL "DMemoryPort/DMem_10_15" BEL
+        "DMemoryPort/DMem_10_14" BEL "DMemoryPort/DMem_10_13" BEL
+        "DMemoryPort/DMem_10_12" BEL "DMemoryPort/DMem_10_11" BEL
+        "DMemoryPort/DMem_10_10" BEL "DMemoryPort/DMem_10_9" BEL
+        "DMemoryPort/DMem_10_8" BEL "DMemoryPort/DMem_10_7" BEL
+        "DMemoryPort/DMem_10_6" BEL "DMemoryPort/DMem_10_5" BEL
+        "DMemoryPort/DMem_10_4" BEL "DMemoryPort/DMem_10_3" BEL
+        "DMemoryPort/DMem_10_2" BEL "DMemoryPort/DMem_10_1" BEL
+        "DMemoryPort/DMem_10_0" BEL "DMemoryPort/DMem_9_3" BEL
+        "DMemoryPort/DMem_4_31" BEL "DMemoryPort/DMem_4_30" BEL
+        "DMemoryPort/DMem_4_29" BEL "DMemoryPort/DMem_4_28" BEL
+        "DMemoryPort/DMem_4_27" BEL "DMemoryPort/DMem_4_26" BEL
+        "DMemoryPort/DMem_4_25" BEL "DMemoryPort/DMem_4_24" BEL
+        "DMemoryPort/DMem_4_23" BEL "DMemoryPort/DMem_4_22" BEL
+        "DMemoryPort/DMem_4_21" BEL "DMemoryPort/DMem_4_20" BEL
+        "DMemoryPort/DMem_4_19" BEL "DMemoryPort/DMem_4_18" BEL
+        "DMemoryPort/DMem_4_17" BEL "DMemoryPort/DMem_4_16" BEL
+        "DMemoryPort/DMem_4_15" BEL "DMemoryPort/DMem_4_14" BEL
+        "DMemoryPort/DMem_4_13" BEL "DMemoryPort/DMem_4_12" BEL
+        "DMemoryPort/DMem_4_11" BEL "DMemoryPort/DMem_4_10" BEL
+        "DMemoryPort/DMem_4_9" BEL "DMemoryPort/DMem_4_8" BEL
+        "DMemoryPort/DMem_4_7" BEL "DMemoryPort/DMem_4_6" BEL
+        "DMemoryPort/DMem_4_5" BEL "DMemoryPort/DMem_4_4" BEL
+        "DMemoryPort/DMem_4_3" BEL "DMemoryPort/DMem_4_2" BEL
+        "DMemoryPort/DMem_4_1" BEL "DMemoryPort/DMem_4_0" BEL
+        "DMemoryPort/DMem_2_31" BEL "DMemoryPort/DMem_2_30" BEL
+        "DMemoryPort/DMem_2_29" BEL "DMemoryPort/DMem_2_28" BEL
+        "DMemoryPort/DMem_2_27" BEL "DMemoryPort/DMem_2_26" BEL
+        "DMemoryPort/DMem_2_25" BEL "DMemoryPort/DMem_2_24" BEL
+        "DMemoryPort/DMem_2_23" BEL "DMemoryPort/DMem_2_22" BEL
+        "DMemoryPort/DMem_2_21" BEL "DMemoryPort/DMem_2_20" BEL
+        "DMemoryPort/DMem_2_19" BEL "DMemoryPort/DMem_2_18" BEL
+        "DMemoryPort/DMem_2_17" BEL "DMemoryPort/DMem_2_16" BEL
+        "DMemoryPort/DMem_2_15" BEL "DMemoryPort/DMem_2_14" BEL
+        "DMemoryPort/DMem_2_13" BEL "DMemoryPort/DMem_2_12" BEL
+        "DMemoryPort/DMem_2_11" BEL "DMemoryPort/DMem_2_10" BEL
+        "DMemoryPort/DMem_2_9" BEL "DMemoryPort/DMem_2_8" BEL
+        "DMemoryPort/DMem_2_7" BEL "DMemoryPort/DMem_2_6" BEL
+        "DMemoryPort/DMem_2_5" BEL "DMemoryPort/DMem_2_4" BEL
+        "DMemoryPort/DMem_2_3" BEL "DMemoryPort/DMem_2_2" BEL
+        "DMemoryPort/DMem_2_1" BEL "DMemoryPort/DMem_2_0" BEL
+        "DMemoryPort/DMem_3_1" BEL "ControlUnitPort/NextPCSignal_2_1" BEL
+        "ControlUnitPort/NextPCSignal_4_1" BEL
+        "ControlUnitPort/NextPCSignal_0_1" BEL
+        "ControlUnitPort/NextPCSignal_0_2" BEL
+        "ControlUnitPort/NextPCSignal_2_2" BEL
+        "ControlUnitPort/NextPCSignal_4_2" BEL
+        "ControlUnitPort/NextPCSignal_2_3" BEL
+        "ControlUnitPort/NextPCSignal_3_1" BEL "CLK_BUFGP/BUFG";
 TS_sys_clk_pin = PERIOD TIMEGRP "sys_clk_pin" 100 MHz HIGH 50%;
 SCHEMATIC END;
 
