@@ -5,5 +5,8 @@
      behavior or data corruption.  It is strongly advised that
      users do not edit the contents of this file. -->
 <messages>
+<msg type="info" file="Par" num="469" delta="old" >Although the Overall Effort Level (-ol) for this implementation has been set to Standard, Placer will run at effort level High. To override this, please set the Placer Effort Level (-pl) to Standard.
+</msg>
+
 </messages>
 
