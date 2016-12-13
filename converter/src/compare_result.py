@@ -1,7 +1,5 @@
-import sys
-
-read_file1 = sys.argv[1]
-read_file2 = sys.argv[2]
+read_file1 = "/Users/ADDY/Google Drive/github/AHD-Project-2016/converter/test/asm/test_1.txt"
+read_file2 = "/Users/ADDY/Google Drive/github/AHD-Project-2016/converter/test/asm/test_1_asm.txt"
 
 file1 = open(read_file1)
 file2 = open(read_file2)

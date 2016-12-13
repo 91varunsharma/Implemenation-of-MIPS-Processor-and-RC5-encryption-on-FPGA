@@ -1,0 +1,7 @@
+restart
+isim force add {/topmodule/clr} 1 -radix bin
+run 10ns
+
+isim force add {/topmodule/clr} 0 -radix bin
+isim force add {/topmodule/clk} 0 -radix bin -value 1 -radix bin -time 5 ns -repeat 10 ns 
+run 10ns

@@ -1,4 +1,3 @@
-import sys
 
 
 def get_address(register_number, n):
@@ -122,61 +121,56 @@ def get_jtype_string(ins_t):
 
 if __name__ == '__main__':
 
-    if sys.argv.__len__() != 3:
-        raise ValueError("Please provide valid input/output filename")
+    read_file = "/Users/ADDY/Google Drive/github/AHD-Project-2016/converter/test/asm/testbench_3.txt"
+    write_file = "/Users/ADDY/Google Drive/github/AHD-Project-2016/converter/test/machine/testbench_3_machine.txt"
+    read_from = open(read_file)
+    write_to = open(write_file, 'w')
+    ins_num = 0
 
-    else:
+    for f in read_from:
+        binary_ins = ""
+        ins = f.split(' ')
+        ins_type = ins[0].lower()
+        ins_num += 1
 
-        read_file = sys.argv[1]
-        write_file = sys.argv[2]
-        read_from = open(read_file)
-        write_to = open(write_file,'w')
-        ins_num = 0
+        if f == '\n' or f == ' ' or f == '\t':
+            binary_ins = "00000000000000000000000000000000\n"
+            print ins_num, binary_ins
+            write_to.write(binary_ins)
 
-        for f in read_from:
-            binary_ins = ""
-            ins = f.split(' ')
-            ins_type = ins[0].lower()
-            ins_num += 1
+        elif ins_type == "hal" or ins_type == "hal\n":
+            binary_ins = "11111100000000000000000000000000"
+            print ins_num, ins[0], binary_ins
+            write_to.write(binary_ins+"\n")
 
-            if f == '\n' or f == ' ' or f == '\t':
-                binary_ins = "00000000000000000000000000000000\n"
-                print ins_num, binary_ins
-                write_to.write(binary_ins)
+        elif ins_type == "add" or ins_type == "sub" or ins_type == "and" or ins_type == "or" or ins_type == "nor":
+            binary_ins = get_rtype_string(ins, ins_type)
+            if binary_ins != None:
+                if ins[3][-1:] == '\n':
+                    print ins_num, ins[0], ins[1],  ins[2], ins[3][:-1], binary_ins
+                else : print ins_num, ins[0], ins[1],  ins[2], ins[3], binary_ins
+                write_to.write(binary_ins + "\n")
+            else:
+                print "cannot write to file. Unsupported text"
 
-            elif ins_type == "hal" or ins_type == "hal\n":
-                binary_ins = "11111100000000000000000000000000"
-                print ins_num, ins[0], binary_ins
-                write_to.write(binary_ins+"\n")
+        elif ins_type == "addi" or ins_type == "subi" or ins_type == "andi" or ins_type == "ori" or \
+                        ins_type == "lw" or ins_type == "sw" or ins_type == "shl" or ins_type == "shr" or \
+                        ins_type == "blt" or ins_type == "beq" or ins_type == "bne":
 
-            elif ins_type == "add" or ins_type == "sub" or ins_type == "and" or ins_type == "or" or ins_type == "nor":
-                binary_ins = get_rtype_string(ins, ins_type)
-                if binary_ins != None:
-                    if ins[3][-1:] == '\n':
-                        print ins_num, ins[0], ins[1],  ins[2], ins[3][:-1], binary_ins
-                    else : print ins_num, ins[0], ins[1],  ins[2], ins[3], binary_ins
-                    write_to.write(binary_ins + "\n")
-                else:
-                    print "cannot write to file. Unsupported text"
+            binary_ins = get_itype_string(ins, ins_type)
+            if binary_ins != None:
+                if ins[3][-1:] == '\n':
+                    print ins_num, ins[0], ins[1],  ins[2], ins[3][:-1], binary_ins
+                else : print ins_num, ins[0], ins[1],  ins[2], ins[3], binary_ins
+                write_to.write(binary_ins + "\n")
 
-            elif ins_type == "addi" or ins_type == "subi" or ins_type == "andi" or ins_type == "ori" or \
-                            ins_type == "lw" or ins_type == "sw" or ins_type == "shl" or ins_type == "shr" or \
-                            ins_type == "blt" or ins_type == "beq" or ins_type == "bne":
+        elif ins_type == "jmp":
+            binary_ins = get_jtype_string(ins)
+            if binary_ins != None:
+                if ins[1][-1:] == '\n':
+                    print ins_num, ins[0], ins[1][:-1], binary_ins
+                else : print ins_num, ins[0], ins[1], binary_ins
+                write_to.write(binary_ins + "\n")
 
-                binary_ins = get_itype_string(ins, ins_type)
-                if binary_ins != None:
-                    if ins[3][-1:] == '\n':
-                        print ins_num, ins[0], ins[1],  ins[2], ins[3][:-1], binary_ins
-                    else : print ins_num, ins[0], ins[1],  ins[2], ins[3], binary_ins
-                    write_to.write(binary_ins + "\n")
-
-            elif ins_type == "jmp":
-                binary_ins = get_jtype_string(ins)
-                if binary_ins != None:
-                    if ins[1][-1:] == '\n':
-                        print ins_num, ins[0], ins[1][:-1], binary_ins
-                    else : print ins_num, ins[0], ins[1], binary_ins
-                    write_to.write(binary_ins + "\n")
-
-        read_from.close()
-        write_to.close()
+    read_from.close()
+    write_to.close()

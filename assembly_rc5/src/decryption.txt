@@ -2,7 +2,7 @@
 	add R13 -- see encryption
 	change the place where we initialize R20
 	Check if all the initialization is done properly
-
+	check when you are storing
 # Register File info
 
 R0 Hard coded to 0x0
@@ -34,8 +34,7 @@ R31 ab_and
 # ASSEMBLY CODE
 	
 	# INITIALIZATION
-
-	ADDI R0 R20 3
+	ADD R0 R0 R13
 	ADDI R3 R3 2 					# SET i TO 2
 	ADDI R4 R4 25 					# SET i_tmp TO 25
 	LW RO R1 #ADDRESS 				# LOAD A_REG
@@ -47,10 +46,11 @@ R31 ab_and
 	# DECRYPTION
 	
 		# LOOP BEGINS HERE
+	ADDI R0 R20 3
 	SUB R2 R12 R2
 	ADD R0 R2 R22 					# ROT BEGINS HERE
-	ANDI R1 R1 31 					# MOD BY 32
-	ADD R0 R1 R24
+	ANDI R1 R13 31 					# MOD BY 32
+	ADD R0 R13 R24
 	JMP #ADDRESS 					# ROT
 	ADD R0 R23 R8 					# ROT ENDS HERE
 	OR R8 R1 R30 					# XOR STARTS HERE
@@ -62,8 +62,8 @@ R31 ab_and
 	LW R11 R12 0
 	SUB R1 R12 R1
 	ADD R0 R1 R22 					# ROT BEGINS HERE
-	ANDI R2 R2 31 					# MOD BY 32
-	ADD R0 R2 R24
+	ANDI R2 R13 31 					# MOD BY 32
+	ADD R0 R13 R24
 	JMP #ADDRESS 					# ROT
 	ADD R0 R23 R7 					# ROT ENDS HERE
 	OR R7 R2 R30 					# XOR STARTS HERE
@@ -72,12 +72,12 @@ R31 ab_and
 	ADD R0 R5 R1
 	SUBI R4 R4 1
 	SUBI R11 R11 1
-	LW R11 R12 0
+
 	BEQ R3 R4 #BRANCH_ADDRESS#1
 	JMP #ADDRESS 					# RETURN TO LOOP
 
 	#BRANCH_ADDRESS#1
-
+	LW R11 R12 0
 	SUB R2 R12 R2
 	SUBI R11 R11 1
 	SUB R1 R12 R1
