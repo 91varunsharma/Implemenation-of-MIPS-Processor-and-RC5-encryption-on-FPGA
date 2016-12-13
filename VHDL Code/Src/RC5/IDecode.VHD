@@ -29,7 +29,7 @@ ENTITY IDecode IS
             BEQ         :   in  std_logic;
             reg_arr     :   out std_logic_vector(31 downto 0);
             skip        :   out STD_LOGIC;
-            reg_file    : out register_output);
+            reg_file    :   out register_output);
 END IDecode;
 
 
@@ -46,9 +46,9 @@ ARCHITECTURE behavioral of IDecode is
     SIGNAL write_register_address 		: STD_LOGIC_VECTOR( 4 DOWNTO 0 );
     SIGNAL write_register_address_R		: STD_LOGIC_VECTOR( 4 DOWNTO 0 );
     SIGNAL write_register_address_I		: STD_LOGIC_VECTOR( 4 DOWNTO 0 );
-    SIGNAL ALU_result    				: STD_LOGIC_VECTOR( 31 DOWNTO 0);
-    SIGNAL DMem_read_data               : STD_LOGIC_VECTOR( 31 DOWNTO 0);
-    SIGNAL Immediate_value          	: STD_LOGIC_VECTOR( 15 DOWNTO 0);
+    SIGNAL ALU_result    			: STD_LOGIC_VECTOR( 31 DOWNTO 0);
+    SIGNAL DMem_read_data               	: STD_LOGIC_VECTOR( 31 DOWNTO 0);
+    SIGNAL Immediate_value          		: STD_LOGIC_VECTOR( 15 DOWNTO 0);
 
 BEGIN
 

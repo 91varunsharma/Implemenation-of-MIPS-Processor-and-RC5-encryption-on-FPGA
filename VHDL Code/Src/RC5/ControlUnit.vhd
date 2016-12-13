@@ -17,10 +17,10 @@ use ieee.std_logic_arith.all;
 entity ControlUnit is
    Port (   Clk         : in    STD_LOGIC;
     	    Instruction : in    STD_LOGIC_VECTOR(31 DOWNTO 0);
-            skip		: in    STD_LOGIC;
+            skip	: in    STD_LOGIC;
             Read_Data1  : in    STD_LOGIC_VECTOR (31 downto 0);
             Read_Data2  : in    STD_LOGIC_VECTOR (31 downto 0);
-            start		: in    STD_LOGIC;
+            start	: in    STD_LOGIC;
             ALUOp       : out   STD_LOGIC_VECTOR (2 downto 0);
             NextPC      : out   STD_LOGIC_VECTOR (31 downto 0);
             Rtype       : out   STD_LOGIC;
@@ -38,16 +38,16 @@ end ControlUnit;
 
 architecture Behavioral of ControlUnit is
 
-    SIGNAL R_type, LWD, SWD, BEQ, ADDI, SUBI, ANDI, ORI, BNE, BLT, SHL, SHR, JUMP, R_ADD, R_SUB, R_AND, R_OR, R_NOR, HAL : STD_LOGIC;
-    SIGNAL A, B                                         : STD_LOGIC_VECTOR(31 DOWNTO 0);
-    SIGNAL ALU_ROp , ALU_Op                             : STD_LOGIC_VECTOR(2 DOWNTO 0 );
-	SIGNAL Immediate_value_initial                      : STD_LOGIC_VECTOR(15 DOWNTO 0);
+    	SIGNAL R_type, LWD, SWD, BEQ, ADDI, SUBI, ANDI, ORI, BNE, BLT, SHL, SHR, JUMP, R_ADD, R_SUB, R_AND, R_OR, R_NOR, HAL : STD_LOGIC;
+	SIGNAL A, B                                         : STD_LOGIC_VECTOR(31 DOWNTO 0);
+    	SIGNAL ALU_ROp , ALU_Op                             : STD_LOGIC_VECTOR(2 DOWNTO 0 );
+    	SIGNAL Immediate_value_initial                      : STD_LOGIC_VECTOR(15 DOWNTO 0);
 	SIGNAL Immediate_value                              : STD_LOGIC_VECTOR(15 DOWNTO 0);
 	SIGNAL PCIncby1                                     : STD_LOGIC_VECTOR(31 DOWNTO 0);
 	SIGNAL JumpAddress                                  : STD_LOGIC_VECTOR(25 DOWNTO 0);
 	SIGNAL Opcode                                       : STD_LOGIC_VECTOR(5 downto 0);
-    SIGNAL numeric_immediate,integer_immediate_N, Imm   : INTEGER;
-    SIGNAL NextPCSignal                                 : STD_logic_vector(31 downto 0):=X"00000000";
+    	SIGNAL numeric_immediate,integer_immediate_N, Imm   : INTEGER;
+    	SIGNAL NextPCSignal                                 : STD_logic_vector(31 downto 0):=X"00000000";
 
 begin
 
@@ -78,10 +78,10 @@ begin
 	BEQ     <= '1' when Opcode = "001010" else '0';
 	BNE     <= '1' when Opcode = "001011" else '0';
 	JUMP    <= '1' when Opcode = "001100" else '0';
-	HAL	    <= '1' when Opcode = "111111" else '0';
+	HAL	<= '1' when Opcode = "111111" else '0';
 	R_ADD   <= '1' when ALU_ROp ="000" else '0';
 	R_SUB   <= '1' when ALU_ROp ="001" else '0';
-    R_AND   <= '1' when ALU_ROp ="010" else '0';
+    	R_AND   <= '1' when ALU_ROp ="010" else '0';
 	R_OR    <= '1' when ALU_ROp ="011" else '0';
 	R_NOR   <= '1' when ALU_ROp ="100" else '0';
 
@@ -92,23 +92,23 @@ begin
 			        NextPCSignal <= X"00000000";
 		        end if;
 		
-                if(start='1' and clr='0') then
-                    If ((BEQ ='1' and (A=B)) or (BLT ='1' and (A < B)) or (BNE ='1' and (A /= B))) then
-                        NextPCSignal <= conv_std_logic_vector(conv_integer(PCIncby1) + Imm,32);
-                    Elsif (Jump = '1') then
-                        NextPCSignal <= PCincby1(31 downto 26) & JumpAddress;
-                    Elsif (skip ='1') then
-                        NextPCSignal <=NextPCSignal + '1' ;
-                    Elsif (HAL ='1') then
-                        NextPCSignal <=NextPCSignal;
-                    Else
-                        NextPCSignal <=NextPCSignal + '1' ;
-                    End if;
-                end if;
+			if(start='1' and clr='0') then
+			    If ((BEQ ='1' and (A=B)) or (BLT ='1' and (A < B)) or (BNE ='1' and (A /= B))) then
+				NextPCSignal <= conv_std_logic_vector(conv_integer(PCIncby1) + Imm,32);
+			    Elsif (Jump = '1') then
+				NextPCSignal <= PCincby1(31 downto 26) & JumpAddress;
+			    Elsif (skip ='1') then
+				NextPCSignal <=NextPCSignal + '1' ;
+			    Elsif (HAL ='1') then
+				NextPCSignal <=NextPCSignal;
+			    Else
+				NextPCSignal <=NextPCSignal + '1' ;
+			    End if;
+			end if;
             End if;
     End Process;
 
-	Process (R_type, ADDI, SUBI, ANDI, ORI, LWD, SWD, R_AND, R_OR, R_NOR, R_SUB, R_ADD, SHL, SHR)
+    Process (R_type, ADDI, SUBI, ANDI, ORI, LWD, SWD, R_AND, R_OR, R_NOR, R_SUB, R_ADD, SHL, SHR)
         begin
             IF(((ADDI='1' or LWD ='1' or SWD ='1') and R_type='0') OR (R_ADD ='1' and R_type='1')) then
 		    	ALU_Op <= "000";
@@ -129,7 +129,7 @@ begin
             END IF;
     END Process;
 	
-	ALUOp <= ALU_Op;
+    ALUOp <= ALU_Op;
 
     Branch    <= BEQ;
     BranchNE  <= BNE;

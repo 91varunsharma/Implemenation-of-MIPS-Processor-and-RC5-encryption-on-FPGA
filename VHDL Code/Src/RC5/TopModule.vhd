@@ -40,7 +40,7 @@ architecture Behavioral of TopModule is
     component ControlUnit
         Port (  Clk         :   in  STD_LOGIC;
                 Instruction :   in  STD_LOGIC_VECTOR(31 DOWNTO 0);
-                skip		:   in  STD_LOGIC;
+                skip	    :   in  STD_LOGIC;
                 Read_Data1  :   in  STD_LOGIC_VECTOR (31 downto 0);
                 Read_Data2  :   in  STD_LOGIC_VECTOR (31 downto 0);
                 start       :   in  STD_LOGIC;
@@ -77,9 +77,9 @@ architecture Behavioral of TopModule is
         PORT(	Clk         :   In  std_logic;
                 Instruction :   IN  STD_LOGIC_VECTOR( 31 DOWNTO 0 );
                 write_data  :   IN  STD_LOGIC_VECTOR( 31 DOWNTO 0 );   -- Data to be written to the reister file
-                WriteEn     :   IN 	STD_LOGIC;  -- To be made '1' when register file needs to be updated
-                read_data1	:   OUT STD_LOGIC_VECTOR( 31 DOWNTO 0 );  -- Operand1
-                read_data2  :   OUT STD_LOGIC_VECTOR( 31 DOWNTO 0 );  -- Operand2
+                WriteEn     :   IN  STD_LOGIC;                         -- To be made '1' when register file needs to be updated
+                read_data1  :   OUT STD_LOGIC_VECTOR( 31 DOWNTO 0 );   -- Operand1
+                read_data2  :   OUT STD_LOGIC_VECTOR( 31 DOWNTO 0 );   -- Operand2
                 SignEx      :   OUT STD_LOGIC_VECTOR( 31 DOWNTO 0 );
                 Rtype       :   in  STD_LOGIC;
                 LW          :   in  STD_LOGIC;
@@ -88,8 +88,8 @@ architecture Behavioral of TopModule is
                 BNE         :   in  std_logic;
                 BEQ         :   in  std_logic;
                 reg_arr     :   out std_logic_vector(31 downto 0);
-                skip        : out std_logic;
-                reg_file    : out register_output);
+                skip        :   out std_logic;
+                reg_file    :   out register_output);
     END component;
 
     component IFetch
@@ -99,12 +99,12 @@ architecture Behavioral of TopModule is
     End component;
  
     signal instruction,NextPC,ReadData1,ReadData2,ALUResult,Write_data,DMemReadData,DMemOutData, reg_arr,SignEx : std_logic_vector(31 downto 0);
-    signal ALUop: std_logic_vector(2 downto 0);
-    signal dmem_addressout: std_logic_vector(6 downto 0);
+    signal ALUop                : std_logic_vector(2 downto 0);
+    signal dmem_addressout      : std_logic_vector(6 downto 0);
     signal RType,LW,SWD,WriteEN,DMemRead,DMemWrite,BEQ,BLT,BNE, ALUSrc, skip: std_logic;
-    signal clr,start: std_logic:='0';
-    Signal datamemory: data_output;
-    Signal reg_file: register_output;
+    signal clr,start            : std_logic:='0';
+    Signal datamemory           : data_output;
+    Signal reg_file             : register_output;
 
     component Hex2LED
         port (  CLK :   in  STD_LOGIC;
@@ -113,14 +113,14 @@ architecture Behavioral of TopModule is
     end component;
 
     type arr is array(0 to 22) of std_logic_vector(7 downto 0);
-    signal NAME: arr;
-    constant CNTR_MAX : std_logic_vector(23 downto 0) := x"030D40"; --100,000,000 = clk cycles per second
-    constant VAL_MAX : std_logic_vector(3 downto 0) := "1001"; --9
+    signal NAME             : arr;
+    constant CNTR_MAX       : std_logic_vector(23 downto 0) := x"030D40"; --100,000,000 = clk cycles per second
+    constant VAL_MAX        : std_logic_vector(3 downto 0) := "1001"; --9
     constant RESET_CNTR_MAX : std_logic_vector(17 downto 0) := "110000110101000000";-- 100,000,000 * 0.002 = 200,000 = clk cycles per 2 ms
-    signal Cntr : std_logic_vector(26 downto 0) := (others => '0');
-    signal Val : std_logic_vector(3 downto 0) := (others => '0');
-    signal hexval: std_logic_vector(31 downto 0):=x"0123ABCD";
-    signal clk_cntr_reg : std_logic_vector (4 downto 0) := (others=>'0');
+    signal Cntr             : std_logic_vector(26 downto 0) := (others => '0');
+    signal Val              : std_logic_vector(3 downto 0) := (others => '0');
+    signal hexval           : std_logic_vector(31 downto 0):=x"0123ABCD";
+    signal clk_cntr_reg     : std_logic_vector (4 downto 0) := (others=>'0');
 
 
 begin
