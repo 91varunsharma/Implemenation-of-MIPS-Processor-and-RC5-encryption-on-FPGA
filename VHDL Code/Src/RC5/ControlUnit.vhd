@@ -17,10 +17,10 @@ use ieee.std_logic_arith.all;
 entity ControlUnit is
    Port (   Clk         : in    STD_LOGIC;
     	    Instruction : in    STD_LOGIC_VECTOR(31 DOWNTO 0);
-            skip		: in    STD_LOGIC;
+            skip	: in    STD_LOGIC;
             Read_Data1  : in    STD_LOGIC_VECTOR (31 downto 0);
             Read_Data2  : in    STD_LOGIC_VECTOR (31 downto 0);
-            start		: in    STD_LOGIC;
+            start	: in    STD_LOGIC;
             ALUOp       : out   STD_LOGIC_VECTOR (2 downto 0);
             NextPC      : out   STD_LOGIC_VECTOR (31 downto 0);
             Rtype       : out   STD_LOGIC;
