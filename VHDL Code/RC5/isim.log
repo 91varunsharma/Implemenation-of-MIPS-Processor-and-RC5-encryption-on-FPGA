@@ -23,27 +23,10 @@ Finished circuit initialization process.
 at 0 ps, Instance /topmodule/ALUPort/ : Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
 at 0 ps, Instance /topmodule/ALUPort/ : Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
 # restart
-# isim force add /topmodule/clr 1 -radix bin
-# run 10ns
-Simulator is doing circuit initialization process.
-at 0 ps, Instance /topmodule/IDecodePort/ : Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
-at 0 ps, Instance /topmodule/IDecodePort/ : Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
-at 0 ps, Instance /topmodule/ALUPort/ : Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
-at 0 ps, Instance /topmodule/ALUPort/ : Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
-at 0 ps, Instance /topmodule/ControlUnitPort/ : Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
-at 0 ps, Instance /topmodule/ControlUnitPort/ : Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
-at 0 ps, Instance /topmodule/IFetchPort/ : Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
-at 0 ps, Instance /topmodule/DMemoryPort/ : Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
-Finished circuit initialization process.
-at 0 ps, Instance /topmodule/ALUPort/ : Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
-at 0 ps, Instance /topmodule/ALUPort/ : Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
-# isim force add /topmodule/clk 1 -radix bin -value 0 -radix bin -time 5 ns -repeat 10 ns
-# isim force remove /topmodule/clr
-# run 10ns
-# run 10ns
 # restart
-# isim force add /topmodule/start 1 -radix bin
 # isim force add /topmodule/clk 1 -radix bin -value 0 -radix bin -time 5 ns -repeat 10 ns
+# isim force add /topmodule/clk 1 -radix bin -value 0 -radix bin -time 5 ns -repeat 10 ns
+# isim force add /topmodule/btn[3] 1 -radix bin
 # run 10ns
 Simulator is doing circuit initialization process.
 at 0 ps, Instance /topmodule/IDecodePort/ : Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
@@ -58,6 +41,88 @@ Finished circuit initialization process.
 at 0 ps, Instance /topmodule/IDecodePort/ : Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
 at 0 ps, Instance /topmodule/ALUPort/ : Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
 at 0 ps, Instance /topmodule/ALUPort/ : Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
-at 0 ps, Instance /topmodule/DMemoryPort/ : Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+at 0 ps, Instance /topmodule/ALUPort/ : Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+at 0 ps, Instance /topmodule/ALUPort/ : Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
 # run 10ns
-# restart
+# run 10ns
+# run 10ns
+# run 10ns
+# run 10ns
+# run 10ns
+# run 10ns
+# run 10ns
+# run 10ns
+at 100 ns(8), Instance /topmodule/ALUPort/ : Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+at 100 ns(8), Instance /topmodule/ALUPort/ : Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+# run 10ns
+at 110 ns(4), Instance /topmodule/ALUPort/ : Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+at 110 ns(4), Instance /topmodule/ALUPort/ : Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+# run 10ns
+# run 10ns
+at 130 ns(7), Instance /topmodule/DMemoryPort/ : Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+# run 10ns
+at 140 ns(8), Instance /topmodule/ALUPort/ : Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+at 140 ns(8), Instance /topmodule/ALUPort/ : Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+# run 10ns
+# run 10ns
+at 160 ns(6), Instance /topmodule/ALUPort/ : Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+at 160 ns(6), Instance /topmodule/ALUPort/ : Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+# run 10ns
+# run 10ns
+# run 10ns
+# run 10ns
+# run 10ns
+# run 10ns
+# run 10ns
+at 230 ns(6), Instance /topmodule/ALUPort/ : Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+at 230 ns(6), Instance /topmodule/ALUPort/ : Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+# run 10ns
+# run 10ns
+at 250 ns(6), Instance /topmodule/ALUPort/ : Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+at 250 ns(6), Instance /topmodule/ALUPort/ : Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+# run 10ns
+at 260 ns(1), Instance /topmodule/DMemoryPort/ : Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+at 260 ns(8), Instance /topmodule/ALUPort/ : Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+at 260 ns(8), Instance /topmodule/ALUPort/ : Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+# run 10ns
+at 270 ns(7), Instance /topmodule/DMemoryPort/ : Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+# run 10ns
+at 280 ns(8), Instance /topmodule/ALUPort/ : Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+at 280 ns(8), Instance /topmodule/ALUPort/ : Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+# run 10ns
+# run 10ns
+at 300 ns(8), Instance /topmodule/ALUPort/ : Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+at 300 ns(8), Instance /topmodule/ALUPort/ : Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+# run 10ns
+# run 10ns
+# run 10ns
+# run 10ns
+at 340 ns(8), Instance /topmodule/ALUPort/ : Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+at 340 ns(8), Instance /topmodule/ALUPort/ : Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+# run 10ns
+# run 10ns
+# run 10ns
+# run 10ns
+# run 10ns
+at 390 ns(8), Instance /topmodule/ALUPort/ : Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+at 390 ns(8), Instance /topmodule/ALUPort/ : Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+# run 10ns
+# run 10ns
+at 410 ns(8), Instance /topmodule/ALUPort/ : Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+at 410 ns(8), Instance /topmodule/ALUPort/ : Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+# run 10ns
+# run 10ns
+at 430 ns(8), Instance /topmodule/ALUPort/ : Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+at 430 ns(8), Instance /topmodule/ALUPort/ : Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+# run 10ns
+# run 10ns
+at 450 ns(8), Instance /topmodule/ALUPort/ : Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+at 450 ns(8), Instance /topmodule/ALUPort/ : Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+# run 10ns
+# run 10ns
+at 470 ns(8), Instance /topmodule/ALUPort/ : Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+at 470 ns(8), Instance /topmodule/ALUPort/ : Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+# run 10ns
+# run 10ns
+# run 10ns
+# run 10ns
