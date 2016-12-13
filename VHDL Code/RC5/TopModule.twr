@@ -30,19 +30,19 @@ Timing constraint: TS_sys_clk_pin = PERIOD TIMEGRP "sys_clk_pin" 100 MHz HIGH
 50%;
 For more information, see Period Analysis in the Timing Closure User Guide (UG612).
 
- 2975 paths analyzed, 201 endpoints analyzed, 0 failing endpoints
- 0 timing errors detected. (0 setup errors, 0 hold errors, 0 component switching limit errors)
- Minimum period is   4.688ns.
+ 19647689825 paths analyzed, 10697 endpoints analyzed, 5295 failing endpoints
+ 5295 timing errors detected. (5295 setup errors, 0 hold errors, 0 component switching limit errors)
+ Minimum period is  15.590ns.
 --------------------------------------------------------------------------------
 
-Paths for end point IDecodePort/Reg_array_3_0 (SLICE_X4Y86.AX), 112 paths
+Paths for end point IDecodePort/Reg_array_2_25 (SLICE_X8Y58.CX), 14163885 paths
 --------------------------------------------------------------------------------
-Slack (setup path):     5.312ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               ControlUnitPort/NextPCSignal_1_1 (FF)
-  Destination:          IDecodePort/Reg_array_3_0 (FF)
+Slack (setup path):     -5.590ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               ControlUnitPort/NextPCSignal_5 (FF)
+  Destination:          IDecodePort/Reg_array_2_25 (FF)
   Requirement:          10.000ns
-  Data Path Delay:      4.627ns (Levels of Logic = 5)
-  Clock Path Skew:      -0.026ns (0.108 - 0.134)
+  Data Path Delay:      15.450ns (Levels of Logic = 15)
+  Clock Path Skew:      -0.105ns (0.580 - 0.685)
   Source Clock:         CLK_BUFGP rising at 0.000ns
   Destination Clock:    CLK_BUFGP rising at 10.000ns
   Clock Uncertainty:    0.035ns
@@ -53,41 +53,72 @@ Slack (setup path):     5.312ns (requirement - (data path - clock path skew + un
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: ControlUnitPort/NextPCSignal_1_1 to IDecodePort/Reg_array_3_0
+  Maximum Data Path at Slow Process Corner: ControlUnitPort/NextPCSignal_5 to IDecodePort/Reg_array_2_25
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X5Y87.AMUX     Tshcko                0.431   ControlUnitPort/NextPCSignal<0>
-                                                       ControlUnitPort/NextPCSignal_1_1
-    SLICE_X4Y85.B1       net (fanout=1)        0.689   ControlUnitPort/NextPCSignal_1_1
-    SLICE_X4Y85.B        Tilo                  0.097   Mmux_SSEG_CA4
-                                                       IDecodePort/Mmux_read_data1_821
-    SLICE_X3Y85.AX       net (fanout=2)        0.242   IDecodePort/Mmux_read_data1_4
-    SLICE_X3Y85.DMUX     Taxd                  0.591   ALUPort/Madd_A_input[31]_B_input[31]_add_5_OUT_cy<3>
-                                                       ALUPort/Madd_A_input[31]_B_input[31]_add_5_OUT_cy<3>
-    SLICE_X4Y83.D2       net (fanout=5)        0.756   ALUPort/A_input[31]_B_input[31]_add_5_OUT<3>
-    SLICE_X4Y83.D        Tilo                  0.097   Val<2>
-                                                       ALUPort/Mmux_ALU_output264
-    SLICE_X6Y85.B4       net (fanout=2)        0.521   ALUResult<3>
-    SLICE_X6Y85.B        Tilo                  0.097   IDecodePort/Reg_array_1<0>
-                                                       Mmux_Write_data12_SW0_SW0_SW0_SW0_SW0
-    SLICE_X6Y85.A1       net (fanout=1)        0.648   N98
-    SLICE_X6Y85.A        Tilo                  0.097   IDecodePort/Reg_array_1<0>
-                                                       Mmux_Write_data12
-    SLICE_X4Y86.AX       net (fanout=1)        0.322   Write_data<0>
-    SLICE_X4Y86.CLK      Tdick                 0.039   IDecodePort/Reg_array_3<31>
-                                                       IDecodePort/Reg_array_3_0
+    SLICE_X7Y53.CQ       Tcko                  0.341   ControlUnitPort/NextPCSignal<6>
+                                                       ControlUnitPort/NextPCSignal_5
+    SLICE_X7Y42.A1       net (fanout=202)      1.356   ControlUnitPort/NextPCSignal<5>
+    SLICE_X7Y42.A        Tilo                  0.097   IFetchPort/Mram_Instruction1591218
+                                                       SF1_SW3
+    SLICE_X7Y42.B4       net (fanout=5)        0.799   N68
+    SLICE_X7Y42.B        Tilo                  0.097   IFetchPort/Mram_Instruction1591218
+                                                       IFetchPort/Mram_Instruction1591219
+    SLICE_X5Y42.B4       net (fanout=1)        0.515   IFetchPort/Mram_Instruction1591218
+    SLICE_X5Y42.B        Tilo                  0.097   N861
+                                                       IFetchPort/Mram_Instruction1591223
+    SLICE_X9Y44.A3       net (fanout=1)        0.729   IFetchPort/Mram_Instruction1591222
+    SLICE_X9Y44.A        Tilo                  0.097   IDecodePort/Reg_array_26<3>
+                                                       IFetchPort/Mram_Instruction1591235
+    SLICE_X3Y46.C6       net (fanout=262)      0.729   instruction<17>
+    SLICE_X3Y46.C        Tilo                  0.097   IDecodePort/Reg_array_4<3>
+                                                       IDecodePort/Mmux_read_data2_1011
+    SLICE_X9Y56.D4       net (fanout=1)        0.784   IDecodePort/Mmux_read_data2_1011
+    SLICE_X9Y56.CMUX     Topdc                 0.408   DMemoryPort/DMem_20<1>
+                                                       IDecodePort/Mmux_read_data2_411
+                                                       IDecodePort/Mmux_read_data2_2_f7_10
+    SLICE_X13Y56.B6      net (fanout=149)      0.549   ReadData2<1>
+    SLICE_X13Y56.B       Tilo                  0.097   DMemoryPort/DMem_122<3>
+                                                       ALUPort/Mmux_B_input121
+    SLICE_X13Y67.A2      net (fanout=56)       1.193   ALUPort/B_input<1>
+    SLICE_X13Y67.A       Tilo                  0.097   IDecodePort/Reg_array_8<23>
+                                                       ALUPort/Sh1241
+    SLICE_X10Y54.B3      net (fanout=6)        0.923   ALUPort/Sh124
+    SLICE_X10Y54.B       Tilo                  0.097   ALUPort/Sh144
+                                                       ALUPort/Sh1441
+    SLICE_X10Y54.A4      net (fanout=2)        0.327   ALUPort/Sh144
+    SLICE_X10Y54.A       Tilo                  0.097   ALUPort/Sh144
+                                                       ALUPort/Mmux_ALU_output17
+    SLICE_X33Y52.A6      net (fanout=1)        0.639   ALUPort/Mmux_ALU_output15
+    SLICE_X33Y52.A       Tilo                  0.097   DMemoryPort/mux28_12
+                                                       ALUPort/Mmux_ALU_output110
+    SLICE_X33Y84.B5      net (fanout=1153)     1.457   ALUResult<0>
+    SLICE_X33Y84.B       Tilo                  0.097   DMemoryPort/DMem_63<27>
+                                                       DMemoryPort/mux17_16
+    SLICE_X33Y65.B4      net (fanout=1)        1.030   DMemoryPort/mux17_16
+    SLICE_X33Y65.B       Tilo                  0.097   DMemoryPort/DMem_95<27>
+                                                       DMemoryPort/mux17_10
+    SLICE_X33Y79.A5      net (fanout=1)        0.698   DMemoryPort/mux17_10
+    SLICE_X33Y79.A       Tilo                  0.097   DMemoryPort/DMem_28<27>
+                                                       DMemoryPort/mux17_4
+    SLICE_X13Y76.B5      net (fanout=1)        0.646   DMemoryPort/mux17_4
+    SLICE_X13Y76.B       Tilo                  0.097   IDecodePort/Reg_array_11<27>
+                                                       Mmux_Write_data188
+    SLICE_X8Y58.CX       net (fanout=31)       0.962   Write_data<25>
+    SLICE_X8Y58.CLK      Tdick                 0.007   IDecodePort/Reg_array_2<26>
+                                                       IDecodePort/Reg_array_2_25
     -------------------------------------------------  ---------------------------
-    Total                                      4.627ns (1.449ns logic, 3.178ns route)
-                                                       (31.3% logic, 68.7% route)
+    Total                                     15.450ns (2.114ns logic, 13.336ns route)
+                                                       (13.7% logic, 86.3% route)
 
 --------------------------------------------------------------------------------
-Slack (setup path):     5.416ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               ControlUnitPort/NextPCSignal_2 (FF)
-  Destination:          IDecodePort/Reg_array_3_0 (FF)
+Slack (setup path):     -5.563ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               ControlUnitPort/NextPCSignal_5 (FF)
+  Destination:          IDecodePort/Reg_array_2_25 (FF)
   Requirement:          10.000ns
-  Data Path Delay:      4.523ns (Levels of Logic = 4)
-  Clock Path Skew:      -0.026ns (0.108 - 0.134)
+  Data Path Delay:      15.423ns (Levels of Logic = 15)
+  Clock Path Skew:      -0.105ns (0.580 - 0.685)
   Source Clock:         CLK_BUFGP rising at 0.000ns
   Destination Clock:    CLK_BUFGP rising at 10.000ns
   Clock Uncertainty:    0.035ns
@@ -98,39 +129,72 @@ Slack (setup path):     5.416ns (requirement - (data path - clock path skew + un
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: ControlUnitPort/NextPCSignal_2 to IDecodePort/Reg_array_3_0
+  Maximum Data Path at Slow Process Corner: ControlUnitPort/NextPCSignal_5 to IDecodePort/Reg_array_2_25
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X4Y87.DQ       Tcko                  0.341   ControlUnitPort/NextPCSignal<2>
-                                                       ControlUnitPort/NextPCSignal_2
-    SLICE_X3Y85.B1       net (fanout=56)       0.894   ControlUnitPort/NextPCSignal<2>
-    SLICE_X3Y85.DMUX     Topbd                 0.711   ALUPort/Madd_A_input[31]_B_input[31]_add_5_OUT_cy<3>
-                                                       ALUPort/Mmux_B_input1211
-                                                       ALUPort/Madd_A_input[31]_B_input[31]_add_5_OUT_cy<3>
-    SLICE_X4Y83.D2       net (fanout=5)        0.756   ALUPort/A_input[31]_B_input[31]_add_5_OUT<3>
-    SLICE_X4Y83.D        Tilo                  0.097   Val<2>
-                                                       ALUPort/Mmux_ALU_output264
-    SLICE_X6Y85.B4       net (fanout=2)        0.521   ALUResult<3>
-    SLICE_X6Y85.B        Tilo                  0.097   IDecodePort/Reg_array_1<0>
-                                                       Mmux_Write_data12_SW0_SW0_SW0_SW0_SW0
-    SLICE_X6Y85.A1       net (fanout=1)        0.648   N98
-    SLICE_X6Y85.A        Tilo                  0.097   IDecodePort/Reg_array_1<0>
-                                                       Mmux_Write_data12
-    SLICE_X4Y86.AX       net (fanout=1)        0.322   Write_data<0>
-    SLICE_X4Y86.CLK      Tdick                 0.039   IDecodePort/Reg_array_3<31>
-                                                       IDecodePort/Reg_array_3_0
+    SLICE_X7Y53.CQ       Tcko                  0.341   ControlUnitPort/NextPCSignal<6>
+                                                       ControlUnitPort/NextPCSignal_5
+    SLICE_X7Y42.A1       net (fanout=202)      1.356   ControlUnitPort/NextPCSignal<5>
+    SLICE_X7Y42.A        Tilo                  0.097   IFetchPort/Mram_Instruction1591218
+                                                       SF1_SW3
+    SLICE_X7Y42.B4       net (fanout=5)        0.799   N68
+    SLICE_X7Y42.B        Tilo                  0.097   IFetchPort/Mram_Instruction1591218
+                                                       IFetchPort/Mram_Instruction1591219
+    SLICE_X5Y42.B4       net (fanout=1)        0.515   IFetchPort/Mram_Instruction1591218
+    SLICE_X5Y42.B        Tilo                  0.097   N861
+                                                       IFetchPort/Mram_Instruction1591223
+    SLICE_X9Y44.A3       net (fanout=1)        0.729   IFetchPort/Mram_Instruction1591222
+    SLICE_X9Y44.A        Tilo                  0.097   IDecodePort/Reg_array_26<3>
+                                                       IFetchPort/Mram_Instruction1591235
+    SLICE_X4Y44.D6       net (fanout=262)      0.597   instruction<17>
+    SLICE_X4Y44.D        Tilo                  0.097   IDecodePort/Reg_array_30<3>
+                                                       IDecodePort/Mmux_read_data2_834
+    SLICE_X9Y56.C4       net (fanout=1)        0.882   IDecodePort/Mmux_read_data2_834
+    SLICE_X9Y56.CMUX     Tilo                  0.415   DMemoryPort/DMem_20<1>
+                                                       IDecodePort/Mmux_read_data2_311
+                                                       IDecodePort/Mmux_read_data2_2_f7_10
+    SLICE_X13Y56.B6      net (fanout=149)      0.549   ReadData2<1>
+    SLICE_X13Y56.B       Tilo                  0.097   DMemoryPort/DMem_122<3>
+                                                       ALUPort/Mmux_B_input121
+    SLICE_X13Y67.A2      net (fanout=56)       1.193   ALUPort/B_input<1>
+    SLICE_X13Y67.A       Tilo                  0.097   IDecodePort/Reg_array_8<23>
+                                                       ALUPort/Sh1241
+    SLICE_X10Y54.B3      net (fanout=6)        0.923   ALUPort/Sh124
+    SLICE_X10Y54.B       Tilo                  0.097   ALUPort/Sh144
+                                                       ALUPort/Sh1441
+    SLICE_X10Y54.A4      net (fanout=2)        0.327   ALUPort/Sh144
+    SLICE_X10Y54.A       Tilo                  0.097   ALUPort/Sh144
+                                                       ALUPort/Mmux_ALU_output17
+    SLICE_X33Y52.A6      net (fanout=1)        0.639   ALUPort/Mmux_ALU_output15
+    SLICE_X33Y52.A       Tilo                  0.097   DMemoryPort/mux28_12
+                                                       ALUPort/Mmux_ALU_output110
+    SLICE_X33Y84.B5      net (fanout=1153)     1.457   ALUResult<0>
+    SLICE_X33Y84.B       Tilo                  0.097   DMemoryPort/DMem_63<27>
+                                                       DMemoryPort/mux17_16
+    SLICE_X33Y65.B4      net (fanout=1)        1.030   DMemoryPort/mux17_16
+    SLICE_X33Y65.B       Tilo                  0.097   DMemoryPort/DMem_95<27>
+                                                       DMemoryPort/mux17_10
+    SLICE_X33Y79.A5      net (fanout=1)        0.698   DMemoryPort/mux17_10
+    SLICE_X33Y79.A       Tilo                  0.097   DMemoryPort/DMem_28<27>
+                                                       DMemoryPort/mux17_4
+    SLICE_X13Y76.B5      net (fanout=1)        0.646   DMemoryPort/mux17_4
+    SLICE_X13Y76.B       Tilo                  0.097   IDecodePort/Reg_array_11<27>
+                                                       Mmux_Write_data188
+    SLICE_X8Y58.CX       net (fanout=31)       0.962   Write_data<25>
+    SLICE_X8Y58.CLK      Tdick                 0.007   IDecodePort/Reg_array_2<26>
+                                                       IDecodePort/Reg_array_2_25
     -------------------------------------------------  ---------------------------
-    Total                                      4.523ns (1.382ns logic, 3.141ns route)
-                                                       (30.6% logic, 69.4% route)
+    Total                                     15.423ns (2.121ns logic, 13.302ns route)
+                                                       (13.8% logic, 86.2% route)
 
 --------------------------------------------------------------------------------
-Slack (setup path):     5.423ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               IDecodePort/Reg_array_1_0 (FF)
-  Destination:          IDecodePort/Reg_array_3_0 (FF)
+Slack (setup path):     -5.541ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               ControlUnitPort/NextPCSignal_5 (FF)
+  Destination:          IDecodePort/Reg_array_2_25 (FF)
   Requirement:          10.000ns
-  Data Path Delay:      4.519ns (Levels of Logic = 5)
-  Clock Path Skew:      -0.023ns (0.108 - 0.131)
+  Data Path Delay:      15.401ns (Levels of Logic = 15)
+  Clock Path Skew:      -0.105ns (0.580 - 0.685)
   Source Clock:         CLK_BUFGP rising at 0.000ns
   Destination Clock:    CLK_BUFGP rising at 10.000ns
   Clock Uncertainty:    0.035ns
@@ -141,44 +205,75 @@ Slack (setup path):     5.423ns (requirement - (data path - clock path skew + un
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: IDecodePort/Reg_array_1_0 to IDecodePort/Reg_array_3_0
+  Maximum Data Path at Slow Process Corner: ControlUnitPort/NextPCSignal_5 to IDecodePort/Reg_array_2_25
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X6Y85.AQ       Tcko                  0.393   IDecodePort/Reg_array_1<0>
-                                                       IDecodePort/Reg_array_1_0
-    SLICE_X4Y85.B2       net (fanout=6)        0.619   IDecodePort/Reg_array_1<0>
-    SLICE_X4Y85.B        Tilo                  0.097   Mmux_SSEG_CA4
-                                                       IDecodePort/Mmux_read_data1_821
-    SLICE_X3Y85.AX       net (fanout=2)        0.242   IDecodePort/Mmux_read_data1_4
-    SLICE_X3Y85.DMUX     Taxd                  0.591   ALUPort/Madd_A_input[31]_B_input[31]_add_5_OUT_cy<3>
-                                                       ALUPort/Madd_A_input[31]_B_input[31]_add_5_OUT_cy<3>
-    SLICE_X4Y83.D2       net (fanout=5)        0.756   ALUPort/A_input[31]_B_input[31]_add_5_OUT<3>
-    SLICE_X4Y83.D        Tilo                  0.097   Val<2>
-                                                       ALUPort/Mmux_ALU_output264
-    SLICE_X6Y85.B4       net (fanout=2)        0.521   ALUResult<3>
-    SLICE_X6Y85.B        Tilo                  0.097   IDecodePort/Reg_array_1<0>
-                                                       Mmux_Write_data12_SW0_SW0_SW0_SW0_SW0
-    SLICE_X6Y85.A1       net (fanout=1)        0.648   N98
-    SLICE_X6Y85.A        Tilo                  0.097   IDecodePort/Reg_array_1<0>
-                                                       Mmux_Write_data12
-    SLICE_X4Y86.AX       net (fanout=1)        0.322   Write_data<0>
-    SLICE_X4Y86.CLK      Tdick                 0.039   IDecodePort/Reg_array_3<31>
-                                                       IDecodePort/Reg_array_3_0
+    SLICE_X7Y53.CQ       Tcko                  0.341   ControlUnitPort/NextPCSignal<6>
+                                                       ControlUnitPort/NextPCSignal_5
+    SLICE_X7Y42.A1       net (fanout=202)      1.356   ControlUnitPort/NextPCSignal<5>
+    SLICE_X7Y42.A        Tilo                  0.097   IFetchPort/Mram_Instruction1591218
+                                                       SF1_SW3
+    SLICE_X7Y42.B4       net (fanout=5)        0.799   N68
+    SLICE_X7Y42.B        Tilo                  0.097   IFetchPort/Mram_Instruction1591218
+                                                       IFetchPort/Mram_Instruction1591219
+    SLICE_X5Y42.B4       net (fanout=1)        0.515   IFetchPort/Mram_Instruction1591218
+    SLICE_X5Y42.B        Tilo                  0.097   N861
+                                                       IFetchPort/Mram_Instruction1591223
+    SLICE_X9Y44.A3       net (fanout=1)        0.729   IFetchPort/Mram_Instruction1591222
+    SLICE_X9Y44.A        Tilo                  0.097   IDecodePort/Reg_array_26<3>
+                                                       IFetchPort/Mram_Instruction1591235
+    SLICE_X3Y45.C5       net (fanout=262)      0.778   instruction<17>
+    SLICE_X3Y45.C        Tilo                  0.097   IDecodePort/Reg_array_29<3>
+                                                       IDecodePort/Mmux_read_data2_10
+    SLICE_X9Y51.D4       net (fanout=1)        0.736   IDecodePort/Mmux_read_data2_10
+    SLICE_X9Y51.CMUX     Topdc                 0.408   DMemoryPort/DMem_62<0>
+                                                       IDecodePort/Mmux_read_data2_4
+                                                       IDecodePort/Mmux_read_data2_2_f7
+    SLICE_X13Y55.A6      net (fanout=141)      0.596   ReadData2<0>
+    SLICE_X13Y55.A       Tilo                  0.097   DMemoryPort/DMem_120<3>
+                                                       ALUPort/Mmux_B_input110
+    SLICE_X13Y67.A1      net (fanout=62)       1.096   ALUPort/B_input<0>
+    SLICE_X13Y67.A       Tilo                  0.097   IDecodePort/Reg_array_8<23>
+                                                       ALUPort/Sh1241
+    SLICE_X10Y54.B3      net (fanout=6)        0.923   ALUPort/Sh124
+    SLICE_X10Y54.B       Tilo                  0.097   ALUPort/Sh144
+                                                       ALUPort/Sh1441
+    SLICE_X10Y54.A4      net (fanout=2)        0.327   ALUPort/Sh144
+    SLICE_X10Y54.A       Tilo                  0.097   ALUPort/Sh144
+                                                       ALUPort/Mmux_ALU_output17
+    SLICE_X33Y52.A6      net (fanout=1)        0.639   ALUPort/Mmux_ALU_output15
+    SLICE_X33Y52.A       Tilo                  0.097   DMemoryPort/mux28_12
+                                                       ALUPort/Mmux_ALU_output110
+    SLICE_X33Y84.B5      net (fanout=1153)     1.457   ALUResult<0>
+    SLICE_X33Y84.B       Tilo                  0.097   DMemoryPort/DMem_63<27>
+                                                       DMemoryPort/mux17_16
+    SLICE_X33Y65.B4      net (fanout=1)        1.030   DMemoryPort/mux17_16
+    SLICE_X33Y65.B       Tilo                  0.097   DMemoryPort/DMem_95<27>
+                                                       DMemoryPort/mux17_10
+    SLICE_X33Y79.A5      net (fanout=1)        0.698   DMemoryPort/mux17_10
+    SLICE_X33Y79.A       Tilo                  0.097   DMemoryPort/DMem_28<27>
+                                                       DMemoryPort/mux17_4
+    SLICE_X13Y76.B5      net (fanout=1)        0.646   DMemoryPort/mux17_4
+    SLICE_X13Y76.B       Tilo                  0.097   IDecodePort/Reg_array_11<27>
+                                                       Mmux_Write_data188
+    SLICE_X8Y58.CX       net (fanout=31)       0.962   Write_data<25>
+    SLICE_X8Y58.CLK      Tdick                 0.007   IDecodePort/Reg_array_2<26>
+                                                       IDecodePort/Reg_array_2_25
     -------------------------------------------------  ---------------------------
-    Total                                      4.519ns (1.411ns logic, 3.108ns route)
-                                                       (31.2% logic, 68.8% route)
+    Total                                     15.401ns (2.114ns logic, 13.287ns route)
+                                                       (13.7% logic, 86.3% route)
 
 --------------------------------------------------------------------------------
 
-Paths for end point IDecodePort/Reg_array_2_1 (SLICE_X2Y87.DX), 136 paths
+Paths for end point IDecodePort/Reg_array_26_25 (SLICE_X10Y59.CX), 14163885 paths
 --------------------------------------------------------------------------------
-Slack (setup path):     5.520ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               ControlUnitPort/NextPCSignal_1_1 (FF)
-  Destination:          IDecodePort/Reg_array_2_1 (FF)
+Slack (setup path):     -5.506ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               ControlUnitPort/NextPCSignal_5 (FF)
+  Destination:          IDecodePort/Reg_array_26_25 (FF)
   Requirement:          10.000ns
-  Data Path Delay:      4.405ns (Levels of Logic = 5)
-  Clock Path Skew:      -0.040ns (0.641 - 0.681)
+  Data Path Delay:      15.367ns (Levels of Logic = 15)
+  Clock Path Skew:      -0.104ns (0.581 - 0.685)
   Source Clock:         CLK_BUFGP rising at 0.000ns
   Destination Clock:    CLK_BUFGP rising at 10.000ns
   Clock Uncertainty:    0.035ns
@@ -189,41 +284,72 @@ Slack (setup path):     5.520ns (requirement - (data path - clock path skew + un
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: ControlUnitPort/NextPCSignal_1_1 to IDecodePort/Reg_array_2_1
+  Maximum Data Path at Slow Process Corner: ControlUnitPort/NextPCSignal_5 to IDecodePort/Reg_array_26_25
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X5Y87.AMUX     Tshcko                0.431   ControlUnitPort/NextPCSignal<0>
-                                                       ControlUnitPort/NextPCSignal_1_1
-    SLICE_X4Y85.B1       net (fanout=1)        0.689   ControlUnitPort/NextPCSignal_1_1
-    SLICE_X4Y85.B        Tilo                  0.097   Mmux_SSEG_CA4
-                                                       IDecodePort/Mmux_read_data1_821
-    SLICE_X3Y85.AX       net (fanout=2)        0.242   IDecodePort/Mmux_read_data1_4
-    SLICE_X3Y85.DMUX     Taxd                  0.591   ALUPort/Madd_A_input[31]_B_input[31]_add_5_OUT_cy<3>
-                                                       ALUPort/Madd_A_input[31]_B_input[31]_add_5_OUT_cy<3>
-    SLICE_X4Y83.D2       net (fanout=5)        0.756   ALUPort/A_input[31]_B_input[31]_add_5_OUT<3>
-    SLICE_X4Y83.D        Tilo                  0.097   Val<2>
-                                                       ALUPort/Mmux_ALU_output264
-    SLICE_X4Y86.A1       net (fanout=2)        0.711   ALUResult<3>
-    SLICE_X4Y86.A        Tilo                  0.097   IDecodePort/Reg_array_3<31>
-                                                       Mmux_Write_data121_SW0_SW01
-    SLICE_X4Y86.B5       net (fanout=1)        0.188   N64
-    SLICE_X4Y86.B        Tilo                  0.097   IDecodePort/Reg_array_3<31>
-                                                       Mmux_Write_data121
-    SLICE_X2Y87.DX       net (fanout=1)        0.402   Write_data<1>
-    SLICE_X2Y87.CLK      Tdick                 0.007   IDecodePort/Reg_array_2<1>
-                                                       IDecodePort/Reg_array_2_1
+    SLICE_X7Y53.CQ       Tcko                  0.341   ControlUnitPort/NextPCSignal<6>
+                                                       ControlUnitPort/NextPCSignal_5
+    SLICE_X7Y42.A1       net (fanout=202)      1.356   ControlUnitPort/NextPCSignal<5>
+    SLICE_X7Y42.A        Tilo                  0.097   IFetchPort/Mram_Instruction1591218
+                                                       SF1_SW3
+    SLICE_X7Y42.B4       net (fanout=5)        0.799   N68
+    SLICE_X7Y42.B        Tilo                  0.097   IFetchPort/Mram_Instruction1591218
+                                                       IFetchPort/Mram_Instruction1591219
+    SLICE_X5Y42.B4       net (fanout=1)        0.515   IFetchPort/Mram_Instruction1591218
+    SLICE_X5Y42.B        Tilo                  0.097   N861
+                                                       IFetchPort/Mram_Instruction1591223
+    SLICE_X9Y44.A3       net (fanout=1)        0.729   IFetchPort/Mram_Instruction1591222
+    SLICE_X9Y44.A        Tilo                  0.097   IDecodePort/Reg_array_26<3>
+                                                       IFetchPort/Mram_Instruction1591235
+    SLICE_X3Y46.C6       net (fanout=262)      0.729   instruction<17>
+    SLICE_X3Y46.C        Tilo                  0.097   IDecodePort/Reg_array_4<3>
+                                                       IDecodePort/Mmux_read_data2_1011
+    SLICE_X9Y56.D4       net (fanout=1)        0.784   IDecodePort/Mmux_read_data2_1011
+    SLICE_X9Y56.CMUX     Topdc                 0.408   DMemoryPort/DMem_20<1>
+                                                       IDecodePort/Mmux_read_data2_411
+                                                       IDecodePort/Mmux_read_data2_2_f7_10
+    SLICE_X13Y56.B6      net (fanout=149)      0.549   ReadData2<1>
+    SLICE_X13Y56.B       Tilo                  0.097   DMemoryPort/DMem_122<3>
+                                                       ALUPort/Mmux_B_input121
+    SLICE_X13Y67.A2      net (fanout=56)       1.193   ALUPort/B_input<1>
+    SLICE_X13Y67.A       Tilo                  0.097   IDecodePort/Reg_array_8<23>
+                                                       ALUPort/Sh1241
+    SLICE_X10Y54.B3      net (fanout=6)        0.923   ALUPort/Sh124
+    SLICE_X10Y54.B       Tilo                  0.097   ALUPort/Sh144
+                                                       ALUPort/Sh1441
+    SLICE_X10Y54.A4      net (fanout=2)        0.327   ALUPort/Sh144
+    SLICE_X10Y54.A       Tilo                  0.097   ALUPort/Sh144
+                                                       ALUPort/Mmux_ALU_output17
+    SLICE_X33Y52.A6      net (fanout=1)        0.639   ALUPort/Mmux_ALU_output15
+    SLICE_X33Y52.A       Tilo                  0.097   DMemoryPort/mux28_12
+                                                       ALUPort/Mmux_ALU_output110
+    SLICE_X33Y84.B5      net (fanout=1153)     1.457   ALUResult<0>
+    SLICE_X33Y84.B       Tilo                  0.097   DMemoryPort/DMem_63<27>
+                                                       DMemoryPort/mux17_16
+    SLICE_X33Y65.B4      net (fanout=1)        1.030   DMemoryPort/mux17_16
+    SLICE_X33Y65.B       Tilo                  0.097   DMemoryPort/DMem_95<27>
+                                                       DMemoryPort/mux17_10
+    SLICE_X33Y79.A5      net (fanout=1)        0.698   DMemoryPort/mux17_10
+    SLICE_X33Y79.A       Tilo                  0.097   DMemoryPort/DMem_28<27>
+                                                       DMemoryPort/mux17_4
+    SLICE_X13Y76.B5      net (fanout=1)        0.646   DMemoryPort/mux17_4
+    SLICE_X13Y76.B       Tilo                  0.097   IDecodePort/Reg_array_11<27>
+                                                       Mmux_Write_data188
+    SLICE_X10Y59.CX      net (fanout=31)       0.879   Write_data<25>
+    SLICE_X10Y59.CLK     Tdick                 0.007   IDecodePort/Reg_array_26<26>
+                                                       IDecodePort/Reg_array_26_25
     -------------------------------------------------  ---------------------------
-    Total                                      4.405ns (1.417ns logic, 2.988ns route)
-                                                       (32.2% logic, 67.8% route)
+    Total                                     15.367ns (2.114ns logic, 13.253ns route)
+                                                       (13.8% logic, 86.2% route)
 
 --------------------------------------------------------------------------------
-Slack (setup path):     5.617ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               ControlUnitPort/NextPCSignal_1_1 (FF)
-  Destination:          IDecodePort/Reg_array_2_1 (FF)
+Slack (setup path):     -5.479ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               ControlUnitPort/NextPCSignal_5 (FF)
+  Destination:          IDecodePort/Reg_array_26_25 (FF)
   Requirement:          10.000ns
-  Data Path Delay:      4.308ns (Levels of Logic = 5)
-  Clock Path Skew:      -0.040ns (0.641 - 0.681)
+  Data Path Delay:      15.340ns (Levels of Logic = 15)
+  Clock Path Skew:      -0.104ns (0.581 - 0.685)
   Source Clock:         CLK_BUFGP rising at 0.000ns
   Destination Clock:    CLK_BUFGP rising at 10.000ns
   Clock Uncertainty:    0.035ns
@@ -234,41 +360,72 @@ Slack (setup path):     5.617ns (requirement - (data path - clock path skew + un
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: ControlUnitPort/NextPCSignal_1_1 to IDecodePort/Reg_array_2_1
+  Maximum Data Path at Slow Process Corner: ControlUnitPort/NextPCSignal_5 to IDecodePort/Reg_array_26_25
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X5Y87.AMUX     Tshcko                0.431   ControlUnitPort/NextPCSignal<0>
-                                                       ControlUnitPort/NextPCSignal_1_1
-    SLICE_X4Y85.B1       net (fanout=1)        0.689   ControlUnitPort/NextPCSignal_1_1
-    SLICE_X4Y85.B        Tilo                  0.097   Mmux_SSEG_CA4
-                                                       IDecodePort/Mmux_read_data1_821
-    SLICE_X3Y85.AX       net (fanout=2)        0.242   IDecodePort/Mmux_read_data1_4
-    SLICE_X3Y85.BMUX     Taxb                  0.431   ALUPort/Madd_A_input[31]_B_input[31]_add_5_OUT_cy<3>
-                                                       ALUPort/Madd_A_input[31]_B_input[31]_add_5_OUT_cy<3>
-    SLICE_X2Y84.A5       net (fanout=1)        0.292   ALUPort/A_input[31]_B_input[31]_add_5_OUT<1>
-    SLICE_X2Y84.A        Tilo                  0.097   clr
-                                                       ALUPort/Mmux_ALU_output1211
-    SLICE_X3Y83.A2       net (fanout=5)        0.616   ALUPort/Mmux_ALU_output121
-    SLICE_X3Y83.A        Tilo                  0.097   Mmux_SW[6]_datamemory[127][31]_wide_mux_3_OUT<1>_124
-                                                       ALUPort/Mmux_ALU_output123
-    SLICE_X4Y86.B4       net (fanout=1)        0.810   ALUResult<1>
-    SLICE_X4Y86.B        Tilo                  0.097   IDecodePort/Reg_array_3<31>
-                                                       Mmux_Write_data121
-    SLICE_X2Y87.DX       net (fanout=1)        0.402   Write_data<1>
-    SLICE_X2Y87.CLK      Tdick                 0.007   IDecodePort/Reg_array_2<1>
-                                                       IDecodePort/Reg_array_2_1
+    SLICE_X7Y53.CQ       Tcko                  0.341   ControlUnitPort/NextPCSignal<6>
+                                                       ControlUnitPort/NextPCSignal_5
+    SLICE_X7Y42.A1       net (fanout=202)      1.356   ControlUnitPort/NextPCSignal<5>
+    SLICE_X7Y42.A        Tilo                  0.097   IFetchPort/Mram_Instruction1591218
+                                                       SF1_SW3
+    SLICE_X7Y42.B4       net (fanout=5)        0.799   N68
+    SLICE_X7Y42.B        Tilo                  0.097   IFetchPort/Mram_Instruction1591218
+                                                       IFetchPort/Mram_Instruction1591219
+    SLICE_X5Y42.B4       net (fanout=1)        0.515   IFetchPort/Mram_Instruction1591218
+    SLICE_X5Y42.B        Tilo                  0.097   N861
+                                                       IFetchPort/Mram_Instruction1591223
+    SLICE_X9Y44.A3       net (fanout=1)        0.729   IFetchPort/Mram_Instruction1591222
+    SLICE_X9Y44.A        Tilo                  0.097   IDecodePort/Reg_array_26<3>
+                                                       IFetchPort/Mram_Instruction1591235
+    SLICE_X4Y44.D6       net (fanout=262)      0.597   instruction<17>
+    SLICE_X4Y44.D        Tilo                  0.097   IDecodePort/Reg_array_30<3>
+                                                       IDecodePort/Mmux_read_data2_834
+    SLICE_X9Y56.C4       net (fanout=1)        0.882   IDecodePort/Mmux_read_data2_834
+    SLICE_X9Y56.CMUX     Tilo                  0.415   DMemoryPort/DMem_20<1>
+                                                       IDecodePort/Mmux_read_data2_311
+                                                       IDecodePort/Mmux_read_data2_2_f7_10
+    SLICE_X13Y56.B6      net (fanout=149)      0.549   ReadData2<1>
+    SLICE_X13Y56.B       Tilo                  0.097   DMemoryPort/DMem_122<3>
+                                                       ALUPort/Mmux_B_input121
+    SLICE_X13Y67.A2      net (fanout=56)       1.193   ALUPort/B_input<1>
+    SLICE_X13Y67.A       Tilo                  0.097   IDecodePort/Reg_array_8<23>
+                                                       ALUPort/Sh1241
+    SLICE_X10Y54.B3      net (fanout=6)        0.923   ALUPort/Sh124
+    SLICE_X10Y54.B       Tilo                  0.097   ALUPort/Sh144
+                                                       ALUPort/Sh1441
+    SLICE_X10Y54.A4      net (fanout=2)        0.327   ALUPort/Sh144
+    SLICE_X10Y54.A       Tilo                  0.097   ALUPort/Sh144
+                                                       ALUPort/Mmux_ALU_output17
+    SLICE_X33Y52.A6      net (fanout=1)        0.639   ALUPort/Mmux_ALU_output15
+    SLICE_X33Y52.A       Tilo                  0.097   DMemoryPort/mux28_12
+                                                       ALUPort/Mmux_ALU_output110
+    SLICE_X33Y84.B5      net (fanout=1153)     1.457   ALUResult<0>
+    SLICE_X33Y84.B       Tilo                  0.097   DMemoryPort/DMem_63<27>
+                                                       DMemoryPort/mux17_16
+    SLICE_X33Y65.B4      net (fanout=1)        1.030   DMemoryPort/mux17_16
+    SLICE_X33Y65.B       Tilo                  0.097   DMemoryPort/DMem_95<27>
+                                                       DMemoryPort/mux17_10
+    SLICE_X33Y79.A5      net (fanout=1)        0.698   DMemoryPort/mux17_10
+    SLICE_X33Y79.A       Tilo                  0.097   DMemoryPort/DMem_28<27>
+                                                       DMemoryPort/mux17_4
+    SLICE_X13Y76.B5      net (fanout=1)        0.646   DMemoryPort/mux17_4
+    SLICE_X13Y76.B       Tilo                  0.097   IDecodePort/Reg_array_11<27>
+                                                       Mmux_Write_data188
+    SLICE_X10Y59.CX      net (fanout=31)       0.879   Write_data<25>
+    SLICE_X10Y59.CLK     Tdick                 0.007   IDecodePort/Reg_array_26<26>
+                                                       IDecodePort/Reg_array_26_25
     -------------------------------------------------  ---------------------------
-    Total                                      4.308ns (1.257ns logic, 3.051ns route)
-                                                       (29.2% logic, 70.8% route)
+    Total                                     15.340ns (2.121ns logic, 13.219ns route)
+                                                       (13.8% logic, 86.2% route)
 
 --------------------------------------------------------------------------------
-Slack (setup path):     5.624ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               ControlUnitPort/NextPCSignal_2 (FF)
-  Destination:          IDecodePort/Reg_array_2_1 (FF)
+Slack (setup path):     -5.457ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               ControlUnitPort/NextPCSignal_5 (FF)
+  Destination:          IDecodePort/Reg_array_26_25 (FF)
   Requirement:          10.000ns
-  Data Path Delay:      4.301ns (Levels of Logic = 4)
-  Clock Path Skew:      -0.040ns (0.641 - 0.681)
+  Data Path Delay:      15.318ns (Levels of Logic = 15)
+  Clock Path Skew:      -0.104ns (0.581 - 0.685)
   Source Clock:         CLK_BUFGP rising at 0.000ns
   Destination Clock:    CLK_BUFGP rising at 10.000ns
   Clock Uncertainty:    0.035ns
@@ -279,42 +436,75 @@ Slack (setup path):     5.624ns (requirement - (data path - clock path skew + un
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: ControlUnitPort/NextPCSignal_2 to IDecodePort/Reg_array_2_1
+  Maximum Data Path at Slow Process Corner: ControlUnitPort/NextPCSignal_5 to IDecodePort/Reg_array_26_25
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X4Y87.DQ       Tcko                  0.341   ControlUnitPort/NextPCSignal<2>
-                                                       ControlUnitPort/NextPCSignal_2
-    SLICE_X3Y85.B1       net (fanout=56)       0.894   ControlUnitPort/NextPCSignal<2>
-    SLICE_X3Y85.DMUX     Topbd                 0.711   ALUPort/Madd_A_input[31]_B_input[31]_add_5_OUT_cy<3>
-                                                       ALUPort/Mmux_B_input1211
-                                                       ALUPort/Madd_A_input[31]_B_input[31]_add_5_OUT_cy<3>
-    SLICE_X4Y83.D2       net (fanout=5)        0.756   ALUPort/A_input[31]_B_input[31]_add_5_OUT<3>
-    SLICE_X4Y83.D        Tilo                  0.097   Val<2>
-                                                       ALUPort/Mmux_ALU_output264
-    SLICE_X4Y86.A1       net (fanout=2)        0.711   ALUResult<3>
-    SLICE_X4Y86.A        Tilo                  0.097   IDecodePort/Reg_array_3<31>
-                                                       Mmux_Write_data121_SW0_SW01
-    SLICE_X4Y86.B5       net (fanout=1)        0.188   N64
-    SLICE_X4Y86.B        Tilo                  0.097   IDecodePort/Reg_array_3<31>
-                                                       Mmux_Write_data121
-    SLICE_X2Y87.DX       net (fanout=1)        0.402   Write_data<1>
-    SLICE_X2Y87.CLK      Tdick                 0.007   IDecodePort/Reg_array_2<1>
-                                                       IDecodePort/Reg_array_2_1
+    SLICE_X7Y53.CQ       Tcko                  0.341   ControlUnitPort/NextPCSignal<6>
+                                                       ControlUnitPort/NextPCSignal_5
+    SLICE_X7Y42.A1       net (fanout=202)      1.356   ControlUnitPort/NextPCSignal<5>
+    SLICE_X7Y42.A        Tilo                  0.097   IFetchPort/Mram_Instruction1591218
+                                                       SF1_SW3
+    SLICE_X7Y42.B4       net (fanout=5)        0.799   N68
+    SLICE_X7Y42.B        Tilo                  0.097   IFetchPort/Mram_Instruction1591218
+                                                       IFetchPort/Mram_Instruction1591219
+    SLICE_X5Y42.B4       net (fanout=1)        0.515   IFetchPort/Mram_Instruction1591218
+    SLICE_X5Y42.B        Tilo                  0.097   N861
+                                                       IFetchPort/Mram_Instruction1591223
+    SLICE_X9Y44.A3       net (fanout=1)        0.729   IFetchPort/Mram_Instruction1591222
+    SLICE_X9Y44.A        Tilo                  0.097   IDecodePort/Reg_array_26<3>
+                                                       IFetchPort/Mram_Instruction1591235
+    SLICE_X3Y45.C5       net (fanout=262)      0.778   instruction<17>
+    SLICE_X3Y45.C        Tilo                  0.097   IDecodePort/Reg_array_29<3>
+                                                       IDecodePort/Mmux_read_data2_10
+    SLICE_X9Y51.D4       net (fanout=1)        0.736   IDecodePort/Mmux_read_data2_10
+    SLICE_X9Y51.CMUX     Topdc                 0.408   DMemoryPort/DMem_62<0>
+                                                       IDecodePort/Mmux_read_data2_4
+                                                       IDecodePort/Mmux_read_data2_2_f7
+    SLICE_X13Y55.A6      net (fanout=141)      0.596   ReadData2<0>
+    SLICE_X13Y55.A       Tilo                  0.097   DMemoryPort/DMem_120<3>
+                                                       ALUPort/Mmux_B_input110
+    SLICE_X13Y67.A1      net (fanout=62)       1.096   ALUPort/B_input<0>
+    SLICE_X13Y67.A       Tilo                  0.097   IDecodePort/Reg_array_8<23>
+                                                       ALUPort/Sh1241
+    SLICE_X10Y54.B3      net (fanout=6)        0.923   ALUPort/Sh124
+    SLICE_X10Y54.B       Tilo                  0.097   ALUPort/Sh144
+                                                       ALUPort/Sh1441
+    SLICE_X10Y54.A4      net (fanout=2)        0.327   ALUPort/Sh144
+    SLICE_X10Y54.A       Tilo                  0.097   ALUPort/Sh144
+                                                       ALUPort/Mmux_ALU_output17
+    SLICE_X33Y52.A6      net (fanout=1)        0.639   ALUPort/Mmux_ALU_output15
+    SLICE_X33Y52.A       Tilo                  0.097   DMemoryPort/mux28_12
+                                                       ALUPort/Mmux_ALU_output110
+    SLICE_X33Y84.B5      net (fanout=1153)     1.457   ALUResult<0>
+    SLICE_X33Y84.B       Tilo                  0.097   DMemoryPort/DMem_63<27>
+                                                       DMemoryPort/mux17_16
+    SLICE_X33Y65.B4      net (fanout=1)        1.030   DMemoryPort/mux17_16
+    SLICE_X33Y65.B       Tilo                  0.097   DMemoryPort/DMem_95<27>
+                                                       DMemoryPort/mux17_10
+    SLICE_X33Y79.A5      net (fanout=1)        0.698   DMemoryPort/mux17_10
+    SLICE_X33Y79.A       Tilo                  0.097   DMemoryPort/DMem_28<27>
+                                                       DMemoryPort/mux17_4
+    SLICE_X13Y76.B5      net (fanout=1)        0.646   DMemoryPort/mux17_4
+    SLICE_X13Y76.B       Tilo                  0.097   IDecodePort/Reg_array_11<27>
+                                                       Mmux_Write_data188
+    SLICE_X10Y59.CX      net (fanout=31)       0.879   Write_data<25>
+    SLICE_X10Y59.CLK     Tdick                 0.007   IDecodePort/Reg_array_26<26>
+                                                       IDecodePort/Reg_array_26_25
     -------------------------------------------------  ---------------------------
-    Total                                      4.301ns (1.350ns logic, 2.951ns route)
-                                                       (31.4% logic, 68.6% route)
+    Total                                     15.318ns (2.114ns logic, 13.204ns route)
+                                                       (13.8% logic, 86.2% route)
 
 --------------------------------------------------------------------------------
 
-Paths for end point ControlUnitPort/NextPCSignal_0_1 (SLICE_X3Y86.DX), 160 paths
+Paths for end point IDecodePort/Reg_array_27_25 (SLICE_X30Y76.CX), 14163885 paths
 --------------------------------------------------------------------------------
-Slack (setup path):     5.721ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               ControlUnitPort/NextPCSignal_2 (FF)
-  Destination:          ControlUnitPort/NextPCSignal_0_1 (FF)
+Slack (setup path):     -5.348ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               ControlUnitPort/NextPCSignal_5 (FF)
+  Destination:          IDecodePort/Reg_array_27_25 (FF)
   Requirement:          10.000ns
-  Data Path Delay:      4.203ns (Levels of Logic = 6)
-  Clock Path Skew:      -0.041ns (0.640 - 0.681)
+  Data Path Delay:      15.190ns (Levels of Logic = 15)
+  Clock Path Skew:      -0.123ns (0.562 - 0.685)
   Source Clock:         CLK_BUFGP rising at 0.000ns
   Destination Clock:    CLK_BUFGP rising at 10.000ns
   Clock Uncertainty:    0.035ns
@@ -325,45 +515,72 @@ Slack (setup path):     5.721ns (requirement - (data path - clock path skew + un
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: ControlUnitPort/NextPCSignal_2 to ControlUnitPort/NextPCSignal_0_1
+  Maximum Data Path at Slow Process Corner: ControlUnitPort/NextPCSignal_5 to IDecodePort/Reg_array_27_25
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X4Y87.DQ       Tcko                  0.341   ControlUnitPort/NextPCSignal<2>
-                                                       ControlUnitPort/NextPCSignal_2
-    SLICE_X2Y83.B3       net (fanout=56)       0.998   ControlUnitPort/NextPCSignal<2>
-    SLICE_X2Y83.B        Tilo                  0.097   start
-                                                       IDecodePort/Mmux_read_data2_8351
-    SLICE_X1Y85.A3       net (fanout=3)        0.562   IDecodePort/Mmux_read_data2_411
-    SLICE_X1Y85.COUT     Topcya                0.492   ControlUnitPort/Mcompar_A[31]_B[31]_LessThan_32_o_cy<3>
-                                                       ControlUnitPort/Mcompar_A[31]_B[31]_LessThan_32_o_lut<0>
-                                                       ControlUnitPort/Mcompar_A[31]_B[31]_LessThan_32_o_cy<3>
-    SLICE_X1Y86.CIN      net (fanout=1)        0.000   ControlUnitPort/Mcompar_A[31]_B[31]_LessThan_32_o_cy<3>
-    SLICE_X1Y86.COUT     Tbyp                  0.089   ControlUnitPort/Mcompar_A[31]_B[31]_LessThan_32_o_cy<7>
-                                                       ControlUnitPort/Mcompar_A[31]_B[31]_LessThan_32_o_cy<7>
-    SLICE_X1Y87.CIN      net (fanout=1)        0.000   ControlUnitPort/Mcompar_A[31]_B[31]_LessThan_32_o_cy<7>
-    SLICE_X1Y87.COUT     Tbyp                  0.089   ControlUnitPort/Mcompar_A[31]_B[31]_LessThan_32_o_cy<11>
-                                                       ControlUnitPort/Mcompar_A[31]_B[31]_LessThan_32_o_cy<11>
-    SLICE_X1Y88.CIN      net (fanout=1)        0.000   ControlUnitPort/Mcompar_A[31]_B[31]_LessThan_32_o_cy<11>
-    SLICE_X1Y88.DMUX     Tcind                 0.319   ControlUnitPort/Mcompar_A[31]_B[31]_LessThan_32_o_cy<15>
-                                                       ControlUnitPort/Mcompar_A[31]_B[31]_LessThan_32_o_cy<15>
-    SLICE_X5Y87.B2       net (fanout=1)        0.693   ControlUnitPort/Mcompar_A[31]_B[31]_LessThan_32_o_cy<15>
-    SLICE_X5Y87.B        Tilo                  0.097   ControlUnitPort/NextPCSignal<0>
-                                                       ControlUnitPort/Mmux_NextPCSignal[31]_GND_46_o_mux_39_OUT11
-    SLICE_X3Y86.DX       net (fanout=1)        0.396   ControlUnitPort/NextPCSignal[31]_GND_46_o_mux_39_OUT<0>
-    SLICE_X3Y86.CLK      Tdick                 0.030   ControlUnitPort/NextPCSignal_0_1
-                                                       ControlUnitPort/NextPCSignal_0_1
+    SLICE_X7Y53.CQ       Tcko                  0.341   ControlUnitPort/NextPCSignal<6>
+                                                       ControlUnitPort/NextPCSignal_5
+    SLICE_X7Y42.A1       net (fanout=202)      1.356   ControlUnitPort/NextPCSignal<5>
+    SLICE_X7Y42.A        Tilo                  0.097   IFetchPort/Mram_Instruction1591218
+                                                       SF1_SW3
+    SLICE_X7Y42.B4       net (fanout=5)        0.799   N68
+    SLICE_X7Y42.B        Tilo                  0.097   IFetchPort/Mram_Instruction1591218
+                                                       IFetchPort/Mram_Instruction1591219
+    SLICE_X5Y42.B4       net (fanout=1)        0.515   IFetchPort/Mram_Instruction1591218
+    SLICE_X5Y42.B        Tilo                  0.097   N861
+                                                       IFetchPort/Mram_Instruction1591223
+    SLICE_X9Y44.A3       net (fanout=1)        0.729   IFetchPort/Mram_Instruction1591222
+    SLICE_X9Y44.A        Tilo                  0.097   IDecodePort/Reg_array_26<3>
+                                                       IFetchPort/Mram_Instruction1591235
+    SLICE_X3Y46.C6       net (fanout=262)      0.729   instruction<17>
+    SLICE_X3Y46.C        Tilo                  0.097   IDecodePort/Reg_array_4<3>
+                                                       IDecodePort/Mmux_read_data2_1011
+    SLICE_X9Y56.D4       net (fanout=1)        0.784   IDecodePort/Mmux_read_data2_1011
+    SLICE_X9Y56.CMUX     Topdc                 0.408   DMemoryPort/DMem_20<1>
+                                                       IDecodePort/Mmux_read_data2_411
+                                                       IDecodePort/Mmux_read_data2_2_f7_10
+    SLICE_X13Y56.B6      net (fanout=149)      0.549   ReadData2<1>
+    SLICE_X13Y56.B       Tilo                  0.097   DMemoryPort/DMem_122<3>
+                                                       ALUPort/Mmux_B_input121
+    SLICE_X13Y67.A2      net (fanout=56)       1.193   ALUPort/B_input<1>
+    SLICE_X13Y67.A       Tilo                  0.097   IDecodePort/Reg_array_8<23>
+                                                       ALUPort/Sh1241
+    SLICE_X10Y54.B3      net (fanout=6)        0.923   ALUPort/Sh124
+    SLICE_X10Y54.B       Tilo                  0.097   ALUPort/Sh144
+                                                       ALUPort/Sh1441
+    SLICE_X10Y54.A4      net (fanout=2)        0.327   ALUPort/Sh144
+    SLICE_X10Y54.A       Tilo                  0.097   ALUPort/Sh144
+                                                       ALUPort/Mmux_ALU_output17
+    SLICE_X33Y52.A6      net (fanout=1)        0.639   ALUPort/Mmux_ALU_output15
+    SLICE_X33Y52.A       Tilo                  0.097   DMemoryPort/mux28_12
+                                                       ALUPort/Mmux_ALU_output110
+    SLICE_X33Y84.B5      net (fanout=1153)     1.457   ALUResult<0>
+    SLICE_X33Y84.B       Tilo                  0.097   DMemoryPort/DMem_63<27>
+                                                       DMemoryPort/mux17_16
+    SLICE_X33Y65.B4      net (fanout=1)        1.030   DMemoryPort/mux17_16
+    SLICE_X33Y65.B       Tilo                  0.097   DMemoryPort/DMem_95<27>
+                                                       DMemoryPort/mux17_10
+    SLICE_X33Y79.A5      net (fanout=1)        0.698   DMemoryPort/mux17_10
+    SLICE_X33Y79.A       Tilo                  0.097   DMemoryPort/DMem_28<27>
+                                                       DMemoryPort/mux17_4
+    SLICE_X13Y76.B5      net (fanout=1)        0.646   DMemoryPort/mux17_4
+    SLICE_X13Y76.B       Tilo                  0.097   IDecodePort/Reg_array_11<27>
+                                                       Mmux_Write_data188
+    SLICE_X30Y76.CX      net (fanout=31)       0.702   Write_data<25>
+    SLICE_X30Y76.CLK     Tdick                 0.007   IDecodePort/Reg_array_27<26>
+                                                       IDecodePort/Reg_array_27_25
     -------------------------------------------------  ---------------------------
-    Total                                      4.203ns (1.554ns logic, 2.649ns route)
-                                                       (37.0% logic, 63.0% route)
+    Total                                     15.190ns (2.114ns logic, 13.076ns route)
+                                                       (13.9% logic, 86.1% route)
 
 --------------------------------------------------------------------------------
-Slack (setup path):     5.743ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               ControlUnitPort/NextPCSignal_0 (FF)
-  Destination:          ControlUnitPort/NextPCSignal_0_1 (FF)
+Slack (setup path):     -5.321ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               ControlUnitPort/NextPCSignal_5 (FF)
+  Destination:          IDecodePort/Reg_array_27_25 (FF)
   Requirement:          10.000ns
-  Data Path Delay:      4.181ns (Levels of Logic = 6)
-  Clock Path Skew:      -0.041ns (0.640 - 0.681)
+  Data Path Delay:      15.163ns (Levels of Logic = 15)
+  Clock Path Skew:      -0.123ns (0.562 - 0.685)
   Source Clock:         CLK_BUFGP rising at 0.000ns
   Destination Clock:    CLK_BUFGP rising at 10.000ns
   Clock Uncertainty:    0.035ns
@@ -374,45 +591,72 @@ Slack (setup path):     5.743ns (requirement - (data path - clock path skew + un
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: ControlUnitPort/NextPCSignal_0 to ControlUnitPort/NextPCSignal_0_1
+  Maximum Data Path at Slow Process Corner: ControlUnitPort/NextPCSignal_5 to IDecodePort/Reg_array_27_25
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X5Y87.BQ       Tcko                  0.341   ControlUnitPort/NextPCSignal<0>
-                                                       ControlUnitPort/NextPCSignal_0
-    SLICE_X2Y83.B2       net (fanout=54)       0.976   ControlUnitPort/NextPCSignal<0>
-    SLICE_X2Y83.B        Tilo                  0.097   start
-                                                       IDecodePort/Mmux_read_data2_8351
-    SLICE_X1Y85.A3       net (fanout=3)        0.562   IDecodePort/Mmux_read_data2_411
-    SLICE_X1Y85.COUT     Topcya                0.492   ControlUnitPort/Mcompar_A[31]_B[31]_LessThan_32_o_cy<3>
-                                                       ControlUnitPort/Mcompar_A[31]_B[31]_LessThan_32_o_lut<0>
-                                                       ControlUnitPort/Mcompar_A[31]_B[31]_LessThan_32_o_cy<3>
-    SLICE_X1Y86.CIN      net (fanout=1)        0.000   ControlUnitPort/Mcompar_A[31]_B[31]_LessThan_32_o_cy<3>
-    SLICE_X1Y86.COUT     Tbyp                  0.089   ControlUnitPort/Mcompar_A[31]_B[31]_LessThan_32_o_cy<7>
-                                                       ControlUnitPort/Mcompar_A[31]_B[31]_LessThan_32_o_cy<7>
-    SLICE_X1Y87.CIN      net (fanout=1)        0.000   ControlUnitPort/Mcompar_A[31]_B[31]_LessThan_32_o_cy<7>
-    SLICE_X1Y87.COUT     Tbyp                  0.089   ControlUnitPort/Mcompar_A[31]_B[31]_LessThan_32_o_cy<11>
-                                                       ControlUnitPort/Mcompar_A[31]_B[31]_LessThan_32_o_cy<11>
-    SLICE_X1Y88.CIN      net (fanout=1)        0.000   ControlUnitPort/Mcompar_A[31]_B[31]_LessThan_32_o_cy<11>
-    SLICE_X1Y88.DMUX     Tcind                 0.319   ControlUnitPort/Mcompar_A[31]_B[31]_LessThan_32_o_cy<15>
-                                                       ControlUnitPort/Mcompar_A[31]_B[31]_LessThan_32_o_cy<15>
-    SLICE_X5Y87.B2       net (fanout=1)        0.693   ControlUnitPort/Mcompar_A[31]_B[31]_LessThan_32_o_cy<15>
-    SLICE_X5Y87.B        Tilo                  0.097   ControlUnitPort/NextPCSignal<0>
-                                                       ControlUnitPort/Mmux_NextPCSignal[31]_GND_46_o_mux_39_OUT11
-    SLICE_X3Y86.DX       net (fanout=1)        0.396   ControlUnitPort/NextPCSignal[31]_GND_46_o_mux_39_OUT<0>
-    SLICE_X3Y86.CLK      Tdick                 0.030   ControlUnitPort/NextPCSignal_0_1
-                                                       ControlUnitPort/NextPCSignal_0_1
+    SLICE_X7Y53.CQ       Tcko                  0.341   ControlUnitPort/NextPCSignal<6>
+                                                       ControlUnitPort/NextPCSignal_5
+    SLICE_X7Y42.A1       net (fanout=202)      1.356   ControlUnitPort/NextPCSignal<5>
+    SLICE_X7Y42.A        Tilo                  0.097   IFetchPort/Mram_Instruction1591218
+                                                       SF1_SW3
+    SLICE_X7Y42.B4       net (fanout=5)        0.799   N68
+    SLICE_X7Y42.B        Tilo                  0.097   IFetchPort/Mram_Instruction1591218
+                                                       IFetchPort/Mram_Instruction1591219
+    SLICE_X5Y42.B4       net (fanout=1)        0.515   IFetchPort/Mram_Instruction1591218
+    SLICE_X5Y42.B        Tilo                  0.097   N861
+                                                       IFetchPort/Mram_Instruction1591223
+    SLICE_X9Y44.A3       net (fanout=1)        0.729   IFetchPort/Mram_Instruction1591222
+    SLICE_X9Y44.A        Tilo                  0.097   IDecodePort/Reg_array_26<3>
+                                                       IFetchPort/Mram_Instruction1591235
+    SLICE_X4Y44.D6       net (fanout=262)      0.597   instruction<17>
+    SLICE_X4Y44.D        Tilo                  0.097   IDecodePort/Reg_array_30<3>
+                                                       IDecodePort/Mmux_read_data2_834
+    SLICE_X9Y56.C4       net (fanout=1)        0.882   IDecodePort/Mmux_read_data2_834
+    SLICE_X9Y56.CMUX     Tilo                  0.415   DMemoryPort/DMem_20<1>
+                                                       IDecodePort/Mmux_read_data2_311
+                                                       IDecodePort/Mmux_read_data2_2_f7_10
+    SLICE_X13Y56.B6      net (fanout=149)      0.549   ReadData2<1>
+    SLICE_X13Y56.B       Tilo                  0.097   DMemoryPort/DMem_122<3>
+                                                       ALUPort/Mmux_B_input121
+    SLICE_X13Y67.A2      net (fanout=56)       1.193   ALUPort/B_input<1>
+    SLICE_X13Y67.A       Tilo                  0.097   IDecodePort/Reg_array_8<23>
+                                                       ALUPort/Sh1241
+    SLICE_X10Y54.B3      net (fanout=6)        0.923   ALUPort/Sh124
+    SLICE_X10Y54.B       Tilo                  0.097   ALUPort/Sh144
+                                                       ALUPort/Sh1441
+    SLICE_X10Y54.A4      net (fanout=2)        0.327   ALUPort/Sh144
+    SLICE_X10Y54.A       Tilo                  0.097   ALUPort/Sh144
+                                                       ALUPort/Mmux_ALU_output17
+    SLICE_X33Y52.A6      net (fanout=1)        0.639   ALUPort/Mmux_ALU_output15
+    SLICE_X33Y52.A       Tilo                  0.097   DMemoryPort/mux28_12
+                                                       ALUPort/Mmux_ALU_output110
+    SLICE_X33Y84.B5      net (fanout=1153)     1.457   ALUResult<0>
+    SLICE_X33Y84.B       Tilo                  0.097   DMemoryPort/DMem_63<27>
+                                                       DMemoryPort/mux17_16
+    SLICE_X33Y65.B4      net (fanout=1)        1.030   DMemoryPort/mux17_16
+    SLICE_X33Y65.B       Tilo                  0.097   DMemoryPort/DMem_95<27>
+                                                       DMemoryPort/mux17_10
+    SLICE_X33Y79.A5      net (fanout=1)        0.698   DMemoryPort/mux17_10
+    SLICE_X33Y79.A       Tilo                  0.097   DMemoryPort/DMem_28<27>
+                                                       DMemoryPort/mux17_4
+    SLICE_X13Y76.B5      net (fanout=1)        0.646   DMemoryPort/mux17_4
+    SLICE_X13Y76.B       Tilo                  0.097   IDecodePort/Reg_array_11<27>
+                                                       Mmux_Write_data188
+    SLICE_X30Y76.CX      net (fanout=31)       0.702   Write_data<25>
+    SLICE_X30Y76.CLK     Tdick                 0.007   IDecodePort/Reg_array_27<26>
+                                                       IDecodePort/Reg_array_27_25
     -------------------------------------------------  ---------------------------
-    Total                                      4.181ns (1.554ns logic, 2.627ns route)
-                                                       (37.2% logic, 62.8% route)
+    Total                                     15.163ns (2.121ns logic, 13.042ns route)
+                                                       (14.0% logic, 86.0% route)
 
 --------------------------------------------------------------------------------
-Slack (setup path):     5.744ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               ControlUnitPort/NextPCSignal_2 (FF)
-  Destination:          ControlUnitPort/NextPCSignal_0_1 (FF)
+Slack (setup path):     -5.299ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               ControlUnitPort/NextPCSignal_5 (FF)
+  Destination:          IDecodePort/Reg_array_27_25 (FF)
   Requirement:          10.000ns
-  Data Path Delay:      4.180ns (Levels of Logic = 6)
-  Clock Path Skew:      -0.041ns (0.640 - 0.681)
+  Data Path Delay:      15.141ns (Levels of Logic = 15)
+  Clock Path Skew:      -0.123ns (0.562 - 0.685)
   Source Clock:         CLK_BUFGP rising at 0.000ns
   Destination Clock:    CLK_BUFGP rising at 10.000ns
   Clock Uncertainty:    0.035ns
@@ -423,125 +667,151 @@ Slack (setup path):     5.744ns (requirement - (data path - clock path skew + un
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: ControlUnitPort/NextPCSignal_2 to ControlUnitPort/NextPCSignal_0_1
+  Maximum Data Path at Slow Process Corner: ControlUnitPort/NextPCSignal_5 to IDecodePort/Reg_array_27_25
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X4Y87.DQ       Tcko                  0.341   ControlUnitPort/NextPCSignal<2>
-                                                       ControlUnitPort/NextPCSignal_2
-    SLICE_X2Y83.B3       net (fanout=56)       0.998   ControlUnitPort/NextPCSignal<2>
-    SLICE_X2Y83.B        Tilo                  0.097   start
-                                                       IDecodePort/Mmux_read_data2_8351
-    SLICE_X1Y85.A3       net (fanout=3)        0.562   IDecodePort/Mmux_read_data2_411
-    SLICE_X1Y85.COUT     Topcya                0.469   ControlUnitPort/Mcompar_A[31]_B[31]_LessThan_32_o_cy<3>
-                                                       ControlUnitPort/Mcompar_A[31]_B[31]_LessThan_32_o_lutdi
-                                                       ControlUnitPort/Mcompar_A[31]_B[31]_LessThan_32_o_cy<3>
-    SLICE_X1Y86.CIN      net (fanout=1)        0.000   ControlUnitPort/Mcompar_A[31]_B[31]_LessThan_32_o_cy<3>
-    SLICE_X1Y86.COUT     Tbyp                  0.089   ControlUnitPort/Mcompar_A[31]_B[31]_LessThan_32_o_cy<7>
-                                                       ControlUnitPort/Mcompar_A[31]_B[31]_LessThan_32_o_cy<7>
-    SLICE_X1Y87.CIN      net (fanout=1)        0.000   ControlUnitPort/Mcompar_A[31]_B[31]_LessThan_32_o_cy<7>
-    SLICE_X1Y87.COUT     Tbyp                  0.089   ControlUnitPort/Mcompar_A[31]_B[31]_LessThan_32_o_cy<11>
-                                                       ControlUnitPort/Mcompar_A[31]_B[31]_LessThan_32_o_cy<11>
-    SLICE_X1Y88.CIN      net (fanout=1)        0.000   ControlUnitPort/Mcompar_A[31]_B[31]_LessThan_32_o_cy<11>
-    SLICE_X1Y88.DMUX     Tcind                 0.319   ControlUnitPort/Mcompar_A[31]_B[31]_LessThan_32_o_cy<15>
-                                                       ControlUnitPort/Mcompar_A[31]_B[31]_LessThan_32_o_cy<15>
-    SLICE_X5Y87.B2       net (fanout=1)        0.693   ControlUnitPort/Mcompar_A[31]_B[31]_LessThan_32_o_cy<15>
-    SLICE_X5Y87.B        Tilo                  0.097   ControlUnitPort/NextPCSignal<0>
-                                                       ControlUnitPort/Mmux_NextPCSignal[31]_GND_46_o_mux_39_OUT11
-    SLICE_X3Y86.DX       net (fanout=1)        0.396   ControlUnitPort/NextPCSignal[31]_GND_46_o_mux_39_OUT<0>
-    SLICE_X3Y86.CLK      Tdick                 0.030   ControlUnitPort/NextPCSignal_0_1
-                                                       ControlUnitPort/NextPCSignal_0_1
+    SLICE_X7Y53.CQ       Tcko                  0.341   ControlUnitPort/NextPCSignal<6>
+                                                       ControlUnitPort/NextPCSignal_5
+    SLICE_X7Y42.A1       net (fanout=202)      1.356   ControlUnitPort/NextPCSignal<5>
+    SLICE_X7Y42.A        Tilo                  0.097   IFetchPort/Mram_Instruction1591218
+                                                       SF1_SW3
+    SLICE_X7Y42.B4       net (fanout=5)        0.799   N68
+    SLICE_X7Y42.B        Tilo                  0.097   IFetchPort/Mram_Instruction1591218
+                                                       IFetchPort/Mram_Instruction1591219
+    SLICE_X5Y42.B4       net (fanout=1)        0.515   IFetchPort/Mram_Instruction1591218
+    SLICE_X5Y42.B        Tilo                  0.097   N861
+                                                       IFetchPort/Mram_Instruction1591223
+    SLICE_X9Y44.A3       net (fanout=1)        0.729   IFetchPort/Mram_Instruction1591222
+    SLICE_X9Y44.A        Tilo                  0.097   IDecodePort/Reg_array_26<3>
+                                                       IFetchPort/Mram_Instruction1591235
+    SLICE_X3Y45.C5       net (fanout=262)      0.778   instruction<17>
+    SLICE_X3Y45.C        Tilo                  0.097   IDecodePort/Reg_array_29<3>
+                                                       IDecodePort/Mmux_read_data2_10
+    SLICE_X9Y51.D4       net (fanout=1)        0.736   IDecodePort/Mmux_read_data2_10
+    SLICE_X9Y51.CMUX     Topdc                 0.408   DMemoryPort/DMem_62<0>
+                                                       IDecodePort/Mmux_read_data2_4
+                                                       IDecodePort/Mmux_read_data2_2_f7
+    SLICE_X13Y55.A6      net (fanout=141)      0.596   ReadData2<0>
+    SLICE_X13Y55.A       Tilo                  0.097   DMemoryPort/DMem_120<3>
+                                                       ALUPort/Mmux_B_input110
+    SLICE_X13Y67.A1      net (fanout=62)       1.096   ALUPort/B_input<0>
+    SLICE_X13Y67.A       Tilo                  0.097   IDecodePort/Reg_array_8<23>
+                                                       ALUPort/Sh1241
+    SLICE_X10Y54.B3      net (fanout=6)        0.923   ALUPort/Sh124
+    SLICE_X10Y54.B       Tilo                  0.097   ALUPort/Sh144
+                                                       ALUPort/Sh1441
+    SLICE_X10Y54.A4      net (fanout=2)        0.327   ALUPort/Sh144
+    SLICE_X10Y54.A       Tilo                  0.097   ALUPort/Sh144
+                                                       ALUPort/Mmux_ALU_output17
+    SLICE_X33Y52.A6      net (fanout=1)        0.639   ALUPort/Mmux_ALU_output15
+    SLICE_X33Y52.A       Tilo                  0.097   DMemoryPort/mux28_12
+                                                       ALUPort/Mmux_ALU_output110
+    SLICE_X33Y84.B5      net (fanout=1153)     1.457   ALUResult<0>
+    SLICE_X33Y84.B       Tilo                  0.097   DMemoryPort/DMem_63<27>
+                                                       DMemoryPort/mux17_16
+    SLICE_X33Y65.B4      net (fanout=1)        1.030   DMemoryPort/mux17_16
+    SLICE_X33Y65.B       Tilo                  0.097   DMemoryPort/DMem_95<27>
+                                                       DMemoryPort/mux17_10
+    SLICE_X33Y79.A5      net (fanout=1)        0.698   DMemoryPort/mux17_10
+    SLICE_X33Y79.A       Tilo                  0.097   DMemoryPort/DMem_28<27>
+                                                       DMemoryPort/mux17_4
+    SLICE_X13Y76.B5      net (fanout=1)        0.646   DMemoryPort/mux17_4
+    SLICE_X13Y76.B       Tilo                  0.097   IDecodePort/Reg_array_11<27>
+                                                       Mmux_Write_data188
+    SLICE_X30Y76.CX      net (fanout=31)       0.702   Write_data<25>
+    SLICE_X30Y76.CLK     Tdick                 0.007   IDecodePort/Reg_array_27<26>
+                                                       IDecodePort/Reg_array_27_25
     -------------------------------------------------  ---------------------------
-    Total                                      4.180ns (1.531ns logic, 2.649ns route)
-                                                       (36.6% logic, 63.4% route)
+    Total                                     15.141ns (2.114ns logic, 13.027ns route)
+                                                       (14.0% logic, 86.0% route)
 
 --------------------------------------------------------------------------------
 
 Hold Paths: TS_sys_clk_pin = PERIOD TIMEGRP "sys_clk_pin" 100 MHz HIGH 50%;
 --------------------------------------------------------------------------------
 
-Paths for end point DMemoryPort/DMem_2_1 (SLICE_X5Y84.D3), 1 path
+Paths for end point Val_3 (SLICE_X2Y80.C5), 1 path
 --------------------------------------------------------------------------------
-Slack (hold path):      0.274ns (requirement - (clock path skew + uncertainty - data path))
-  Source:               DMemoryPort/DMem_2_1 (FF)
-  Destination:          DMemoryPort/DMem_2_1 (FF)
+Slack (hold path):      0.256ns (requirement - (clock path skew + uncertainty - data path))
+  Source:               Val_2 (FF)
+  Destination:          Val_3 (FF)
   Requirement:          0.000ns
-  Data Path Delay:      0.274ns (Levels of Logic = 1)
+  Data Path Delay:      0.256ns (Levels of Logic = 1)
   Clock Path Skew:      0.000ns
   Source Clock:         CLK_BUFGP rising at 10.000ns
   Destination Clock:    CLK_BUFGP rising at 10.000ns
   Clock Uncertainty:    0.000ns
 
-  Minimum Data Path at Fast Process Corner: DMemoryPort/DMem_2_1 to DMemoryPort/DMem_2_1
+  Minimum Data Path at Fast Process Corner: Val_2 to Val_3
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X5Y84.DQ       Tcko                  0.141   DMemoryPort/DMem_2<1>
-                                                       DMemoryPort/DMem_2_1
-    SLICE_X5Y84.D3       net (fanout=4)        0.180   DMemoryPort/DMem_2<1>
-    SLICE_X5Y84.CLK      Tah         (-Th)     0.047   DMemoryPort/DMem_2<1>
-                                                       DMemoryPort/DMem_2_1_dpot
-                                                       DMemoryPort/DMem_2_1
+    SLICE_X2Y80.BMUX     Tshcko                0.202   Val<3>
+                                                       Val_2
+    SLICE_X2Y80.C5       net (fanout=14)       0.137   Val<2>
+    SLICE_X2Y80.CLK      Tah         (-Th)     0.083   Val<3>
+                                                       Mcount_Val_xor<3>11
+                                                       Val_3
     -------------------------------------------------  ---------------------------
-    Total                                      0.274ns (0.094ns logic, 0.180ns route)
-                                                       (34.3% logic, 65.7% route)
+    Total                                      0.256ns (0.119ns logic, 0.137ns route)
+                                                       (46.5% logic, 53.5% route)
 
 --------------------------------------------------------------------------------
 
-Paths for end point Val_2 (SLICE_X4Y83.C5), 1 path
+Paths for end point Val_2 (SLICE_X2Y80.B3), 1 path
 --------------------------------------------------------------------------------
-Slack (hold path):      0.312ns (requirement - (clock path skew + uncertainty - data path))
-  Source:               Val_1 (FF)
+Slack (hold path):      0.270ns (requirement - (clock path skew + uncertainty - data path))
+  Source:               Val_0 (FF)
   Destination:          Val_2 (FF)
   Requirement:          0.000ns
-  Data Path Delay:      0.312ns (Levels of Logic = 1)
+  Data Path Delay:      0.270ns (Levels of Logic = 1)
   Clock Path Skew:      0.000ns
   Source Clock:         CLK_BUFGP rising at 10.000ns
   Destination Clock:    CLK_BUFGP rising at 10.000ns
   Clock Uncertainty:    0.000ns
 
-  Minimum Data Path at Fast Process Corner: Val_1 to Val_2
+  Minimum Data Path at Fast Process Corner: Val_0 to Val_2
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X4Y83.BQ       Tcko                  0.141   Val<2>
-                                                       Val_1
-    SLICE_X4Y83.C5       net (fanout=17)       0.218   Val<1>
-    SLICE_X4Y83.CLK      Tah         (-Th)     0.047   Val<2>
+    SLICE_X2Y80.AQ       Tcko                  0.164   Val<3>
+                                                       Val_0
+    SLICE_X2Y80.B3       net (fanout=14)       0.194   Val<0>
+    SLICE_X2Y80.CLK      Tah         (-Th)     0.088   Val<3>
                                                        Mcount_Val_xor<2>11
                                                        Val_2
     -------------------------------------------------  ---------------------------
-    Total                                      0.312ns (0.094ns logic, 0.218ns route)
-                                                       (30.1% logic, 69.9% route)
+    Total                                      0.270ns (0.076ns logic, 0.194ns route)
+                                                       (28.1% logic, 71.9% route)
 
 --------------------------------------------------------------------------------
 
-Paths for end point Cntr_3 (SLICE_X0Y82.D3), 1 path
+Paths for end point Val_1 (SLICE_X2Y80.B3), 1 path
 --------------------------------------------------------------------------------
-Slack (hold path):      0.314ns (requirement - (clock path skew + uncertainty - data path))
-  Source:               Cntr_3 (FF)
-  Destination:          Cntr_3 (FF)
+Slack (hold path):      0.282ns (requirement - (clock path skew + uncertainty - data path))
+  Source:               Val_0 (FF)
+  Destination:          Val_1 (FF)
   Requirement:          0.000ns
-  Data Path Delay:      0.314ns (Levels of Logic = 1)
+  Data Path Delay:      0.282ns (Levels of Logic = 1)
   Clock Path Skew:      0.000ns
   Source Clock:         CLK_BUFGP rising at 10.000ns
   Destination Clock:    CLK_BUFGP rising at 10.000ns
   Clock Uncertainty:    0.000ns
 
-  Minimum Data Path at Fast Process Corner: Cntr_3 to Cntr_3
+  Minimum Data Path at Fast Process Corner: Val_0 to Val_1
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X0Y82.DQ       Tcko                  0.141   Cntr<3>
-                                                       Cntr_3
-    SLICE_X0Y82.D3       net (fanout=2)        0.170   Cntr<3>
-    SLICE_X0Y82.CLK      Tah         (-Th)    -0.003   Cntr<3>
-                                                       Cntr<3>_rt
-                                                       Mcount_Cntr_cy<3>
-                                                       Cntr_3
+    SLICE_X2Y80.AQ       Tcko                  0.164   Val<3>
+                                                       Val_0
+    SLICE_X2Y80.B3       net (fanout=14)       0.194   Val<0>
+    SLICE_X2Y80.CLK      Tah         (-Th)     0.076   Val<3>
+                                                       Mcount_Val_xor<1>11
+                                                       Val_1
     -------------------------------------------------  ---------------------------
-    Total                                      0.314ns (0.144ns logic, 0.170ns route)
-                                                       (45.9% logic, 54.1% route)
+    Total                                      0.282ns (0.088ns logic, 0.194ns route)
+                                                       (31.2% logic, 68.8% route)
 
 --------------------------------------------------------------------------------
 
@@ -561,7 +831,7 @@ Slack: 9.000ns (period - (min low pulse limit / (low pulse / period)))
   Low pulse limit: 0.500ns (Tcl)
   Physical resource: Cntr<3>/CLK
   Logical resource: Cntr_0/CK
-  Location pin: SLICE_X0Y82.CLK
+  Location pin: SLICE_X3Y79.CLK
   Clock network: CLK_BUFGP
 --------------------------------------------------------------------------------
 Slack: 9.000ns (period - (min high pulse limit / (high pulse / period)))
@@ -570,12 +840,12 @@ Slack: 9.000ns (period - (min high pulse limit / (high pulse / period)))
   High pulse limit: 0.500ns (Tch)
   Physical resource: Cntr<3>/CLK
   Logical resource: Cntr_0/CK
-  Location pin: SLICE_X0Y82.CLK
+  Location pin: SLICE_X3Y79.CLK
   Clock network: CLK_BUFGP
 --------------------------------------------------------------------------------
 
 
-All constraints were met.
+1 constraint not met.
 
 
 Data Sheet report:
@@ -587,32 +857,32 @@ Clock to Setup on destination clock CLK
                | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
-CLK            |    4.688|         |         |         |
+CLK            |   15.590|         |         |         |
 ---------------+---------+---------+---------+---------+
 
 
 Timing summary:
 ---------------
 
-Timing errors: 0  Score: 0  (Setup/Max: 0, Hold: 0)
+Timing errors: 5295  Score: 16553133  (Setup/Max: 16553133, Hold: 0)
 
-Constraints cover 2975 paths, 0 nets, and 459 connections
+Constraints cover 19647689825 paths, 0 nets, and 25487 connections
 
 Design statistics:
-   Minimum period:   4.688ns{1}   (Maximum frequency: 213.311MHz)
+   Minimum period:  15.590ns{1}   (Maximum frequency:  64.144MHz)
 
 
 ------------------------------------Footnotes-----------------------------------
 1)  The minimum period statistic assumes all single cycle delays.
 
-Analysis completed Mon Dec 12 23:50:01 2016 
+Analysis completed Tue Dec 13 14:01:35 2016 
 --------------------------------------------------------------------------------
 
 Trace Settings:
 -------------------------
 Trace Settings 
 
-Peak Memory Usage: 619 MB
+Peak Memory Usage: 666 MB
 
 
 

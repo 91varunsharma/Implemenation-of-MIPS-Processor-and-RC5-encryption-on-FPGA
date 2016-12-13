@@ -1,15 +1,12 @@
 Release 14.7 Drc P.20131013 (nt64)
 Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
-Mon Dec 12 23:50:16 2016
+Tue Dec 13 14:02:02 2016
 
 drc -z TopModule.ncd TopModule.pcf
 
-WARNING:PhysDesignRules:372 - Gated clock. Clock net BTN[2]_BTN[1]_OR_3_o is
-   sourced by a combinatorial pin. This is not good design practice. Use the CE
-   pin to control the loading of data into the flip-flop.
 WARNING:PhysDesignRules:372 - Gated clock. Clock net clr_G is sourced by a
    combinatorial pin. This is not good design practice. Use the CE pin to
    control the loading of data into the flip-flop.
-DRC detected 0 errors and 2 warnings.  Please see the previously displayed
+DRC detected 0 errors and 1 warnings.  Please see the previously displayed
 individual error or warning messages for more details.
