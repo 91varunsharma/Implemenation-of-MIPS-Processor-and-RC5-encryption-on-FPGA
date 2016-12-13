@@ -9,8 +9,8 @@ def get_hex(value):
 
 if __name__ == '__main__':
 
-    read_file = "/Users/ADDY/Google Drive/github/AHD-Project-2016/converter/test/machine/testbench_3_machine.txt"
-    write_file = "/Users/ADDY/Google Drive/github/AHD-Project-2016/converter/test/instruction/testbench_3_ism.txt"
+    read_file = "/Users/ADDY/Google Drive/github/AHD-Project-2016/assembly_rc5/asm_machine/rc5_all_dmem.txt"
+    write_file = "/Users/ADDY/Google Drive/github/AHD-Project-2016/assembly_rc5/asm_machine/rc5_all_dmem_ism.txt"
     read_from = open(read_file)
     write_to = open(write_file, 'w')
     ins_num = 0
