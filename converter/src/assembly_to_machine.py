@@ -121,8 +121,8 @@ def get_jtype_string(ins_t):
 
 if __name__ == '__main__':
 
-    read_file = "/Users/ADDY/Google Drive/github/AHD-Project-2016/converter/test/asm/test_6_all.txt"
-    write_file = "/Users/ADDY/Google Drive/github/AHD-Project-2016/converter/test/machine/test_6_all_machine.txt"
+    read_file = "/Users/ADDY/Google Drive/github/AHD-Project-2016/converter/test/asm/test_1.txt"
+    write_file = "/Users/ADDY/Google Drive/github/AHD-Project-2016/converter/test/machine/test_1_machine.txt"
     read_from = open(read_file)
     write_to = open(write_file, 'w')
     ins_num = 0
