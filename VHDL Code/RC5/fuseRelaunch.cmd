@@ -1,1 +1,1 @@
--intstyle "ise" -incremental -lib "secureip" -o "C:/Users/Varun Sharma/Documents/GitHub/AHD-Project-2016/VHDL Code/RC5/TopModule_isim_beh.exe" -prj "C:/Users/Varun Sharma/Documents/GitHub/AHD-Project-2016/VHDL Code/RC5/TopModule_beh.prj" "work.TopModule" 
+-intstyle "ise" -incremental -lib "secureip" -o "C:/Users/Varun Sharma/Documents/GitHub/AHD-Project-2016/VHDL Code/RC5/TopModule_isim_par.exe" -prj "C:/Users/Varun Sharma/Documents/GitHub/AHD-Project-2016/VHDL Code/RC5/TopModule_par.prj" "work.TopModule" 
