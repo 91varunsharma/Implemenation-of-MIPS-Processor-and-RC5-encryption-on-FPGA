@@ -492,7 +492,7 @@ WARNING:Xst:653 - Signal <DMem_out_data> is used but never assigned. This source
     Found 32-bit register for signal <DMem<127>>.
     Found 32-bit register for signal <DMem<0>>.
 INFO:Xst:3019 - HDL ADVISOR - 4096 flip-flops were inferred for signal <DMem>. You may be trying to describe a RAM in a way that is incompatible with block and distributed RAM resources available on Xilinx devices, or with a specific template that is not supported. Please review the Xilinx resources documentation and the XST user manual for coding guidelines. Taking advantage of RAM resources will lead to improved device usage and reduced synthesis time.
-    Found 32-bit 128-to-1 multiplexer for signal <DMem_address[6]_DMem[127][31]_wide_mux_514_OUT> created at line 73.
+    Found 32-bit 128-to-1 multiplexer for signal <DMem_address[6]_DMem[127][31]_wide_mux_514_OUT> created at line 74.
     Summary:
 	inferred 4096 D-type flip-flop(s).
 	inferred   2 Multiplexer(s).
@@ -1009,12 +1009,12 @@ clr_G          |         |    1.611|         |         |
 =========================================================================
 
 
-Total REAL time to Xst completion: 61.00 secs
-Total CPU time to Xst completion: 61.15 secs
+Total REAL time to Xst completion: 63.00 secs
+Total CPU time to Xst completion: 62.70 secs
  
 --> 
 
-Total memory usage is 546168 kilobytes
+Total memory usage is 546872 kilobytes
 
 Number of errors   :    0 (   0 filtered)
 Number of warnings :   50 (   0 filtered)

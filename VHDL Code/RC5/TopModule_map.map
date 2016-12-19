@@ -10,7 +10,7 @@ Target Device  : xc7a100t
 Target Package : csg324
 Target Speed   : -3
 Mapper Version : artix7 -- $Revision: 1.55 $
-Mapped Date    : Tue Dec 13 13:53:28 2016
+Mapped Date    : Tue Dec 13 20:18:00 2016
 
 Mapping design into LUTs...
 Running directed packing...
@@ -69,22 +69,22 @@ Phase 8.8  Global Placement
 .......................................................................
 ...................................................
 ...................................................
-Phase 8.8  Global Placement (Checksum:25707046) REAL time: 1 mins 6 secs 
+Phase 8.8  Global Placement (Checksum:25707046) REAL time: 1 mins 7 secs 
 
 Phase 9.5  Local Placement Optimization
-Phase 9.5  Local Placement Optimization (Checksum:25707046) REAL time: 1 mins 6 secs 
+Phase 9.5  Local Placement Optimization (Checksum:25707046) REAL time: 1 mins 8 secs 
 
 Phase 10.18  Placement Optimization
-Phase 10.18  Placement Optimization (Checksum:1c1ee323) REAL time: 1 mins 32 secs 
+Phase 10.18  Placement Optimization (Checksum:1c1ee323) REAL time: 1 mins 36 secs 
 
 Phase 11.5  Local Placement Optimization
-Phase 11.5  Local Placement Optimization (Checksum:1c1ee323) REAL time: 1 mins 32 secs 
+Phase 11.5  Local Placement Optimization (Checksum:1c1ee323) REAL time: 1 mins 36 secs 
 
 Phase 12.34  Placement Validation
-Phase 12.34  Placement Validation (Checksum:1c1ee323) REAL time: 1 mins 33 secs 
+Phase 12.34  Placement Validation (Checksum:1c1ee323) REAL time: 1 mins 36 secs 
 
-Total REAL time to Placer completion: 1 mins 45 secs 
-Total CPU  time to Placer completion: 2 mins 3 secs 
+Total REAL time to Placer completion: 1 mins 48 secs 
+Total CPU  time to Placer completion: 2 mins 6 secs 
 Running post-placement packing...
 Writing output files...
 WARNING:PhysDesignRules:372 - Gated clock. Clock net clr_G is sourced by a
@@ -172,9 +172,9 @@ Specific Feature Utilization:
 
 Average Fanout of Non-Clock Nets:                3.91
 
-Peak Memory Usage:  925 MB
-Total REAL time to MAP completion:  1 mins 53 secs 
-Total CPU time to MAP completion (all processors):   2 mins 10 secs 
+Peak Memory Usage:  926 MB
+Total REAL time to MAP completion:  1 mins 56 secs 
+Total CPU time to MAP completion (all processors):   2 mins 14 secs 
 
 Mapping completed.
 See MAP report file "TopModule_map.mrp" for details.
